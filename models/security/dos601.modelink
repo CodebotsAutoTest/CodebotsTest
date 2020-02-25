@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelink threeWay="true" forceExeedL="true" forceExeedM="true" forceExeedR="true">
+  <model path="/dev.dos601.models/ui/dos601.angularbotui" position="LEFT" />
+  <model path="/dev.dos601.models/entity/dos601.springbotentity" position="MIDDLE" />
+  <model path="/dev.dos601.models/security/dos601.commonsecurity" position="RIGHT" />
+</modelink>

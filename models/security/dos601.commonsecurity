@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commonSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:commonSecurity="http://codebots.com/emf/security">
+  <Authentication/>
+  <Authorization/>
+  <Auditing/>
+  <SecuritySchemes/>
+  <Groups>
+    <Groups Name="Visitors"/>
+  </Groups>
+</commonSecurity:Security>
