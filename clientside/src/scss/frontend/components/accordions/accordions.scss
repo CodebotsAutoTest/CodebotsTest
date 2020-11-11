@@ -1,0 +1,81 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Accordions
+-------------------------------- */
+/*
+Accordions are used to expand information
+*/
+
+// % protected region % [Change accordion styles here] off begin
+.accordion {
+	border-bottom: convert-rem(1px) solid $grey-1;
+	@include transform-timing($animation-time);
+
+	.btn {
+		&.icon-chevron-up {
+			width: 100%;
+			justify-content: space-between;
+
+		}
+
+		background-color: transparent;
+	}
+
+	.icon-chevron-up {
+		white-space: normal;
+
+		&:after {
+			transform: rotate(0deg);
+			@include transform-timing-specific(transform, $quick-animation-time);
+		}
+	}
+
+	.accordion__info {
+		background-color: $grey-0;
+
+		//this is for animating the info block sta
+		&--collapsed {
+			@include cubic-bezier-ease-in (all, $quick-animation-time);
+			height: 0;
+			min-height: 0;
+			max-height: 0;
+			overflow: hidden;
+		}
+
+		&--expanded {
+			@include cubic-bezier-ease-in (all, $slow-animation-time);
+			min-height: convert-rem(200px);
+			max-height: convert-rem(3000px);
+			height: 100%;
+			overflow: hidden;
+		}
+	}
+
+	&.active {
+		.icon-chevron-up {
+			&:after {
+				transform: rotate(180deg);
+				@include transform-timing-specific(transform, $quick-animation-time);
+			}
+		}
+	}
+}
+// % protected region % [Change accordion styles here] end
+
+// % protected region % [Add additional accordion styles here] off begin
+// % protected region % [Add additional accordion styles here] end

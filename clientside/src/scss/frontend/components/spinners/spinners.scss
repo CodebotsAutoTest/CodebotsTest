@@ -1,0 +1,143 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Spinners
+-------------------------------- */
+/*
+Spinners are displayed when the application is loading. 
+There are various ways you can design a spinner, there are 4 spinners available to use including animations that are changeable.
+Animations are used from animation/motion.scss.
+*/
+
+// % protected region % [Change spinner container styles here] off begin
+.spinner-container {
+	position: fixed;
+	opacity: 1;
+	display: flex;
+	@include fadeIn(0.7s);
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	width: 100%;
+	height: 100%;
+
+	//Positions all loaders in the middle
+	>div {
+		position: relative;
+	}
+}
+// % protected region % [Change spinner container styles here] end
+
+// % protected region % [Change simple loader spinner styles here] off begin
+// Simple loader styling
+.simple-loader {
+	border: convert-rem(16px) solid $grey-2;
+	/*Light Grey*/
+	border-bottom: convert-rem(16px) solid $color-primary;
+	border-radius: 50%;
+	width: convert-rem(100px);
+	height: convert-rem(100px);
+	@include spin(2s);
+}
+// % protected region % [Change simple loader spinner styles here] end
+
+// % protected region % [Change nested loader spinner styles here] off begin
+//Nested loader with multiple circles//
+.nested-loader {
+	width: convert-rem(120px);
+	height: convert-rem(120px);
+	border: convert-rem(3px) solid transparent;
+	border-top-color: $color-support-blue;
+	border-radius: 50%;
+	@include spin(3s);
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: convert-rem(5px);
+		left: convert-rem(5px);
+		right: convert-rem(5px);
+		bottom: convert-rem(5px);
+		border: convert-rem(3px) solid transparent;
+		border-top-color: $color-support-red;
+		border-radius: 50%;
+		@include spin($slow-animation-time);
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: convert-rem(15px);
+		left: convert-rem(15px);
+		right: convert-rem(15px);
+		bottom: convert-rem(15px);
+		border: convert-rem(3px) solid transparent;
+		border-top-color: $color-support-orange;
+		border-radius: 50%;
+		@include spin(1.5s);
+	}
+}
+// % protected region % [Change nested loader spinner styles here] end
+
+// % protected region % [Change bounce spinner styles here] off begin
+//Bounce spinner
+.bouncing-loader {
+	width: convert-rem(20px);
+	height: convert-rem(20px);
+	background-color: $color-primary;
+	border-radius: 50%;
+	position: relative;
+	@include bounceMove(0.6s);
+}
+
+.bouncing-shadow {
+	width: convert-rem(10px);
+	height: convert-rem(5px);
+	margin-top: convert-rem(20px);
+	margin-left: convert-rem(-15px);
+	background-color: $grey-4;
+	border-radius: 50%;
+	position: relative;
+	animation: move 4s linear infinite;
+}
+// % protected region % [Change bounce spinner styles here] end
+
+// % protected region % [Change scaling square spinner styles here] off begin
+//Scaling Square
+.scaling-square {
+	height: convert-rem(20px);
+	width: convert-rem(20px);
+	background-color: $color-primary;
+	margin: convert-rem(10px);
+}
+
+//Scaling square keyframes
+#square-1 {
+	@include square($slow-animation-time);
+}
+
+#square-2 {
+	@include squareDown($slow-animation-time);
+}
+
+#square-3 {
+	@include square($slow-animation-time);
+}
+// % protected region % [Change scaling square spinner styles here] end
+
+// % protected region % [Add additional spinners styles here] off begin
+// % protected region % [Add additional spinners styles here] end

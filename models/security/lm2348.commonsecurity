@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <commonSecurity:Security xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:commonSecurity="http://codebots.com/emf/security">
-  <Authentication/>
-  <Authorization/>
-  <Auditing/>
-  <SecuritySchemes/>
-  <Groups>
-    <Groups Name="Visitors"/>
-  </Groups>
+	<Authentication>
+		<Authentication xsi:type="commonSecurity:LocalAuthentication" Uuid="d3adb899-4da3-4454-bef1-afa7a3da62b8" />
+	</Authentication>
+	<Authorization>
+</Authorization>
+	<Auditing/>
+	<SecuritySchemes>
+</SecuritySchemes>
+	<TwoFactorAuthenticationProviders/>
+	<Groups>
+		<Groups Uuid="7da30858-c3a1-4447-ffcb-00b480f6991f" Name="Visitors" Description="Anonymous users who have not been authenticated" IsSpecialGroup="UNAUTHENTICATED"/>
+</Groups>
 </commonSecurity:Security>

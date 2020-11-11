@@ -1,0 +1,88 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+
+/* --------------------------------
+Variables
+-------------------------------- */
+/*
+Use variables whenever a integer is normalised throughout your styling (i.e. convert-rem(16px) font size) or for the branding colors in the style guide.
+If you find whilst writing your code that you are repeating the same value, make a variable for it.
+We want to code smarter to be more efficient.
+*/
+
+//****************-------BREAKPOINTS--------****************
+// Variable Map for break points
+$breakpoints: (
+	xs: 320px,
+	sm: 800px,
+	md: 1000px,
+	lg: 1200px,
+	xl: 1600px,
+	// % protected region % [Add additional breakpoints here] off begin
+	// % protected region % [Add additional breakpoints here] end
+);
+
+//****************-------END BREAKPOINTS--------****************
+
+//****************------- Z-INDEX--------****************
+//Called by using z-index: map-get($z-index, {name} );
+$z-index: (base:1,
+	1: 100, // The base level
+	2: 200,
+	3: 300,
+	4: 400,
+	5: 500, // Chat and menu goes here
+	6: 600, // for modals
+	7: 700,
+	8: 800, // for help
+	9: 900 // Break glass if using 9
+	// % protected region % [Add additional z-index values here] off begin
+	// % protected region % [Add additional z-index values here] end
+);
+
+// % protected region % [Change z-index variable to values] off begin
+$z-index-base: map-get($z-index, base);
+$z-index-general: map-get($z-index, 1);
+$z-index-sidebar: map-get($z-index, 3);
+$z-index-modal: map-get($z-index, 5);
+$z-index-alert: map-get($z-index, 6);
+// % protected region % [Change z-index variable to values] end
+
+//****************-------END Z-INDEX--------****************
+
+
+//Animation - transition timing - change if too slow or quick
+// % protected region % [Change transition times to values here] off begin
+$animation-time: 0.3s;
+$slow-animation-time: 1s;
+$quick-animation-time: 0.15s;
+// % protected region % [Change transition times to values here] end
+
+//****************-------COMPONENT VARIABLES--------****************
+//set up variables for components for consistnecy
+
+// % protected region % [Change or add component variables here] off begin
+$action-bar-height: convert-rem(95px);
+$header-bar-height: convert-rem(100px);
+$top-bar-height: convert-rem(44px);
+
+//set up variables for forms
+$slide-builder-list-width: convert-rem(400px);
+// % protected region % [Change or add component variables here] end
+
+// % protected region % [Add additional variables here] off begin
+// % protected region % [Add additional variables here] end

@@ -1,0 +1,42 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Import components
+-------------------------------- */
+/*
+Components - Import all the Components into a single file.
+*/
+
+//Used in all products
+@import "collection-view/collection-view.scss";
+@import "header/header.scss";
+@import "accordions/accordions.scss";
+@import "action-bar/action-bar.scss";
+@import "login/login.scss";
+@import "pagination/pagination.scss";
+@import "navigation/expanded-navigation.scss";
+@import "navigation/navigation.scss";
+@import "alerts/alerts.scss";
+@import "spinners/spinners.scss";
+@import "sidebar/sidebar.scss";
+@import "modal/modal.scss";
+@import "upload/upload.scss";
+@import "search/search.scss";
+@import "context-menu/context-menu.scss";
+
+// % protected region % [Add additional scss imports here] off begin
+// % protected region % [Add additional scss imports here] end

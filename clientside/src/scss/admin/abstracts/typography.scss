@@ -1,0 +1,333 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Typography
+https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd
+-------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+
+//Import Icon Fonts
+@import url("https://cdn.codebots.com/lampbot/lightning-icons/latest/lightning-icons.css");
+
+$admin-body-font-family: 'Lato',
+sans-serif !default;
+
+$admin-heading-font-family: 'Poppins',
+sans-serif !default;
+
+$admin-source-font-family: monospace !default;
+
+$admin-base-font-size: convert-rem(16px) !default;
+$admin-base-font-weight: 400 !default;
+
+$admin-text-scale-ratio: 1.333 !default;
+$admin-text-label: 1rem !default;
+
+/* Type scale */
+$admin-text-xs: calc(1rem / (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
+$admin-text-sm: calc(1rem / #{$admin-text-scale-ratio}) !default;
+$admin-text-md: calc(1rem * #{$admin-text-scale-ratio}) !default;
+$admin-text-lg: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
+$admin-text-xl: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
+$admin-text-xxl: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
+$admin-text-xxxl: calc(1rem * (#{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio} * #{$admin-text-scale-ratio})) !default;
+
+/* Line height */
+$admin-heading-line-height: 1.2 !default;
+$admin-body-line-height: 1.6 !default;
+
+/* Weights */
+/* This needs to be looked at once mobile gets used */
+$admin-text-light: 300 !default;
+$admin-text-regular: 400 !default;
+$admin-text-medium: 600 !default;
+$admin-text-bold: 700 !default;
+
+/*Scale down the text at a smaller screen size*/
+@include breakpoint(md) {
+	$admin-text-base-size: 1.25rem;
+	$admin-text-scale-ratio: 1.25;
+}
+
+/* Default HTML Selectors */
+
+p {
+	font-family: $admin-body-font-family;
+	font-size: $admin-base-font-size;
+	line-height: $admin-body-line-height;
+	margin-bottom: $admin-space-xs;
+	&.text--error {
+		color: $admin-color-support-red;
+	}
+	&.text--success {
+		color: $admin-color-support-green;
+	}
+	&.text--notice {
+		color: $admin-color-support-blue;
+	}
+}
+
+form legend,
+table caption {
+	margin-bottom: $admin-space-xxs;
+	line-height: $admin-heading-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $admin-heading-font-family;
+}
+
+h1 {
+	font-size: $admin-text-xxxl;
+	font-weight: $admin-text-bold;
+	@include media(xs, sm) {
+		font-size: $admin-text-xxl;
+	}
+}
+
+h2 {
+	margin: 0;
+	font-size: $admin-text-xxl;
+	font-weight: $admin-text-medium;
+	@include media(xs, sm) {
+		font-size: $admin-text-xl;
+	}
+}
+
+h3 {
+	font-size: $admin-text-xl;
+	font-weight: $admin-text-regular;
+	@include media(xs, sm) {
+		font-size: $admin-text-lg;
+	}
+}
+
+h4 {
+	font-size: $admin-text-lg;
+	font-weight: $admin-text-medium;
+	@include media(xs, sm) {
+		font-size: $admin-text-md;
+	}
+}
+
+h5 {
+	font-size: $admin-text-md;
+	font-weight: $admin-text-regular;
+	@include media(xs, sm) {
+		font-size: $admin-text-md;
+	}
+}
+
+h6 {
+	font-size: $admin-base-font-size;
+	font-weight: $admin-text-medium;
+	@include media(xs, sm) {
+		font-size: $admin-text-md;
+	}
+}
+
+/* Text Decorations */
+b,
+strong,
+.bold,
+.txt-bold {
+	font-weight: $admin-text-bold;
+}
+
+em,
+.italics,
+.txt-italics {
+	font-style: italic;
+}
+
+u,
+.txt-underline {
+	text-decoration: underline;
+}
+
+label {
+	font-size: $admin-text-label;
+	@include fontSmooth;
+	user-select: none;
+}
+
+textarea {
+	font-size: $admin-base-font-size;
+	font-family: $admin-body-font-family;
+}
+
+a {
+	font-family: $admin-body-font-family;
+	color: $admin-color-support-blue;
+	text-decoration: underline;
+	transition: color 0.2s;
+	cursor: pointer;
+
+	//Link sizes
+	&.link-sm {
+		font-size: $admin-text-sm;
+	}
+
+	&.link-md {
+		font-size: $admin-text-md;
+	}
+
+	&.link-rm-txt-dec {
+		text-decoration: none;
+		font-style: none;
+		color: $admin-black;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		color: $admin-color-support-blue-dark;
+		border-bottom: convert-rem(2px) solid;
+		@include cubic-bezier-ease-in(all, $admin-quick-animation-time);
+	}
+}
+
+/* Code */
+pre>code {
+	display: block;
+	padding: $admin-space-xs $admin-space-sm;
+	white-space: pre;
+}
+
+pre {
+	font-family: monospace, monospace;
+	font-size: $admin-base-font-size;
+}
+
+code,
+samp,
+kbd {
+	padding: $admin-space-xxxs $admin-space-xxs;
+	margin: 0 $admin-space-xxxs;
+	font-size: 90%;
+	white-space: nowrap;
+	border-style: solid;
+	border-width: convert-rem(1px);
+}
+
+/* Lists */
+dl,
+ol,
+ul {
+	list-style-position: outside;
+	padding-left: $admin-space-sm;
+
+	&.list-unstyled {
+		list-style-type: none;
+		padding-left: $admin-space-xxs;
+
+		& .list-unstyled {
+			padding-left: $admin-space-sm;
+		}
+	}
+}
+
+ul {
+	list-style-type: disc;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+dl dt,
+dl dt dd,
+ol li,
+ul li {
+	line-height: $admin-body-line-height;
+}
+
+/* Font types */
+.txt-sm-body {
+	font-size: $admin-text-sm;
+}
+
+.txt-body {
+	font-size: $admin-base-font-size;
+}
+
+.txt-lg-body {
+	font-size: $admin-text-md;
+	font-weight: $admin-text-bold;
+}
+
+/* Text Alignments */
+.txt-left {
+	text-align: left;
+}
+
+.txt-center {
+	text-align: center;
+}
+
+.txt-right {
+	text-align: right;
+}
+
+.txt-justify {
+	text-align: justify;
+}
+
+/* Text Transformations */
+.txt-uppercase {
+	text-transform: uppercase;
+}
+
+.txt-lowercase {
+	text-transform: lowercase;
+}
+
+.txt-capitalise {
+	text-transform: capitalize;
+}
+
+
+
+
+/* Forms
+	 ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+ button,
+ input,
+ optgroup,
+ select,
+ textarea {
+	 font-family: $admin-body-font-family;
+	 /* 1 */
+	 font-size: 100%;
+	 /* 1 */
+	 line-height: 1.15;
+	 /* 1 */
+	 margin: 0;
+	 /* 2 */
+ }

@@ -1,0 +1,206 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Timelines 
+-------------------------------- */
+/*
+Styling of timelines behaviour start here
+*/
+
+
+.timelines-behaviour {
+	//import list view into the behaviour
+	@import 'timelines-list-view.scss';
+	//import timelines view into the behaviour
+	@import 'timelines-view.scss';
+
+	// % protected region % [timelines behaviour generic styling] off begin
+	//set up layout
+	display: grid;
+	grid-template-areas: 'header header'
+		'menu menu'
+		'filter filter'
+		'timeline sidebar';
+	grid-template-columns: 3fr 1fr;
+	grid-template-rows: auto auto 1fr;
+	padding: $space-lg;
+
+	@include media(md, lg) {
+		grid-template-columns: 2fr 1fr;
+	}
+
+	@include media(xs) {
+		grid-template-areas:
+			'header header'
+			'menu menu'
+			'filter filter'
+			'sidebar sidebar'
+			'timeline timeline';
+	}
+
+	.behaviour-header {
+		grid-area: header;
+		margin-bottom: $space-sm;
+	}
+
+	.timelines__menu {
+		grid-area: menu;
+	}
+
+	.timelines__filter {
+		grid-area: filter;
+	}
+
+	.timelines__view,
+	.timelines__list-view {
+		grid-area: timeline;
+		margin-top: $space-md;
+	}
+
+	.timelines__sidebar {
+		grid-area: sidebar;
+	}
+
+	//END LAYOUT
+
+	//START STYLING COMPONENTS
+
+	//filter styling
+	.timelines__filter {
+		display: flex;
+		align-items: flex-start;
+		border: convert-rem(1px) solid $grey-0;
+		padding: $space-sm;
+		min-height: convert-rem(200px);
+		max-height: convert-rem(3000px);
+		height: 100%;
+		opacity: 1;
+		flex-wrap: wrap;
+		@include cubic-bezier-ease-in (min-height, $animation-time);
+
+		&.hide {
+			@include cubic-bezier-ease-in (min-height, $animation-time);
+			opacity: 0;
+			height: 0;
+			min-height: 0;
+			max-height: 0;
+			padding: 0;
+		}
+
+		.input-group {
+			margin: 0 $space-sm 0 0;
+		}
+
+		.btn-group {
+			width: 100%;
+			justify-content: flex-end;
+		}
+	}
+
+	//menu section
+	.timelines__menu {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		.timelines__search {
+			margin: 0;
+
+			.input-group {
+				margin: 0;
+			}
+
+			label {
+				display: none;
+			}
+		}
+
+		//actions on the right side - the buttons
+		.timelines__menu--actions {
+			width: 100%;
+
+			.btn {
+				width: auto;
+				min-width: 4rem;
+				min-height: unset;
+				padding: $space-xxs;
+				margin-left: $space-xxs;
+				font-size: $base-font-size;
+				align-items: center;
+
+				&:first-of-type {
+					margin-right: auto;
+				}
+
+				&:last-of-type {
+					margin-right: 0;
+				}
+
+				&:before {
+					margin: .5rem auto;
+				}
+			}
+			
+			.btn--secondary {
+				min-width: 5.5rem;
+			}
+		}
+	}
+
+	//sidebar styles
+	.timelines__sidebar {
+		background-color: $grey-0;
+		margin: $space-md 0 0 $space-sm;
+		background-color: $grey-0;
+		justify-content: space-between;
+		align-items: center;
+		height: fit-content;
+		z-index: 1;
+		max-height: 0;
+		overflow: hidden;
+		@include expandHeight(2.5s);
+
+		.sidebar__list-view__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			h5 {
+				margin-bottom: 0;
+				font-size: $text-md;
+			}
+
+			.input-group__dropdown {
+				margin: 0;
+				min-width: unset;
+
+				//charp 
+				.dropdown__container {
+					width: 120px;
+					min-width: unset;
+					background: transparent;
+					border: none;
+				}
+			}
+		}
+	}
+	// % protected region % [timelines behaviour generic styling] end
+	//END STYLING COMPONENTS
+}
+
+// % protected region % [Add additional timelines styles here] off begin
+// % protected region % [Add additional timelines styles here] end

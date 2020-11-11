@@ -1,0 +1,77 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+// Use variables whenever a integer is normalised throughout your styling (i.e. 16px font size)
+// or for the branding colors in the style guide.
+// If you find whilst writing your code that you are repeating the same value, make a variable for it.
+// We want to code smarter to be more efficient.
+
+//****************-------FONTS--------****************
+
+// @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700');
+// @import url("https://use.typekit.net/kxu7vbt.css");
+// //Import Icon Fonts
+// @import url('https://cdn.codebots.com/lampbot/lightning-icons/latest/lightning-icons.css');
+
+//****************-------END FONTS--------****************
+//****************-------BREAKPOINTS--------****************
+// Variable Map for break points
+$admin-breakpoints: (
+	xs: 320px,
+	sm: 800px,
+	md: 1000px,
+	lg: 1200px,
+	xl: 1600px,
+);
+
+//****************-------END BREAKPOINTS--------****************
+
+//****************------- Z-INDEX--------****************
+//Called by using z-index: map-get($admin-z-index, {name} );
+$admin-z-index: (base:1,
+	1: 100, // The base level
+	2: 200,
+	3: 300,
+	4: 400,
+	5: 500, // Chat and menu goes here
+	6: 600, // for modals
+	7: 700,
+	8: 800, // for help
+	9: 900 // Break glass if using 9
+);
+
+$admin-z-index-base: map-get($admin-z-index, base);
+$admin-z-index-general: map-get($admin-z-index, 1);
+$admin-z-index-sidebar: map-get($admin-z-index, 3);
+$admin-z-index-modal: map-get($admin-z-index, 5);
+$admin-z-index-alert: map-get($admin-z-index, 6);
+
+//****************-------END Z-INDEX--------****************
+
+
+//transition timing - change if too slow or quick
+$admin-animation-time: 0.3s !default;
+$admin-slow-animation-time: 1s !default;
+$admin-quick-animation-time: 0.15s !default;
+
+//****************-------COMPONENT VARIABLES--------****************
+//set up variables for components for consistnecy
+$action-bar-height: convert-rem(95px);
+$header-bar-height: convert-rem(100px);
+$admin-top-bar-height: 2.4rem;
+
+//set up variables for forms
+$slide-builder-list-width: convert-rem(400px);

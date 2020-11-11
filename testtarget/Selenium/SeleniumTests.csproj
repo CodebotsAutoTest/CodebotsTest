@@ -1,0 +1,104 @@
+<!--
+@bot-written
+
+WARNING AND NOTICE
+Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+Full Software Licence as accepted by you before being granted access to this source code and other materials,
+the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+access, download, storage, and/or use of this source code.
+
+BOT WARNING
+This file is bot-written.
+Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile></DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="EdgeChromiumDriver\*.*" CopyToOutputDirectory="Always" />
+		<None Include="../API/SiteConfig.ini" Link="SiteConfig.ini" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="../API/UserConfig.ini" Link="UserConfig.ini" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="../API/BaseChoiceConfig.ini" Link="BaseChoiceConfig.ini" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="../TestDataLib/Resources/RedCircle.svg" Link="Resources/RedCircle.svg" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="../../Serverside/src/appsettings.Test.xml" CopyToOutputDirectory="Always" />
+		<None Include="SeleniumConfig.ini" CopyToOutputDirectory="Always" />
+		<None Include="xunit.runner.json" CopyToOutputDirectory="Always" />
+		<!-- % protected region % [Add any further items here] off begin -->
+		<!-- % protected region % [Add any further items here] end -->
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="dotnet-test-xunit" Version="2.2.0-preview2-build1029" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="3.1.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.2" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="RestSharp" Version="106.6.10" />
+		<PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
+		<!-- % protected region % [The default web driver versions, change to suit needs] off begin -->
+		<PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="86.0.4240.2200" />
+		<PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.26.0.1" />
+		<!-- % protected region % [The default web driver versions, change to suit needs] end -->
+		<PackageReference Include="Selenium.Support" Version="3.141.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+		<PackageReference Include="SpecFlow" Version="3.3.57" />
+		<PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.3.57" />
+		<PackageReference Include="SpecFlow.xUnit" Version="3.3.57" />
+		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.runner.console" Version="2.4.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+		<PackageReference Include="XunitXml.TestLogger" Version="2.1.26" />
+		<!-- % protected region % [Add any further imports here] off begin -->
+		<!-- % protected region % [Add any further imports here] end -->
+	</ItemGroup>
+
+	<!-- % protected region % [Customize ItemGroup for ProjectReference here] off begin -->
+	<ItemGroup>
+		<ProjectReference Include="../API/APITests.csproj" />
+	</ItemGroup>
+	<!-- % protected region % [Customize ItemGroup for ProjectReference here] end -->
+
+	<ItemGroup>
+		<Reference Include="System.Configuration" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<ShowTrace Condition="'$(ShowTrace)'==''">false</ShowTrace>
+		<OverwriteReadOnlyFiles Condition="'$(OverwriteReadOnlyFiles)'==''">false</OverwriteReadOnlyFiles>
+		<ForceGeneration Condition="'$(ForceGeneration)'==''">false</ForceGeneration>
+		<VerboseOutput Condition="'$(VerboseOutput)'==''">false</VerboseOutput>
+		<ApplicationIcon />
+		<OutputType>Exe</OutputType>
+		<StartupObject />
+		<!-- % protected region % [Add any further output settings here] off begin -->
+		<!-- % protected region % [Add any further output settings here] end -->
+	</PropertyGroup>
+
+	<Import Project="../packages/SpecFlow.2.2.0/tools/TechTalk.SpecFlow.tasks" Condition="Exists('..\packages\SpecFlow.2.2.0\tools\TechTalk.SpecFlow.tasks')" />
+	<Import Project="../packages/SpecFlow.2.2.0/tools/TechTalk.SpecFlow.targets" Condition="Exists('..\packages\SpecFlow.2.2.0\tools\TechTalk.SpecFlow.targets')" />
+
+	<Target Name="AfterUpdateFeatureFilesInProject">
+		<!-- include any generated SpecFlow files in the compilation of the project if not included yet -->
+		<ItemGroup>
+			<Compile Include="**\*.feature.cs" Exclude="@(Compile)" />
+		</ItemGroup>
+		<!-- % protected region % [Add any further AfterUpdateFeatureFilesInProject settings here] off begin -->
+		<!-- % protected region % [Add any further AfterUpdateFeatureFilesInProject settings here] end -->
+	</Target>
+
+	<!-- % protected region % [Add any further settings here] off begin -->
+	<!-- % protected region % [Add any further settings here] end -->
+</Project>

@@ -1,0 +1,442 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Inputs
+-------------------------------- */
+/*
+Styling for all types of inputs - checkboxes, radios, selects, textareas and tooltips are imported.
+*/
+
+/******* INPUT VARIABLES *******/
+// % protected region % [Change input variables here] off begin
+$input-font-size: $base-font-size;
+$input-radius: $radius;
+
+$input-md: calc(#{$btn-font-size} + 0.2rem);
+$input-lg: calc(#{$btn-font-size} + 2rem);
+
+$input-sm-width: calc(50% - #{$space-xs});
+$input-md-width: calc(100% - #{$space-xs});
+
+// z-index fix for checkboxes
+$z-index-back: 1;
+$z-index-front: 2;
+// % protected region % [Change input variables here] end
+
+// % protected region % [Change input fieldset here] off begin
+//Reset the fieldset
+fieldset {
+	padding: 0rem;
+	border: none;
+}
+// % protected region % [Change input fieldset here] end
+
+/*******STANDARD INPUTS*******/
+/*Standard styles for general inputs such as text, number and password. These styles will control aspects such as width, font-size and line-height but can be combined
+with other modular classes for positioning and other overrides*/
+// % protected region % [Change standard input styles here] off begin
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="time"],
+input[type="date"],
+input[type="email"],
+textarea,
+select {
+	display: inline-flex;
+	position: relative;
+	white-space: nowrap;
+	line-height: 1;
+	font-size: $input-font-size;
+	vertical-align: top;
+	border-radius: $input-radius;
+	margin: $space-xxs 0 $space-xs 0;
+	width: auto;
+	@include truncate;
+	color: $grey-8;
+	font-weight: $text-regular;
+	border: convert-rem(1px) solid rgba($grey-4, 1);
+
+	&::placeholder {
+		color: $grey-4;
+		font-weight: $text-light;
+		opacity: 1;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		color: $grey-6;
+		border: convert-rem(1px) solid $grey-1;
+		background-color: rgba($grey-1, 0.02);
+		@include transform-timing($animation-time);
+	}
+}
+// % protected region % [Change standard input styles here] end
+
+
+/*******INPUT GROUP*******/
+/*This is an input group. It collects multiple components - labels, tooltips, text areas and other types of inputs and structures them within a grid area. Multiple
+items can be placed within a single grid area, as long as they are contained within a wrapper div (to prevent items floating above each other).*/
+// % protected region % [Change input group styles here] off begin
+.input-group {
+	position: relative;
+	display: grid;
+	grid-template-rows: min-content min-content auto;
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		"label tooltip"
+		"input input"
+		"pwdstrength pwdstrength"
+		"validation validation"
+	;
+	margin: $space-sm auto;
+	width: auto;
+	max-width: 100%;
+	min-width: convert-rem(250px);
+	@include media(xs, sm, md) {
+		min-width: convert-rem(150px);
+	}
+	cursor: default;
+	outline: none;
+
+	label {
+		display: inline-block;
+		color: $grey-8;
+		font-weight: $text-regular;
+		grid-area: label;
+		cursor: default;
+	}
+
+	input {
+		grid-area: input;
+		outline: none;
+		//margin and padding for inputs without type
+		padding: $space-xs $space-xs;
+		margin: $space-xs 0;
+	}
+
+	.tooltip {
+		grid-area: tooltip;
+		justify-self: flex-end;
+		cursor: default;
+	}
+
+	.sub-description {
+		grid-area: label;
+	}
+
+	/*The two bottom classes in this declaration are generated from the dropdown library we are using, and should be moved later on as it is not appropriate for
+	them to be in this area. Text area is fine where it is and can stay where it is*/
+	textarea,
+	&__date {
+		grid-area: input;
+	}
+
+	textarea {
+		height: convert-rem(200px);
+		resize: none;
+	}
+
+	&:hover {
+		* {
+			@include transform-timing($animation-time);
+		}
+	}
+
+	&:focus {
+		label {
+			outline: none;
+			border: convert-rem(1px) solid $black;
+		}
+	}
+
+	/*This will re-arrange the elements within the input-group so that inputs and labels can be placed side-by-side to maximise space*/
+	&.input-group-inline {
+		grid-template-areas: "label input tooltip"
+			"pwdstrength pwdstrength pwdstrength"
+			"validation validation validation";
+		grid-template-columns: max-content 1fr min-content;
+		align-items: center;
+
+		label {
+			margin-right: $space-sm;
+		}
+
+		input {
+			flex: auto;
+		}
+
+		.tooltip {
+			top: 1.2rem;
+		}
+	}
+
+	&.input-group-block {
+		flex-direction: column;
+	}
+
+	&--error {
+		label {
+			color: $color-support-red;
+		}
+
+		input,
+		textarea {
+			border: convert-rem(1px) solid $color-support-red;
+		}
+
+		.input-group__error-text {
+			grid-area: validation;
+			@include fadeIn(0.3s);
+			animation-iteration-count: 1;
+
+			p {
+				margin: 0;
+				padding: 0;
+				color: $color-support-red;
+			}
+		}
+
+		&.input-group__dropdown {
+			.input-group__error-text {
+				animation-iteration-count: 0;
+			}
+		}
+	}
+
+	&.input-group--is-required {
+		.required {
+			margin-left: $space-xs;
+			color: $color-support-red;
+			font-size: $base-font-size;
+			font-weight: $text-medium;
+		}
+	}
+
+	//TEXT AREA
+	@import 'textarea.scss';
+
+	//TOOLTIPS
+	@import 'tooltip.scss';
+
+	//SELECTS
+	@import 'select.scss';
+}
+// % protected region % [Change input group styles here] end
+
+/*******INPUT BUTTONS*******/
+/*This is a button which clears the content within an input*/
+
+// % protected region % [Change input buttons here] off begin
+.input-group {
+	.icon-x,
+	.icon-cross {
+		background: transparent;
+		border: none;
+		position: absolute;
+		right: 0.6rem;
+		bottom: 1.4rem;
+		outline: none;
+
+		&:before {
+			display: none;
+		}
+
+		&:hover,
+		&:active,
+		&:focus {
+			cursor: pointer;
+			color: $color-support-red;
+			@include transform-timing($animation-time);
+		}
+	}
+}
+// % protected region % [Change input buttons here] end
+
+
+/*******Date & Time Picker*******/
+//If styling required create the file and import here//
+
+
+/*This will organise a series of inputs into a row as oppsed to a column. Inputs will wrap, whereas header and tooltip occupy half of the
+top row*/
+// % protected region % [Change input group wrapper styles here] off begin
+.input-group-wrapper__radio,
+.input-group-wrapper__checkbox {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	@include width-height-fit-content(width);
+	min-width: convert-rem(350px);
+
+	&.input-group-block,
+	&.input-group-wrapper--block {
+		flex-direction: column;
+	}
+
+	/*An input group with a tooltip and header side by side, with inputs inline underneath it*/
+	&.input-group-inline,
+	&.input-group-wrapper--inline {
+		display: flex;
+		flex-wrap: wrap;
+
+
+		p {
+			width: 100%;
+		}
+
+
+		.tooltip {
+			width: 50%;
+
+			&__content {
+				margin-left: auto;
+			}
+		}
+	}
+
+	//TOOLTIPS
+	@import 'tooltip.scss';
+
+	>.tooltip {
+		right: -4rem;
+		left: unset;
+		top: 1.5rem;
+	}
+}
+// % protected region % [Change input group wrapper styles here] end
+
+/*******Checkboxes*******/
+@import 'checkbox.scss';
+
+
+/*******Radio*******/
+@import 'radio.scss';
+
+// % protected region % [Change alignment for checkboxes and radios styles here] off begin
+.input-group__radio,
+.input-group__checkbox {
+	input {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+// % protected region % [Change alignment for checkboxes and radios styles here] end
+
+/*******DISABLED AND READONLY INPUTS*******/
+//Imports are after all input styles to override all styling on disabled and static
+// % protected region % [Change disabled input styles here] off begin
+input[disabled],
+input[disabled]+label,
+textarea[disabled],
+input.disabled {
+	cursor: not-allowed;
+	opacity: 0.6;
+	background-color: $grey-2;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border: convert-rem(1px) solid $grey-4;
+		background-color: $grey-2;
+		color: $grey-6;
+	}
+
+}
+// % protected region % [Change disabled input styles here] end
+
+// % protected region % [Change readonly input styles here] off begin
+input[readonly],
+input[readonly]+label,
+textarea[readonly] {
+	cursor: text;
+	background-color: $grey-0;
+	opacity: 0.8;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border: convert-rem(1px) solid $grey-4;
+		background-color: $grey-0;
+		color: $grey-8;
+	}
+}
+// % protected region % [Change readonly input styles here] end
+
+// % protected region % [Change static input styles here] off begin
+.input-group--static {
+	pointer-events: none;
+
+	input {
+		background: transparent;
+		border: none;
+		color: $grey-8;
+		opacity: 1;
+
+		&:checked {
+			&:after {
+				color: $grey-6;
+				background-color: $grey-6;
+			}
+		}
+
+		&:hover {
+			background: transparent;
+			border: none;
+		}
+	}
+
+	//Handles when there is no value for the input
+	&.input-group--empty {
+		label {
+			&:after {
+				content: '- No Value -';
+				font-style: italic;
+				display: block;
+				color: $grey-4;
+				font-weight: $text-regular;
+				margin-top: $space-xs;
+			}
+		}
+
+		&.input-group__checkbox,
+		&.input-group__radio,
+		&.input-group__textarea {
+			label {
+				&:after {
+					display: none;
+				}
+			}
+
+			input {
+				&:checked:after {
+					color: $grey-4;
+				}
+			}
+		}
+	}
+}
+// % protected region % [Change static input styles here] end
+
+// % protected region % [Add additional input styles here] off begin
+// % protected region % [Add additional input styles here] end

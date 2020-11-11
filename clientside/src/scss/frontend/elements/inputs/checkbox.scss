@@ -1,0 +1,163 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Checkboxes
+-------------------------------- */
+/*
+Custom styles for checkbox
+*/
+
+// % protected region % [Change input group styles here] off begin
+.input-group-wrapper__checkbox {
+	&__checkbox-header {
+		width: 100%;
+		font-weight: $text-bold;
+	}
+	&__checkbox-header {
+		width: 100%;
+		font-weight: $text-bold;
+	}
+}
+// % protected region % [Change input group styles here] end
+
+// % protected region % [Change checkbox wrapper styles here] off begin
+.input-group__checkbox{
+	position: relative;
+	width: min-content;
+	margin: $space-sm 0;
+	cursor: default;
+	/*This customises the grid areas for checkboxes. By default, the grid area has been set up to automatically place a label
+beside a tooltip and above an input. For checkboxes, the grid areas are re-arranged to allow these items to appear inline*/
+	grid-template-columns: max-content max-content max-content;
+	grid-template-areas:
+		"input label tooltip"
+		"validation validation validation";
+
+	.input-group__checkbox-header {
+		font-weight: $text-bold;
+	}
+
+	label {
+		grid-area: label;
+		position: relative;
+		margin-left: $space-sm;
+		max-width: convert-rem(200px);
+		overflow-wrap: break-word;
+	}
+
+	.tooltip {
+		grid-area: tooltip;
+
+		.tooltip__content {
+			margin-top: convert-rem(40px);
+		}
+	}
+
+	p {
+		grid-area: validation;
+	}
+}
+// % protected region % [Change checkbox wrapper styles here] end
+
+// % protected region % [Change checkbox input styles here] off begin
+input[type="checkbox"] {
+	//Removing the default styles, with it you can only control the border style, without it you can control width, height etc.
+	appearance: none;
+	width: 1.8rem;
+	min-width: 1.8rem;
+	height: 1.8rem;
+	border: convert-rem(3px) solid $color-primary;
+	vertical-align: middle;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	grid-area: input;
+	margin: 0;
+
+
+	&:checked {
+		&:after {
+			color: $color-primary;
+			font-family: $lightning-icon-name;
+			font-weight: 700;
+			font-style: normal;
+			font-size: 1.2rem;
+			line-height: 1;
+			content: '\e9a2';
+			position: relative;
+			pointer-events: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+// % protected region % [Change checkbox input styles here] end
+
+// % protected region % [Change checkbox input readonly and disabled styles here] off begin
+input[type="checkbox"][readonly]+label,
+input[type="checkbox"][disabled]+label {
+	background-color: transparent;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border: none;
+	}
+}
+// % protected region % [Change checkbox input readonly and disabled styles here] end
+
+// % protected region % [Change checkbox input disabled styles here] off begin
+input[type="checkbox"][disabled] {
+	background-color: $grey-2;
+	border: convert-rem(3px) solid $grey-4;
+	cursor: not-allowed;
+
+
+	&:hover {
+		border: convert-rem(3px) solid $grey-4;
+	}
+
+	&:checked {
+		&:after {
+			color: $color-primary;
+			font-family: $lightning-icon-name;
+			font-weight: 700;
+			font-style: normal;
+			font-size: 1.2rem;
+			line-height: 1;
+			content: '\e9a2';
+			position: relative;
+			pointer-events: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			width: 100%;
+		}
+	}
+}
+// % protected region % [Change checkbox input disabled styles here] end
+
+// % protected region % [Add additional checkbox styles here] off begin
+// % protected region % [Add additional checkbox styles here] end

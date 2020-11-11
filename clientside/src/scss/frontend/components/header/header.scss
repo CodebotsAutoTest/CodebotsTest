@@ -1,0 +1,72 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Header
+-------------------------------- */
+/*
+Generic header element styling
+*/
+
+// % protected region % [Change header styles here] off begin
+header {
+	display: flex;
+
+	img {
+		width: auto;
+		height: 7rem;
+	}
+
+	border-bottom: convert-rem(4px) solid rgba($color-brand-02, 0.5);
+	margin-bottom: $space-lg;
+}
+
+//Header that is on the create section any behaviour with tabs on the right on create/view/edit
+.header-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	box-shadow: convert-rem(0px) convert-rem(-1px) convert-rem(5px) convert-rem(0px) $grey-2;
+	padding: 0 $space-md;
+	height: $header-bar-height;
+
+	//MOBILE STYLING
+	@include media(xs, sm) {
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+
+		ul {
+			margin: $space-xxs;
+		}
+	}
+
+	.tabs {
+		margin-bottom: 0;
+
+		ul {
+			li {
+				a {
+					font-size: $text-md;
+				}
+			}
+		}
+	}
+}
+// % protected region % [Change header styles here] end
+
+// % protected region % [Add additional header styles here] off begin
+// % protected region % [Add additional header styles here] end

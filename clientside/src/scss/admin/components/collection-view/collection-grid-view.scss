@@ -1,0 +1,107 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Collection - Grid View
+-------------------------------- */
+/*
+Grid view of the collection list. In replacement a table view, there are blocks of items.
+*/
+
+.collection__grid {
+	@include fadeIn(0.5s);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.collection__item {
+		min-width: 25vw;
+		width: auto;
+		margin: $admin-space-md 0;
+		border: convert-rem(1px) solid $admin-grey-2;
+
+		.btn {
+			margin: 0;
+			&:hover {
+				outline: none;
+				color: $admin-color-primary;
+				background-color: transparent;
+				text-decoration: none;
+				@include transform-timing($admin-animation-time);
+			}
+		}
+
+		.grid-item__header {
+			background-color: rgba($admin-grey-2, 0.3);
+			display: flex;
+			padding: 0 $admin-space-md;
+			align-items: center;
+			justify-content: flex-start;
+
+			.input-group {
+				margin-left: 0;
+				margin-right: $admin-space-md;
+				input {
+					margin: 0;
+				}
+			}
+
+			.btn {
+				margin-left: auto;
+				font-size: $admin-text-md;
+				padding: 0;
+
+				&:before {
+					margin: 0;
+				}
+			}
+		}
+
+		.grid-item__content {
+			padding: $admin-space-md;
+
+			div {
+				display: flex;
+				.item-content__label {
+					font-weight: $admin-text-bold;
+					margin-right: $admin-space-md;
+					width: 10vw;
+				}
+			}
+		}
+
+		.grid-item__footer {
+			display: flex;
+			border-top: convert-rem(1px) solid $admin-grey-2;
+			justify-content: space-evenly;
+
+			.btn {
+				font-size: $admin-text-sm;
+				width: auto;
+				padding: $admin-space-sm;
+				font-size: $admin-base-font-size;
+
+				&:before {
+					margin-bottom: $admin-space-xs;
+				}
+
+				&:hover {
+					@include transform-timing($admin-animation-time);
+				}
+			}
+		}
+	}
+}

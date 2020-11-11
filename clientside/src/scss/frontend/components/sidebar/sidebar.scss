@@ -1,0 +1,202 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Sidebar
+-------------------------------- */
+/*
+Sidebar that displays information sliding from either left or right side.
+Example is a history/audit button.
+*/
+
+// % protected region % [Change sidebar styles here] off begin
+
+//Button to open the sidebar
+.sidebar__btn {
+	margin: 0 0 0 $space-lg;
+}
+
+.sidebar {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba($black, .6);
+	top: 0;
+	left: 0;
+	z-index: $z-index-sidebar;
+	@include fadeIn($animation-time);
+
+	&-info {
+		background-color: $white;
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100vh;
+		overflow-y: auto;
+		min-width: convert-rem(500px);
+		width: auto;
+		max-width: 40vw;
+		display: flex;
+		flex-direction: column;
+		box-shadow: convert-rem(0px) convert-rem(-1px) convert-rem(5px) convert-rem(0px) $grey-10;
+		@include slideInRight($animation-time);
+
+		h2 {
+			padding: $space-sm;
+			border-bottom: convert-rem(2px) solid $grey-2;
+		}
+
+		ul {
+			padding: $space-md;
+			margin: 0;
+		}
+
+		.btn {
+			margin: auto auto $space-lg;
+		}
+
+		>ul,
+		>ol {
+			list-style: none;
+
+			>li {
+				position: relative;
+				padding-left: $space-lg;
+			}
+		}
+
+		//Give a before class for a timeline look for li elements
+		&.sidebar-info__history {
+			>ul {
+				>li {
+					p {
+						margin: 0;
+						padding: $space-sm 0;
+						display: flex;
+
+						.bold {
+							font-weight: $text-bold;
+							margin-right: $space-sm;
+						}
+
+						&:after {
+							margin-left: auto;
+							color: $grey-2;
+						}
+					}
+
+					&:hover,
+					&:active,
+					&:focus,
+					&.active {
+						p:after {
+							color: $color-primary;
+							@include transform-timing($animation-time);
+						}
+					}
+
+					//rotate on expansion of list
+					&.active {
+						p:after {
+							@include rotate($animation-time, 180deg);
+							animation-fill-mode: forwards;
+						}
+					}
+
+					&:before {
+						content: '';
+						background-color: $grey-2;
+						border-radius: 50%;
+						height: $space-sm;
+						width: $space-sm;
+						display: block;
+						position: absolute;
+						left: 0;
+						top: convert-rem(20px);
+					}
+
+					&:after {
+						content: '';
+						border-left: convert-rem(2px) solid $grey-2;
+						position: absolute;
+						left: convert-rem(7px);
+						height: 100%;
+						top: convert-rem(21px);
+						margin-left: 0;
+					}
+
+					&:last-of-type {
+						&:after {
+							display: none;
+						}
+					}
+
+					//Sub audits - depth information
+					ul {
+						list-style: none;
+						opacity: 1;
+						height: 100%;
+						padding: 0;
+						@include cubic-bezier-ease-in($animation-time);
+
+						li {
+							position: relative;
+							padding: .2rem $space-lg;
+
+							&:before {
+								content: '';
+								background-color: $grey-2;
+								border-radius: 50%;
+								height: $space-xs;
+								width: $space-xs;
+								display: block;
+								position: absolute;
+								left: 0;
+								top: convert-rem(13px);
+							}
+
+							&:after {
+								content: '';
+								border-left: convert-rem(2px) solid $grey-2;
+								position: absolute;
+								left: convert-rem(3px);
+								height: 100%;
+								top: convert-rem(21px);
+							}
+
+							&:last-of-type {
+								&:after {
+									display: none;
+								}
+							}
+						}
+
+						&.hidden {
+							opacity: 0;
+							height: 0;
+							max-height: 0;
+							@include cubic-bezier-ease-in($animation-time);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+// % protected region % [Change sidebar styles here] end
+
+// % protected region % [Add additional sidebar styles here] off begin
+// % protected region % [Add additional sidebar styles here] end

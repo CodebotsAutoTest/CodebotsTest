@@ -1,0 +1,98 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Colour Variables
+-------------------------------- */
+/* _colors.scss is dependent on this file using variables that are changable in projects
+*/
+
+/* Main colors */
+/* -------------------------------------------------*/
+/* ----------Pick your brand colours here ----------*/
+/* -------------------------------------------------*/
+$admin-color-primary: rgb(34, 34, 34) !default; // #222222 // Black
+$admin-color-secondary: rgb(153, 153, 153) !default; // #999999; // Dark grey
+$admin-color-brand-01: rgb(57, 57, 57) !default; // #393939 // Charcoal
+$admin-color-brand-02: rgb(213, 213, 213) !default; // #D5D5D5; // Grey
+$admin-color-brand-03: rgb(244, 244, 244) !default; //#F4F4F4 // Light grey
+
+// Accent Colours
+$admin-color-support-red: rgba(232, 77, 56, 1) !default; // #E84D38 // Support color red
+$admin-color-support-green: rgba(56, 204, 150, 1) !default; // #38CC7D // Support color green
+$admin-color-support-blue: rgba(0, 159, 221, 1) !default; // #009FDD // Support color blue
+$admin-color-support-yellow: rgba(251, 194, 0, 1) !default; // #FBC200 // Support color yellow
+$admin-color-support-orange: rgba(251, 164, 65, 1) !default; // #F27600 // Support color orange
+$admin-color-support-purple: rgba(134, 35, 223, 1) !default; // #8623DF // Support color purple
+
+// Shades - generated using chroma.js
+// 12 steps https://gka.github.io/palettes/#colors=#121230,#f5f5f5%7Csteps=11%7Cbez=1%7CcoL=1
+$admin-black: rgb(34, 34, 34) !default; // #000000
+$admin-grey-10: rgb(34, 34, 34) !default; // #222222
+$admin-grey-8: rgb(71, 71, 71) !default; // #474747
+$admin-grey-6: rgb(111, 111, 111) !default; // #6f6f6f
+$admin-grey-4: rgb(152, 152, 152) !default; // #989898
+$admin-grey-2: rgb(197, 197, 197) !default; // #c5c5c5
+$admin-grey-1: rgb(221, 221, 221) !default; // #dddddd
+$admin-grey-0: rgb(244, 244, 244) !default; // #f4f4f4
+$admin-white: rgb(255, 255, 255) !default; // #ffffff
+
+/* Colour Variables */
+$admin-color-shades: 10% !default;
+$admin-color-alpha: 0.8% !default;
+$admin-color-shadow: 0.2% !default;
+
+/* Colour Variations */
+$admin-color-primary-light: lighten($admin-color-primary, $admin-color-shades) !default;
+$admin-color-primary-dark: darken($admin-color-primary, $admin-color-shades) !default;
+$admin-color-primary-bg: rgba($admin-color-primary, $admin-color-alpha) !default;
+
+$admin-color-secondary-light: lighten($admin-color-secondary, $admin-color-shades) !default;
+$admin-color-secondary-dark: darken($admin-color-secondary, $admin-color-shades) !default;
+$admin-color-secondary-bg: rgba($admin-color-secondary, $admin-color-alpha) !default;
+
+$admin-color-brand-01-light: lighten($admin-color-brand-01, $admin-color-shades) !default;
+$admin-color-brand-01-dark: darken($admin-color-brand-01, $admin-color-shades) !default;
+$admin-color-brand-01-bg: rgba($admin-color-brand-01, $admin-color-alpha) !default;
+
+$admin-color-brand-02-light: lighten($admin-color-brand-02, $admin-color-shades) !default;
+$admin-color-brand-02-dark: darken($admin-color-brand-02, $admin-color-shades) !default;
+$admin-color-brand-02-bg: rgba($admin-color-brand-02, $admin-color-alpha) !default;
+
+/* Support colors */
+$admin-color-support-red-light: lighten($admin-color-support-red, $admin-color-shades) !default;
+$admin-color-support-red-dark: darken($admin-color-support-red, $admin-color-shades) !default;
+$admin-color-support-red-bg: rgba($admin-color-support-red, $admin-color-alpha) !default;
+
+$admin-color-support-green-light: lighten($admin-color-support-green, $admin-color-shades) !default;
+$admin-color-support-green-dark: darken($admin-color-support-green, $admin-color-shades) !default;
+$admin-color-support-green-bg: rgba($admin-color-support-green, $admin-color-alpha) !default;
+
+$admin-color-support-blue-light: lighten($admin-color-support-blue, $admin-color-shades) !default;
+$admin-color-support-blue-dark: darken($admin-color-support-blue, $admin-color-shades) !default;
+$admin-color-support-blue-bg: rgba($admin-color-support-blue, $admin-color-alpha) !default;
+
+$admin-color-support-yellow-light: lighten($admin-color-support-yellow, $admin-color-shades) !default;
+$admin-color-support-yellow-dark: darken($admin-color-support-yellow, $admin-color-shades) !default;
+$admin-color-support-yellow-bg: rgba($admin-color-support-yellow, $admin-color-alpha) !default;
+
+$admin-color-support-orange-light: lighten($admin-color-support-orange, $admin-color-shades) !default;
+$admin-color-support-orange-dark: darken($admin-color-support-orange, $admin-color-shades) !default;
+$admin-color-support-orange-bg: rgba($admin-color-support-orange, $admin-color-alpha) !default;
+
+$admin-color-support-purple-light: lighten($admin-color-support-purple, $admin-color-shades) !default;
+$admin-color-support-purple-dark: darken($admin-color-support-purple, $admin-color-shades) !default;
+$admin-color-support-purple-bg: rgba($admin-color-support-purple, $admin-color-alpha) !default;

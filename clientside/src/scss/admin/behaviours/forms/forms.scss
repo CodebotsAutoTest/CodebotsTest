@@ -1,0 +1,131 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* 
+Forms behaviour - multiple imports are here such as sidebar, landing, and preview. 
+*/
+.forms-behaviour {
+	//Other import in forms behaviour that is not on the page of create/edit slide/questions and preview
+	//Import of landing page of forms
+	@import 'forms-landing.scss';
+
+
+	.slide-builder {
+		display: grid;
+		grid-template-areas: "sidelist formbuilder";
+		grid-template-columns: $slide-builder-list-width auto;
+
+		@import 'forms-sidebar.scss';
+
+		//Body area of building the form - editing the questions creating the questions per slides
+		.form-builder {
+			grid-area: formbuilder;
+			overflow: auto;
+
+			//slide title
+			h3 {
+				font-size: $admin-text-md;
+				font-weight: $admin-text-regular;
+				margin: $admin-space-md;
+				border-bottom: convert-rem(2px) solid $admin-grey-2;
+				margin-top: $admin-space-xxl;
+
+				&:first-of-type {
+					margin: $admin-space-md;
+					margin-top: $admin-space-md;
+				}
+			}
+
+			//questions in slide - the container
+			.form__question-container {
+				padding: $admin-space-xs $admin-space-md;
+
+				&:hover,
+				&:active {
+					background: rgba($admin-grey-0, .7);
+					@include transform-timing($admin-animation-time);
+				}
+
+				.btn-group {
+					justify-content: flex-end;
+					@include cubic-bezier-ease-in(all, $admin-quick-animation-time);
+
+					.btn {
+						margin: 0;
+						@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(0px), transparent);
+					}
+
+					.context-menu {
+						&:before {
+							margin: 0;
+						}
+						&:hover,
+						&.active {
+							background-color: $admin-black;
+							color: $admin-white;
+							@include transform-timing($admin-animation-time);
+						}
+					}
+				}
+			}
+
+			//add new questions - button on the bottom
+			.form-designer-add-question {
+				.btn {
+					background-color: transparent;
+					align-items: center;
+					@include icon-solid-btn-text;
+					margin: $admin-space-md;
+					padding: 0;
+
+					&:before {
+						padding: $admin-space-xxs $admin-space-md;
+					}
+				}
+			}
+		}
+	}
+
+	//action bar forms section
+	.form-information {
+		display: inline-flex;
+		align-items: center;
+
+		p {
+			margin-left: $admin-space-md;
+		}
+
+		.form-status {}
+
+		.published {
+			&:before {
+				content: '';
+				background: $admin-color-support-green;
+				width: convert-rem(13px);
+				height: convert-rem(13px);
+				display: inline-block;
+				border-radius: 50%;
+				margin: 0 $admin-space-xxs 0 $admin-space-xs;
+			}
+		}
+	}
+
+	//preview section
+	@import 'forms-preview.scss';
+
+	//mobile styling import
+	@import 'forms-mobile.scss';
+}

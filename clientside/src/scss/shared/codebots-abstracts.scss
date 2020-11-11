@@ -1,0 +1,121 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+
+/* ----------Pick your brand colours here ----------*/
+/* -------------------------------------------------*/
+$color-primary: rgba(18, 18, 48, 1); // #121230 // This is the standard dark colour. Currently called "void"
+$color-secondary: rgba(255, 255, 255, 1); // #ffffff // This is the standard light colour. Currently called "Light"
+
+$color-brand-01: rgba(91, 15, 211, 1); // #5b0fd3; // This is the brand hero colour 1. Currently called "luna"
+$color-brand-02: rgba(255, 15, 128, 1); // #ff0f80; // This is the brand hero colour 2. Currently called "Sol"
+
+$color-support-01: rgba(76, 98, 240, 1); // #4c62f0 // This is the first support colour. Currently called "Aqulia"
+$color-support-02: rgba(244, 220, 62, 1); // #f4dc3e // This is the second support colour. Currently called "Pyxis"
+$color-support-03: rgba(246, 70, 79, 1); // #f6464f // This is the third support colour. Currently called "Cygnas"
+$color-support-04: rgba(35, 215, 158, 1); // #23d79e // This is the forth support colour. Currently called "Lyra"
+$color-support-05: rgba(251, 164, 65, 1); // #fba441 // This is the fifth support colour. Currently called "Fornax"
+
+// shades - generated using chroma.js - 12 steps https://gka.github.io/palettes/#colors=#121230,#f5f5f5%7Csteps=11%7Cbez=1%7CcoL=1
+$black: $color-primary;
+$grey-10: #22243D;
+$grey-8: #282B4A;
+$grey-6: #44476A;
+$grey-5: #848ccc;
+$grey-4: #aba9b5;
+$grey-3: #c3c1ca;
+$grey-2: #dcdbdf;
+$grey-1: #f5f5f5; // This is the reverse accent. Currently called "Noise"
+$white: #ffffff;
+
+//Colour gradients
+@mixin gradient-palette($brand-colour-1, $brand-colour-2) {
+	background: linear-gradient(90deg, $brand-colour-1, $brand-colour-2);
+	color: (get-contrasting-text-color($brand-colour-1));
+}
+
+@mixin flare {
+	@include gradient-palette($color-support-03, $color-support-05);
+}
+
+@mixin horizon {
+	@include gradient-palette($color-brand-02, $color-support-05);
+}
+
+@mixin aurora {
+	@include gradient-palette($color-brand-01, $color-support-04);
+}
+
+@mixin galaxy {
+	@include gradient-palette($color-support-01, $color-brand-01);
+}
+
+@mixin gravity {
+	@include gradient-palette($color-brand-01, $color-brand-02);
+}
+
+@mixin nebula {
+	@include gradient-palette($color-support-04, $color-brand-01);
+}
+
+//****************-------PSEUDO ELEMENTS MIXINS--------****************
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+//****************-------SHAPES--------*****************
+
+/*triangle creator - usually used for tooltips*/
+
+@mixin css-triangle($color, $direction, $size: convert-rem(6px), $position: absolute, $round: false) {
+	@include pseudo($pos: $position);
+	width: 0;
+	height: 0;
+
+	@if $round {
+		border-radius: convert-rem(3px);
+	}
+
+	@if $direction==down {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-top: $size solid $color;
+		margin-top: 0 - round($size / 2.5);
+	}
+
+	@else if $direction==up {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $color;
+		margin-bottom: 0 - round($size / 2.5);
+	}
+
+	@else if $direction==right {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+		margin-right: -$size;
+	}
+
+	@else if $direction==left {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-right: $size solid $color;
+		margin-left: -$size;
+	}
+}

@@ -1,0 +1,436 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Navigation
+-------------------------------- */
+/*
+Styling for basic navigation, vertical navigation and horizontal navigation.
+*/
+
+/****** General navigation styling shared amongst all navigation *****/
+// % protected region % [Change generic navigation styles here] off begin
+.nav {
+	background-color: $color-brand-03;
+	display: flex;
+
+	ul {
+		width: 100%;
+		margin-bottom: 0;
+
+		li {
+			display: flex;
+			flex-direction: column;
+			list-style: none;
+			position: relative;
+
+			//This is for sublinks
+			&.nav__parent-link--active {
+				background-color: $color-secondary;
+
+				a {
+					color: $white;
+				}
+			}
+
+			a {
+				color: rgba($color-primary, 0.7);
+				text-decoration: none;
+				padding: $space-xxs;
+				display: block;
+				cursor: pointer;
+				transition: none;
+				border-bottom: none;
+			}
+
+			span {
+				white-space: nowrap;
+			}
+
+			&:hover,
+			&:focus,
+			&:active,
+			&.active {
+				background-color: $grey-10;
+				@include transform-timing($animation-time);
+
+				a {
+					color: $white;
+					@include transform-timing($animation-time);
+				}
+
+				//This is for sublinks
+				ul li a {
+					color: $white;
+					transition: none;
+				}
+			}
+
+			@import 'sublinks-navigation.scss';
+		}
+	}
+}
+// % protected region % [Change generic navigation styles here] end
+
+/****** Horizontal navigation (usually placed left) *****/
+// % protected region % [Change vertical navigation styles here] off begin
+.nav--vertical {
+	background-color: $color-brand-03;
+	overflow: auto;
+	flex-direction: column;
+	left: 0;
+	grid-area: navvertical;
+	height: 100%;
+	box-shadow: convert-rem(-2px) convert-rem(4px) convert-rem(7px) convert-rem(-1px);
+
+	>ul {
+		margin: 0;
+		padding: 0;
+
+		>li {
+			display: block;
+
+			&:hover,
+			&:active,
+			&:focus,
+			&.active {
+				color: $white;
+			}
+
+			//position of sublinks for vertical nav
+			.nav__sublinks {
+				left: 100%;
+				top: 0;
+				max-width: convert-rem(0px);
+				width: 0;
+				max-height: 70vh;
+				overflow: auto;
+				@include cubic-bezier-ease-in(max-width, $animation-time);
+
+				li {
+					border-bottom: convert-rem(1px) solid $white;
+				}
+			}
+
+			.nav__sublinks--visible {
+				max-width: convert-rem(9999px);
+				width: auto;
+				min-width: convert-rem(120px);
+
+				span {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+}
+// % protected region % [Change vertical navigation styles here] end
+
+/****** Horizontal navigation (usually placed top) *****/
+// % protected region % [Change horizontal navigation styles here] off begin
+.nav--horizontal {
+	flex-direction: row;
+	width: 100%;
+	grid-area: navhorizontal;
+	box-shadow: convert-rem(1px) convert-rem(0px) convert-rem(4px) convert-rem(-1px);
+	
+	ul {
+		display: flex;
+		width: auto;
+		margin-top: 0;
+
+		li {
+
+			//position of sublinks for horizontal nav
+			.nav__sublinks {
+				top: calc(100% + (#{2rem}*0.4));
+				left: 0;
+				flex-direction: column;
+				max-height: 0;
+				height: 0;
+				@include cubic-bezier-ease-in(max-height, $animation-time);
+
+				li {
+					border-bottom: none;
+				}
+			}
+
+			.nav__sublinks--visible {
+				max-height: convert-rem(9999px);
+				height: auto;
+
+				span {
+					max-height: convert-rem(9999px);
+					height: auto;
+				}
+			}
+		}
+	}
+}
+// % protected region % [Change horizontal navigation styles here] end
+
+/****** Tabs *****/
+// % protected region % [Change tabs styles here] off begin
+.tabs {
+	margin-bottom: $space-xl;
+	font-size: $text-md;
+
+	ul {
+		padding-left: unset;
+		display: flex;
+		flex-direction: row;
+		list-style: none;
+
+		li {
+			cursor: pointer;
+
+			&.disabled {
+				cursor: not-allowed;
+			}
+
+			&:not(:last-child) {
+				margin-right: $space-md;
+			}
+
+			a {
+				color: $color-primary;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.active {
+		@include text-shadow($color-primary);
+
+		a {
+			border-bottom: convert-rem(2px) solid;
+		}
+	}
+}
+// % protected region % [Change tabs styles here] end
+
+// % protected region % [Change breadcrumbs styles here] off begin
+/****** Breadcrumbs *****/
+.breadcrumbs {
+	padding-left: unset;
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	align-items: center;
+
+	li {
+		&.disabled {
+			cursor: not-allowed;
+		}
+
+		&:not(:last-child) {
+			margin-right: $space-sm;
+		}
+
+		&:before {
+			vertical-align: middle;
+		}
+
+		a {
+			color: $color-primary;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+}
+// % protected region % [Change breadcrumbs styles here] end
+
+/************ MOBILE NAVIGATION ***********/
+// % protected region % [Change mobile navigation styles here] off begin
+@include media(xs, sm, md) {
+
+	//Horizontal mobile responsive
+	.nav--horizontal {
+		z-index: 2;
+
+		ul li {
+			padding: $space-xs;
+			font-size: $text-md;
+		}
+
+		>a {
+			grid-area: collapse;
+			text-align: center;
+			padding: $space-xxs;
+			width: 100%;
+			z-index: 1;
+			margin: 0;
+			font-size: $text-lg;
+			visibility: visible;
+
+			&:before {
+				margin-right: 0 !important;
+			}
+
+			&:hover,
+			&:active,
+			&:focus {
+				text-decoration: none;
+				border: none;
+			}
+		}
+	}
+
+	.nav--horizontal.nav--expanded {
+		display: grid;
+		grid-template-areas: 'collapse'
+			'ul';
+		grid-template-rows: auto 1fr;
+		grid-template-columns: 1fr;
+		position: absolute;
+		bottom: 0;
+
+		ul:nth-of-type(2) {
+			grid-area: ul;
+			display: flex;
+			flex-wrap: wrap;
+
+			// min-height: 40vh;
+			max-height: convert-rem(3000px);
+			height: auto;
+			overflow: hidden;
+			@include heightScaleIn(2s);
+
+			li {
+				width: 50%;
+				border-right: none;
+				border-bottom: convert-rem(4px) solid $grey-0;
+
+				&:nth-of-type(even) {
+					border-left: convert-rem(2px) solid $grey-0;
+				}
+
+				&:nth-of-type(odd) {
+					border-right: convert-rem(2px) solid $grey-0;
+				}
+
+				a {
+					overflow-wrap: break-word;
+					text-align: center;
+
+					span {
+						white-space: pre-wrap;
+					}
+
+					&:before {
+						display: block;
+						margin-bottom: $space-xs;
+						font-size: $text-lg;
+					}
+				}
+			}
+		}
+
+		ul:last-of-type {
+			li {
+				width: 100%;
+
+				a {
+					text-align: center;
+					font-size: $text-md;
+
+					&:before {
+						margin-right: $space-sm;
+					}
+				}
+			}
+		}
+
+		>a {
+			background-color: $grey-0;
+		}
+	}
+
+	.nav--horizontal.nav--collapsed {
+		justify-content: center;
+
+		ul {
+			max-height: 0;
+			width: 0;
+			overflow: hidden;
+		}
+
+		ul:nth-of-type(2) {
+			@include heightScaleIn($quick-animation-time);
+		}
+	}
+
+
+	//Vertical mobile responsive
+	.nav--vertical {
+		position: absolute;
+	}
+
+	.nav--vertical.nav--expanded {
+		height: 100%;
+		width: auto;
+		border-radius: 0;
+		margin: 0;
+		@include slideInLeft($animation-time);
+
+		>ul {
+			>li {
+				>.nav__sublinks {
+					max-height: unset;
+					max-width: 0;
+					height: 100vh;
+					top: 0;
+					min-width: 0;
+
+					&--visible {
+						width: 100%;
+						max-width: 300000px;
+						@include slideInLeft($animation-time);
+					}
+				}
+			}
+		}
+	}
+
+	.nav--vertical.nav--collapsed {
+		@include slideOutLeft($animation-time);
+		background-color: transparent;
+		box-shadow: none;
+
+		ul {
+			max-height: 0;
+			width: 0;
+			overflow: hidden;
+		}
+
+		>a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: convert-rem(55px);
+			width: convert-rem(55px);
+			border-radius: 50%;
+			box-shadow: convert-rem(0px) convert-rem(0px) convert-rem(5px) convert-rem(-2px);
+			background-color: $white;
+			@include slideInLeft($quick-animation-time);
+		}
+	}
+}
+// % protected region % [Change mobile navigation styles here] end
+
+// % protected region % [Add additional navigation styles here] off begin
+// % protected region % [Add additional navigation styles here] end

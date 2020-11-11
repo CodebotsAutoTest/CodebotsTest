@@ -1,0 +1,44 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Spacing
+https://medium.com/codyhouse/create-your-design-system-part-4-spacing-895c9213e2b9
+-------------------------------- */
+
+/* spacing values */
+$admin-space-unit: 1rem !default;
+$admin-space-xxxs: calc(0.25 * #{$admin-space-unit}) !default; //4px
+$admin-space-xxs: calc(0.5 * #{$admin-space-unit}) !default; //8px
+$admin-space-xs: calc(1 * #{$admin-space-unit}) !default; //16px
+$admin-space-sm: calc(1.5 * #{$admin-space-unit}) !default; //24px
+$admin-space-md: calc(2 * #{$admin-space-unit}) !default; //32px
+$admin-space-lg: calc(3 * #{$admin-space-unit}) !default; //48px
+$admin-space-xl: calc(3.5 * #{$admin-space-unit}) !default; //56px
+$admin-space-xxl: calc(4 * #{$admin-space-unit}) !default; //64px
+$admin-space-xxxl: calc(8 * #{$admin-space-unit}) !default; //128px
+
+/* components padding */
+$admin-component-padding: $admin-space-sm !default;
+//****************-------SPACING VARIABLES--------****************
+$admin-space-horizontal: 2rem !default;
+$admin-space-vertical: 1rem !default;
+
+// optional - edit space unit and padding of all components at a specific breakpoint
+@include breakpoint(md) {
+	$admin-space-uni: 1.25rem !default;
+	$admin-component-padding: $admin-space-md !default;
+}

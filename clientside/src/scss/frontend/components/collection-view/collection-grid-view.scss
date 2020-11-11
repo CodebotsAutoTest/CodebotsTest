@@ -1,0 +1,112 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Collection - Grid View
+-------------------------------- */
+/*
+Grid view of the collection list. In replacement a table view, there are blocks of items.
+*/
+
+// % protected region % [Change collection grid view styles here] off begin
+.collection__grid {
+	@include fadeIn(0.5s);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	.collection__item {
+		min-width: 25vw;
+		width: auto;
+		margin: $space-md 0;
+		border: convert-rem(1px) solid $grey-2;
+
+		.btn {
+			margin: 0;
+			&:hover {
+				outline: none;
+				color: $color-primary;
+				background-color: transparent;
+				text-decoration: none;
+				@include transform-timing($animation-time);
+			}
+		}
+
+		.grid-item__header {
+			background-color: rgba($grey-2, 0.3);
+			display: flex;
+			padding: 0 $space-md;
+			align-items: center;
+			justify-content: flex-start;
+
+			.input-group {
+				margin-left: 0;
+				margin-right: $space-md;
+				input {
+					margin: 0;
+				}
+			}
+
+			.btn {
+				margin-left: auto;
+				font-size: $text-md;
+				padding: 0;
+
+				&:before {
+					margin: 0;
+				}
+			}
+		}
+
+		.grid-item__content {
+			padding: $space-md;
+
+			div {
+				display: flex;
+				.item-content__label {
+					font-weight: $text-bold;
+					margin-right: $space-md;
+					width: 10vw;
+				}
+			}
+		}
+
+		.grid-item__footer {
+			display: flex;
+			border-top: convert-rem(1px) solid $grey-2;
+			justify-content: space-evenly;
+
+			.btn {
+				font-size: $text-sm;
+				width: auto;
+				padding: $space-sm;
+				font-size: $base-font-size;
+
+				&:before {
+					margin-bottom: $space-xs;
+				}
+
+				&:hover {
+					@include transform-timing($animation-time);
+				}
+			}
+		}
+	}
+}
+// % protected region % [Change collection grid view styles here] end
+
+// % protected region % [Add additional collection grid view styles here] off begin
+// % protected region % [Add additional collection grid view styles here] end

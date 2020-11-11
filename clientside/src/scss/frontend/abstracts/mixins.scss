@@ -1,0 +1,416 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Mixins
+-------------------------------- */
+/* 
+To view the full list of mixins that are in harmony to use in your project checkout the mixins list here:
+[LINK IS COMING]
+ */
+/* 
+ Mixins are one step more than variables. For instance you can use mxins to put in flexbox and it's browser prefixes,
+or consistent patterns like borders for particular components. Like variables, if you find yourself writing code over and over
+make it into a mixin.
+*/
+
+//****************-------MEDIA QUERIES--------****************
+// Breakpoints for CSS variables
+// Used for the typography, spacing and the inputs
+@mixin media($keys...) {
+	@each $key in $keys {
+		@media (max-width: map-get($breakpoints, $key)) {
+			@content;
+		}
+	}
+}
+
+@mixin breakpoint($class, $orientation:portrait) {
+	@if $class==xs {
+		@media (max-width: map-get($breakpoints, xs)) and (orientation:$orientation) {
+			@content;
+		}
+	}
+
+	@else if $class==sm {
+		@media (max-width: map-get($breakpoints, sm)) and (orientation:$orientation) {
+			@content;
+		}
+	}
+
+	@else if $class==md {
+		@media (max-width: map-get($breakpoints, md)) and (orientation:$orientation) {
+			@content;
+		}
+	}
+
+	@else if $class==lg {
+		@media (max-width: map-get($breakpoints, lg)) and (orientation:$orientation) {
+			@content;
+		}
+	}
+
+	@else if $class==xl {
+		@media (max-width: map-get($breakpoints, xl)) and (orientation:$orientation) {
+			@content;
+		}
+	}
+
+	// % protected region % [Add additional breakpoints here] off begin
+	// % protected region % [Add additional breakpoints here] end
+
+	@else {
+		@error "Breakpoint mixin supports: xs, sm, md, lg, xl or your custom breakpoint in the map";
+	}
+}
+//****************-------END MEDIA QUERIES--------****************
+
+//****************-------ICONS--------****************
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+//Lightning icons mixins
+// % protected region % [Change lightning icon mixin here] off begin
+@mixin lightning-icon($position: before, $icon: false, $styles: true) {
+	@if $position==both {
+		$position: "before, &:after";
+	}
+
+	// Either a :before or :after pseudo-element, or both, defaulting to :before
+	&:#{$position} {
+		@if $icon {
+			// A particular icon has been specified
+			content: "#{map-get($lightning-icons, $icon)}";
+		}
+
+		@if $styles {
+			// Supportive icon styles required
+			/* use !important to prevent issues with browser extensions that change fonts */
+			font-family: 'lightning-icons', 'lato' !important;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		@if $position==before {
+			margin-right: $space-xxs;
+		}
+
+		@else {
+			margin-left: $space-xxs;
+		}
+
+		// Include any extra rules supplied for the pseudo-element
+		@content;
+	}
+}
+// % protected region % [Change lightning icon mixin here] end
+
+//Mixin for custom icons
+// % protected region % [Change custom icon mixin here] off begin
+@mixin custom-icon($position: before, $icon: false, $styles: true) {
+	@if $position==both {
+		$position: "before, &:after";
+	}
+
+	// Either a :before or :after pseudo-element, or both, defaulting to :before
+	&:#{$position} {
+		@if $icon {
+			// A particular icon has been specified
+			content: "#{map-get($custom-icons, $icon)}";
+		}
+
+		@if $styles {
+			// Supportive icon styles required
+			/* use !important to prevent issues with browser extensions that change fonts */
+			font-family: $icon-custom-name;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		//Change icon spacing here
+		@if $position==before {
+			margin-right: $space-xxs;
+		}
+
+		@else {
+			margin-left: $space-xxs;
+		}
+
+		// Include any extra rules supplied for the pseudo-element
+		@content;
+	}
+}
+// % protected region % [Change custom icon mixin here] end
+
+//For when you only want the icon and no text
+// % protected region % [Change icon only mixin here] off begin
+@mixin icon-only {
+	padding: $space-xs $space-xs;
+
+	&:before,
+	:after {
+		margin: 0rem 0rem;
+	}
+}
+// % protected region % [Change icon only mixin here] end
+
+
+// % protected region % [Add additional icon mixins here] off begin
+// % protected region % [Add additional icon mixins here] end
+//****************-------END ICONS--------****************
+
+
+//****************-------BORDERS--------****************
+
+// % protected region % [Change standard border mixin here] off begin
+//Standard border mixin, use this when you want a generic border
+@mixin border($thickness, $color) {
+	border: $thickness solid $color;
+}
+// % protected region % [Change standard border mixin here] end
+
+//Sets one border to be the given color and width, while hiding all the other borders
+//Border side can be: top, right, bottom or left
+//Border width and color are open
+//Hiding type can be either transparent or no-width:
+//      If transparent, it will set the widths of all the other borders but make them transparent
+//      If no-width, it will set all the other borders to 0 width
+
+
+// % protected region % [Change single border mixin here] off begin
+@mixin set-single-border($border-side, $border-color, $border-width, $hiding-type) {
+	@if ($hiding-type==transparent) {
+		border: $border-width solid transparent;
+	}
+
+	@else if($hiding-type==no-width) {
+		border-width: convert-rem(0px);
+	}
+
+	@else {
+		@error "Set Single Border Mixin: hiding-type supports either transparent or no-width.";
+	}
+
+	border-#{$border-side}: $border-width solid $border-color;
+}
+// % protected region % [Change single border mixin here] end
+
+// % protected region % [Add additional border mixins here] off begin
+// % protected region % [Add additional border mixins here] end
+//****************-------END BORDERS--------****************
+
+//****************-------FONT RENDERING--------****************
+// edit font rendering -> tip: use for light text on dark backgrounds
+// % protected region % [Change font smooth mixin here] off begin
+@mixin fontSmooth {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+// % protected region % [Change font smooth mixin here] end
+
+// % protected region % [Add additional font rendering mixins here] off begin
+// % protected region % [Add additional font rendering mixins here] end
+
+//****************-------END FONT RENDERING--------***************
+
+//****************-------BOX SHADOWS--------*****************
+// % protected region % [Change box-shadow mixin here] off begin
+@mixin inner-box-shadow($horiz, $vert, $blur, $spread, $color) {
+	-webkit-box-shadow: inset $horiz $vert $blur $spread $color;
+	-moz-box-shadow: inset $horiz $vert $blur $spread $color;
+	box-shadow: inset $horiz $vert $blur $spread $color;
+}
+// % protected region % [Change box-shadow mixin here] end
+
+// % protected region % [Add additional box shadow mixins here] off begin
+// % protected region % [Add additional box shadow mixins here] end
+
+//****************-------SCALES AND SHAPES--------*****************
+/* Responsive ratio - scalable elements (usually images)
+example of use:
+div {
+    @include responsive-ratio(16,9);
+}
+*/
+
+// % protected region % [Change responsive ratio mixin here] off begin
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+	$padding: unquote(($y / $x) * 100 + '%');
+
+	@if $pseudo {
+		&:before {
+			@include pseudo($pos: relative);
+			width: 100%;
+			padding-top: $padding;
+		}
+	}
+
+	@else {
+		padding-top: $padding;
+	}
+}
+// % protected region % [Change responsive ratio mixin here] end
+
+
+/*triangle creator - usually used for tooltips*/
+// % protected region % [Change triangle creator mixin here] off begin
+@mixin css-triangle($color, $direction, $size: convert-rem(6px), $position: absolute, $round: false) {
+	@include pseudo($pos: $position);
+	width: 0;
+	height: 0;
+
+	@if $round {
+		border-radius: convert-rem(3px);
+	}
+
+	@if $direction==down {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-top: $size solid $color;
+		margin-top: 0 - round($size / 2.5);
+	}
+
+	@else if $direction==up {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $color;
+		margin-bottom: 0 - round($size / 2.5);
+	}
+
+	@else if $direction==right {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+		margin-right: -$size;
+	}
+
+	@else if $direction==left {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-right: $size solid $color;
+		margin-left: -$size;
+	}
+}
+// % protected region % [Change triangle creator mixin here] end
+
+// % protected region % [Add additional scaling and shape mixins here] off begin
+// % protected region % [Add additional scaling and shape mixins here] end
+
+//****************-------OTHER MIXINS--------*****************
+/* inserting place holders
+example of use:
+input,
+textarea {
+    @include input-placeholder {
+        color: $grey;
+    }
+}
+*/
+
+// % protected region % [Change misc mixin here] off begin
+@mixin input-placeholder {
+	&.placeholder {
+		@content;
+	}
+
+	&:-moz-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&:-ms-input-placeholder {
+		@content;
+	}
+
+	&::-webkit-input-placeholder {
+		@content;
+	}
+}
+
+@mixin appearance-none {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+
+@mixin width-height-fit-content($width-type) {
+	#{$width-type}: fit-content;
+	#{$width-type}: intrinsic;
+	/* Safari/WebKit uses a non-standard name */
+	#{$width-type}: -webkit-fit-content;
+	/* Chrome */
+	#{$width-type}: -moz-max-content;
+	/* Firefox/Gecko */
+}
+
+@mixin text-shadow($color) {
+	text-shadow: 0px 0px 1px $color;
+}
+
+//Margin auto - algining things to the middle
+@mixin push-auto {
+	margin: {
+		left: auto;
+		right: auto;
+	}
+}
+
+//Mixin for truncating text
+@mixin truncate {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+//Mixin for truncating more than first line of text
+@mixin truncate-more-lines($numLines : 1, $lineHeight: 1.412) {
+	overflow: hidden;
+	text-overflow: -o-ellipsis-lastline;
+	text-overflow: ellipsis;
+	display: block;
+	/* autoprefixer: off */
+	display: -webkit-box;
+	-webkit-line-clamp: $numLines;
+	-webkit-box-orient: vertical;
+	max-height: $numLines * $lineHeight + unquote('em');
+}
+// % protected region % [Change misc mixin here] end
+
+// % protected region % [Add additional mixins here] off begin
+// % protected region % [Add additional mixins here] end

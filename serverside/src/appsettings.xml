@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@bot-written
+
+WARNING AND NOTICE
+Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+Full Software Licence as accepted by you before being granted access to this source code and other materials,
+the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+access, download, storage, and/or use of this source code.
+
+BOT WARNING
+This file is bot-written.
+Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+-->
+<configuration>
+	<Serilog>
+		<MinimumLevel>
+			<!-- % protected region % [Configure log levels] off begin -->
+			<Default>Warning</Default>
+			<!-- % protected region % [Configure log levels] end -->
+		</MinimumLevel>
+		<!-- % protected region % [Configure extra logging here] off begin -->
+		<!-- % protected region % [Configure extra logging here] end -->
+	</Serilog>
+	<!-- % protected region % [Configure allowed hosts here] off begin -->
+	<AllowedHosts>*</AllowedHosts>
+	<!-- % protected region % [Configure allowed hosts here] end -->
+	<ServerSettings>
+		<!-- % protected region % [Configure server settings here] off begin -->
+		<!--
+		This url is the url that is provided in the forgot password email.
+		Changing this url will not alter the URL the application is served on.
+		To change that alter Properties/launchSettings.json instead.
+		-->
+		<ServerUrl>http://localhost:5000</ServerUrl>
+		<!-- % protected region % [Configure server settings here] end -->
+	</ServerSettings>
+	<ConnectionStrings>
+		<!-- % protected region % [Configure ConnectionStrings] off begin -->
+		<DbConnectionString>Server=localhost;Database=Lm2348;Username=postgres;Password=pass;</DbConnectionString>
+		<!-- % protected region % [Configure ConnectionStrings] end -->
+	</ConnectionStrings>
+	<EmailAccount>
+		<!-- % protected region % [Configure Email Account] off begin -->
+		<Host>HOST@EXAMPLE.COM</Host>
+		<Username>EMAIL_SERVER_USERNAME</Username>
+		<Password>EMAIL_SERVER_PASSWORD</Password>
+		<FromAddress>MAIL@EXAMPLE.COM</FromAddress>
+		<FromAddressDisplayName>lm2348</FromAddressDisplayName>
+		<Port>25</Port>
+		<EnableSsl>true</EnableSsl>
+		<RedirectToAddress></RedirectToAddress>
+		<BypassCertificateValidation>false</BypassCertificateValidation>
+		<SaveToLocalFile>false</SaveToLocalFile>
+		<!-- % protected region % [Configure Email Account] end -->
+	</EmailAccount>
+	<CertificateSetting>
+		<!-- % protected region % [Configure Certificate] off begin -->
+		<CertFileName>CARoot.pfx</CertFileName>
+		<PrivateKeyPWD>Test123</PrivateKeyPWD>
+		<JwtBearerAuthority>http://localhost:5000</JwtBearerAuthority>
+		<JwtBearerAudience>resource-server</JwtBearerAudience>
+		<!-- % protected region % [Configure Certificate] end -->
+	</CertificateSetting>
+	<ClientServerSettings>
+		<!-- % protected region % [Configure development settings for the clientside] off begin -->
+		<UseProxyServer>false</UseProxyServer>
+		<ProxyServerAddress>http://localhost:3000</ProxyServerAddress>
+		<ClientSourcePath>../../clientside</ClientSourcePath>
+		<!-- % protected region % [Configure development settings for the clientside] end -->
+	</ClientServerSettings>
+	<!-- % protected region % [Add any extra app configurations here] off begin -->
+	<!-- % protected region % [Add any extra app configurations here] end -->
+</configuration>

@@ -1,0 +1,170 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Collection - Menu Actions
+-------------------------------- */
+/*
+Top section of collection - Search bar, filter buttons, grid buttons
+*/
+
+.collection__menu {
+	display: flex;
+	margin: $admin-space-xs auto;
+	align-items: center;
+
+	.btn-group {
+		margin-left: 2rem;
+		align-items: center;
+	}
+
+	//Action buttons
+	.collection__actions {
+		display: flex;
+		width: 100%;
+
+		.btn {
+			width: auto;
+			min-width: 4rem;
+			min-height: unset;
+			padding: $admin-space-xxs;
+			margin-left: $admin-space-xxs;
+			font-size: $admin-base-font-size;
+			align-items: center;
+
+			&:before {
+				margin: .5rem auto;
+			}
+
+			&.icon-create {
+				@include icon(after, plus);
+				display: flex;
+				margin-left: auto;
+				padding: $admin-space-xs $admin-space-lg;
+				min-height: $admin-space-xxl;
+			}
+
+		}
+
+	}
+
+}
+
+/******* Collection filter ********/
+.collection__filters {
+	border: convert-rem(1px) solid $admin-grey-0;
+	padding: $admin-space-sm;
+	min-height: convert-rem(200px);
+	max-height: convert-rem(3000px);
+	height: 100%;
+	opacity: 1;
+	@include cubic-bezier-ease-in (min-height, $admin-animation-time);
+
+	&.hide {
+		@include cubic-bezier-ease-in (min-height, $admin-animation-time);
+		opacity: 0;
+		height: 0;
+		min-height: 0;
+		max-height: 0;
+		padding: 0;
+	}
+
+	.collection-filter-form__container{
+		display: flex;
+		flex-wrap: wrap;
+
+		.input-group {
+			margin: 0 $admin-space-sm;
+		}
+	}
+	
+	.collection-filter-form__actions {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+/***** Action menu, shows once user selects item in list *****/
+.collection__select-options {
+	display: flex;
+	align-items: center;
+	background-color: $admin-color-secondary;
+	padding: $admin-space-md;
+	margin-bottom: $admin-space-lg;
+
+	.collection__selection-actions {
+		display: flex;
+	}
+
+	.btn {
+		padding: 0rem;
+		background-color: transparent;
+		color: $admin-white;
+		margin: 0 $admin-space-lg;
+		font-weight: $admin-text-regular;
+		width: unset;
+		line-height: 1.6;
+		border: none;
+
+		&:hover {
+			text-shadow: convert-rem(0px) convert-rem(0px) convert-rem(1px) $admin-white;
+			@include transform-timing($admin-animation-time);
+			&:before {
+				text-decoration: none;
+			}
+		}
+
+		&:before {
+			margin-right: $admin-space-sm;
+		}
+
+		&:last-of-type {
+			margin-right: 0;
+			width: auto;
+		}
+
+		&.icon-export {
+			&:before {
+				transform: rotate(90deg);
+			}
+		}
+	}
+
+	.btn-group {
+		margin-right: auto;
+	}
+
+	p {
+		padding: 0rem;
+		margin: 0rem;
+		color: $admin-white;
+	}
+
+	.crud__selection-count {
+		margin-left: auto;
+	}
+
+	min-height: convert-rem(50px);
+	@include cubic-bezier-ease-in ($admin-animation-time);
+
+	&.hide {
+		min-height: 0;
+		margin-bottom: 0;
+		@include cubic-bezier-ease-in ($admin-animation-time);
+		padding: 0;
+		opacity: 0;
+	}
+}

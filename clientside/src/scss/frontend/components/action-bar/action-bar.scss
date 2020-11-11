@@ -1,0 +1,48 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Action bar
+-------------------------------- */
+/*
+This component is a bar that can be used in your target project and placed in the bottom of the page with action buttons 
+*/
+
+// % protected region % [Change action bar styles here] off begin
+.action-bar {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	height: $action-bar-height;
+	box-shadow: convert-rem(0px) convert-rem(-1px) convert-rem(5px) convert-rem(0px) $grey-2;
+	bottom: 0;
+	background-color: $white;
+	grid-area: actionbar;
+
+	.btn {
+		padding: $space-xs $space-md;
+	}
+
+	@include media (xs, sm, md, lg) {
+		.workflow__status, .forms__status {
+			display: none;
+		}
+	}
+}
+// % protected region % [Change action bar styles here] end
+
+// % protected region % [Add additional action bar styles here] off begin
+// % protected region % [Add additional action bar styles here] end

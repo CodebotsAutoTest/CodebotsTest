@@ -1,0 +1,377 @@
+
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Buttons
+https://medium.com/codyhouse/create-your-design-system-part-5-icons-594f39cfb1b
+-------------------------------- */
+/*
+Buttons - all styles are found here, the generic button style, accent colour styles.
+*/
+
+
+//Variables have been set up, change sizes and radius according to your project style 
+
+// % protected region % [Change button variables here] off begin
+$btn-font-size: $base-font-size;
+$radius: 0;
+
+$btn-xs: calc(#{$btn-font-size} - 0.4rem);
+$btn-sm: calc(#{$btn-font-size} - 0.2rem);
+$btn-md: calc(#{$btn-font-size} + 0.2rem);
+$btn-lg: calc(#{$btn-font-size} + 0.4rem);
+$btn-xlg: calc(#{$btn-font-size} + 0.6rem);
+
+$btn-radius: $radius;
+// % protected region % [Change button variables here] end
+
+// % protected region % [Add additional button variables here] off begin
+// % protected region % [Add additional button variables here] end
+
+/********** STANDARD BUTTONS **********/
+// % protected region % [Change standard button style here] off begin
+a {
+	&.btn {
+		text-decoration: none;
+	}
+}
+
+/*Universal button styles, controlling display settings, radius, width, height and other declarations. Add classes to your HTML to combine baseline styles with
+/*other style modules*/
+
+.btn {
+	display: inline-flex;
+	position: relative;
+	border: none;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+	font-weight: 500;
+	text-decoration: none;
+	line-height: 1;
+	padding: $space-xs;
+	border-radius: $btn-radius;
+	font-size: $btn-font-size;
+	cursor: pointer;
+	transition: .2s;
+	@include appearance-none;
+	@include fontSmooth;
+
+	a & {
+		text-decoration: none;
+		color: $black;
+		border-bottom: none;
+
+		&:active,
+		&:focus,
+		&:visited {
+			text-decoration: none;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:active {
+		transition: none;
+	}
+
+	&:hover {
+		cursor: pointer;
+		@include transform-timing($animation-time);
+
+		@-moz-document url-prefix() {
+			transition: none;
+		}
+	}
+}
+
+
+/*Buttons that are just icons */
+.btn--icon-only {
+	&:before {
+		margin: 0.5rem;
+	}
+}
+
+// % protected region % [Change standard button style here] end
+
+/********** STYLE BUTTONS **********/
+// % protected region % [Change color button style here] off begin
+
+/*BUTTON COLORS*/
+
+//apply styling for solid and outline buttons without color classnames
+.btn--solid {
+	background-color: $color-primary;
+	color: get-contrasting-text-color($color-primary);
+
+	&:hover,
+	&:active {
+		background-color: transparent;
+		color: $color-primary;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color-primary);
+	}
+}
+.btn--outline {
+	color: $color-primary;
+	background-color: transparent;
+	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color-primary);
+
+	&:hover,
+	&:active {
+		background-color: $color-primary;
+		color: get-contrasting-text-color($color-primary);
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color-primary);
+	}
+}
+.btn--text {
+	color: $color-primary;
+	background-color: transparent;
+	&:hover,
+	&:active {
+		color: $color-secondary;
+		text-decoration: underline;
+	}
+}
+
+/*
+Each loop goes through the map $btn-colors and assigns the right colours to the right button type. 
+An example to use classnames in your buttons: `btn btn--solid btn--primary`, `btn btn--outline btn--secondary`
+If you have more colours in your application, append to the map such as: `btn--brand-04 : $color-brand-04`
+*/
+
+$btn-colors: (btn--primary : $color-primary, btn--secondary : $color-secondary, btn--brand-01 : $color-brand-01, btn--brand-02: $color-brand-02, btn--brand-03 : $color-brand-03, btn--support-blue : $color-support-blue, btn--support-yellow : $color-support-yellow, btn--support-red : $color-support-red, btn--support-green : $color-support-green, btn--support-orange : $color-support-orange, btn--support-purple : $color-support-purple);
+
+@each $btn-name,
+$color in $btn-colors {
+	.btn--solid.#{$btn-name}{
+		background-color: $color;
+		color: get-contrasting-text-color($color);
+
+		&:hover,
+		&:active {
+			background-color: transparent;
+			color: $color;
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		}
+	}
+
+	.btn--outline.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+
+		&:hover,
+		&:active {
+			background-color: $color;
+			color: get-contrasting-text-color($color);
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		}
+	}
+
+	.btn--text.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		border: none;
+
+		&:hover,
+		&:active {
+			text-decoration: underline;
+		}
+	}
+}
+
+
+/*END BUTTON COLORS*/
+// % protected region % [Change color button style here] end
+
+
+
+/********** FEEDBACK/UTILITY BUTTONS **********/
+// % protected region % [Change utility button style here] off begin
+
+/*FEEDBACK/UTILITY BUTTONS
+Like above, each loop goes through the map $utility-btn-colors and assigns the right colours to the right button type. 
+An example to use utility classnames in your buttons: `btn btn--solid btn--success`;
+*/
+
+$utility-btn-colors: (btn--error : $color-support-red, btn--success : $color-support-green, btn--warning : $color-support-orange);
+
+@each $btn-name,
+$color in $utility-btn-colors {
+	.btn--solid.#{$btn-name} {
+		background-color: $color;
+		color: get-contrasting-text-color($color);
+
+		&:hover,
+		&:active {
+			background-color: darken($color, $color-shades);
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), darken($color, $color-shades));
+		}
+	}
+
+	.btn--outline.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+
+		&:hover,
+		&:active {
+			background-color: $color;
+			color: get-contrasting-text-color($color);
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		}
+	}
+
+	.btn--text.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		border: none;
+
+		&:hover,
+		&:active {
+			text-decoration: underline;
+		}
+	}
+}
+
+/*END UTILITY BUTTON COLORS*/
+
+
+// % protected region % [Change utility button style here] end
+
+// % protected region % [Change disabled button style here] off begin
+/*Disabled button*/
+.btn[disabled] {
+	cursor: not-allowed;
+	background-color: $grey-2;
+	color: $black;
+	box-shadow: none;
+	opacity: 0.5;
+	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $grey-2);
+
+	&.btn--solid {
+		&:hover {
+			box-shadow: none;
+		}
+	}
+
+	&.btn--outline {
+		background-color: transparent;
+
+		&:hover {
+			background-color: transparent;
+		}
+	}
+
+	&.btn--text {
+		box-shadow: none;
+		background-color: transparent;
+
+		&:hover {
+			background: transparent;
+			text-decoration: none;
+		}
+	}
+
+	&:visited,
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $grey-2;
+		color: $black;
+	}
+}
+// % protected region % [Change disabled button style here] end
+
+/********** SIZES **********/
+// % protected region % [Change button sizes here] off begin
+.btn--xsm {
+	font-size: $btn-xs;
+}
+
+.btn--sm {
+	font-size: $btn-sm;
+}
+
+.btn--md {
+	font-size: $btn-md;
+}
+
+.btn--lg {
+	font-size: $btn-lg;
+}
+
+.btn--xlg {
+	font-size: $btn-xlg;
+}
+
+.btn--full-width {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.btn--auto-width {
+	display: flex;
+	width: auto;
+	justify-content: center;
+}
+// % protected region % [Change button sizes here] end
+
+
+/********** GROUPED BUTTONS **********/
+// % protected region % [Change button group styles here] off begin
+.btn-group {
+	display: flex;
+	flex-wrap: wrap;
+
+	.btn {
+		margin: $space-xs;
+		&:first-of-type {
+			margin-left: 0;
+		}
+	}
+
+	//TO DO !!!
+	&.btn-group--vertical {
+		flex-direction: column;
+
+		.btn {
+			width: auto;
+			margin-left: 0;
+		}
+	}
+
+	&.btn-group--horizontal {
+		flex-direction: row;
+	}
+
+	&.btn-group--grow-elements {
+		.btn {
+			flex: auto;
+		}
+	}
+
+	&.btn-group--static-elements {}
+}
+// % protected region % [Change button group styles here] end
+
+// % protected region % [Add additional button styles here] off begin
+// % protected region % [Add additional button styles here] end

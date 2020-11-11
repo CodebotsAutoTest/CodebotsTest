@@ -1,0 +1,235 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Collection - List View
+-------------------------------- */
+/*
+List view of the collection list.
+*/
+
+
+.collection__list {
+	@include fadeIn(0.5s);
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+
+	table {
+		width: 100%;
+		white-space: nowrap;
+		border-collapse: collapse;
+		overflow-x: auto;
+
+		//flexing select all 
+		.collection__header {
+			.collection__list--select-all {
+				display: flex
+			}
+		}
+
+		//Adding min-width and text settings for both the header and data table
+		th,
+		td {
+			@include truncate;
+			text-decoration: none;
+			min-width: 15rem;
+			width: auto;
+			text-align: left;
+
+			//Select box column to be a smaller size
+			&.select-box {
+				min-width: 5rem;
+
+				&:hover {
+					@include truncate;
+				}
+			}
+
+			.input-group__checkbox {
+				display: flex;
+				margin: 0;
+
+				label {
+					margin-bottom: 0;
+				}
+			}
+
+			&.list__header--actions.sticky,
+			&.list__items--actions.sticky {
+				position: sticky;
+				right: 0;
+				top: auto;
+				box-shadow: convert-rem(2px) convert-rem(4px) convert-rem(7px) convert-rem(-1px);
+			}
+
+			&.list__header--actions {
+				background-color: $admin-grey-0;
+			}
+
+			&.list__items--actions {
+				background-color: $admin-white;
+			}
+		}
+
+
+		thead {
+			font-size: $admin-base-font-size;
+			background-color: $admin-grey-0;
+
+			tr {
+				th {
+					font-weight: $admin-text-regular;
+					position: relative;
+					padding: $admin-space-sm;
+
+					&.sortable--des {
+						@include icon(after, arrow-down);
+					}
+
+					&.sortable--asc {
+						@include icon(after, arrow-up);
+					}
+
+					//Sortable arrow styling
+					&.sortable {
+						@include icon(after, order);
+
+						&:hover {
+							cursor: pointer;
+						}
+
+						&:after {
+							position: relative;
+
+							&:hover {
+								cursor: pointer;
+							}
+						}
+					}
+
+					a {
+						text-decoration: none;
+					}
+
+					&:last-of-type {
+						text-align: right;
+						padding-right: $admin-space-xxl;
+					}
+
+					label {
+						font-size: $admin-base-font-size;
+					}
+				}
+			}
+		}
+
+		tbody {
+
+			tr {
+				@include fadeIn($admin-slow-animation-time);
+				border-bottom: convert-rem(1px) solid $admin-grey-4;
+
+				//Parent of expanded content
+				&.collection__item--has-expanded-child {
+					border-bottom: none;
+				}
+
+				//Expanded content
+				&.collection__item--is-expanded-child {
+					border-bottom: none;
+					background-color: $admin-grey-4;
+					width: 100%;
+					height: auto;
+					@include heightScaleIn(0.3s);
+
+					table {
+						height: auto;
+					}
+
+					&.hide {
+						transform: scaleY(0);
+						height: 0;
+						font-size: 0;
+						line-height: 0;
+						position: fixed;
+
+						* {
+							height: 0;
+							padding: 0;
+						}
+					}
+				}
+
+				//Action buttons per row
+				td {
+					padding: $admin-space-sm;
+
+					&.list__items--actions {
+						display: flex;
+						margin: 0 auto;
+						padding: .2rem;
+
+						.collection__edit-actions {
+							width: 100%;
+							display: flex;
+						}
+					}
+
+					.btn-group {
+						flex-wrap: nowrap;
+						justify-content: flex-end;
+						width: 100%;
+
+						.btn {
+							margin: 0rem;
+							width: auto;
+							min-width: convert-rem(60px);
+							font-size: $admin-base-font-size;
+							background-color: transparent;
+							color: $admin-black;
+
+							&:hover,
+							&:active,
+							&.icon-chevron-up {
+								outline: none;
+								color: $admin-color-primary;
+								background-color: transparent;
+								text-decoration: none;
+								@include transform-timing($admin-animation-time);
+								text-shadow: convert-rem(0px) convert-rem(0px) convert-rem(1px) $admin-color-primary;
+
+								a {
+									color: $admin-white;
+								}
+							}
+
+							//icons
+							&:before {
+								margin-bottom: 0.5rem;
+							}
+						}
+					}
+
+				}
+			}
+		}
+	}
+}

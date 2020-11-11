@@ -1,0 +1,188 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Forms sidebar 
+-------------------------------- */
+
+//Left side when editing and creating the form
+.slide-builder__list {
+	padding-bottom: $admin-space-md;
+	overflow: auto;
+	grid-area: sidelist;
+	box-shadow: convert-rem(1px) convert-rem(0px) convert-rem(1px) convert-rem(0px) $admin-grey-2;
+	@include inner-shadow-under-divs;
+
+	.accordion {
+		>.btn {
+			padding: $admin-space-sm $admin-space-xs;
+		}
+
+		.icon-chevron-up {
+			justify-content: space-between;
+			max-width: convert-rem(330px);
+			width: 100%;
+		}
+
+		.icon-more-horizontal {
+			&:before {
+				margin-right: 0;
+			}
+			display: inline;
+		}
+
+		//styling when accordion is active
+		&.active,
+		&:hover,
+		&:focus {
+			background-color: $admin-grey-0;
+			color: $admin-black;
+		}
+	}
+
+	//custom styles for forms only for accordion component
+	.accordion__info {
+		position: relative;
+
+		//this is for animating the info section - overriding due to min height and max height does not align
+		&--expanded {
+			min-height: convert-rem(60px);
+			max-height: convert-rem(10000px);
+			height: 100%;
+		}
+
+		ol,
+		ul {
+			margin: 0 0 0 $admin-space-md;
+
+			li {
+				padding: $admin-space-xs;
+
+				&:after {
+					content: '';
+					width: 100%;
+					border-bottom: convert-rem(1px) solid $admin-grey-1;
+					display: block;
+					margin: 1rem 0;
+					left: 0;
+					position: absolute;
+				}
+
+				&:last-of-type {
+					&:after {
+						width: 0;
+					}
+				}
+			}
+		}
+	}
+
+	//add new slide button 
+	.btn--text {
+		margin: $admin-space-xs;
+		&:hover {
+			text-decoration: none;
+			text-shadow: convert-rem(0px) convert-rem(0px) convert-rem(1px) $admin-color-primary;
+		}
+	}
+
+	//slide edit state - when clicking on the three dots and the edit button
+	&.slide-builder__list--edit-slide,
+	&.slide-builder__list--edit-question {
+		@include fadeIn($admin-animation-time);
+		padding: $admin-space-sm;
+		background-color: $admin-grey-0;
+		position: relative;
+
+		input[type="text"] {
+
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: $admin-white;
+			}
+		}
+
+		.forms-properties {
+			display: grid;
+			height: 100%;
+			grid-template-rows: auto 1fr auto;
+		}
+
+		.forms-properties__header {
+			display: flex;
+			justify-content: space-between;
+			border-bottom: convert-rem(2px) solid $admin-color-secondary;
+			padding: $admin-space-xxs;
+			margin-bottom: $admin-space-xs;
+
+			h3 {
+				font-size: $admin-text-md;
+				font-weight: $admin-text-medium;
+				margin: 0;
+			}
+
+			.btn--text {
+				color: $admin-color-secondary;
+				padding: 0;
+				margin: 0;
+
+				&:hover,
+				&:active {
+					text-decoration: none;
+					color: $admin-black;
+				}
+			}
+		}
+
+		//For when the questions are checkboxes and radio buttons
+		.forms-sidebar__question-name {
+			border-bottom: convert-rem(2px) solid $admin-color-secondary;
+		}
+
+		.forms__delete-option:last-of-type,
+		.forms__add-option {
+			width: 100%;
+			margin-bottom: $admin-space-md;
+		}
+
+		.input-group {
+			margin: $admin-space-xs 0;
+		}
+
+		.btn-group {
+			justify-content: flex-end;
+
+			.btn:last-of-type {
+				margin-right: 0;
+			}
+		}
+
+		.btn--outline {
+			width: 10.25rem;
+			&:nth-of-type(2){
+				margin-left: $admin-space-sm;
+			}
+			&:nth-of-type(3){
+				margin-top: $admin-space-sm;
+			}
+		}
+		.close-sidebar {
+			width: 100%;
+			margin-top: 1rem;
+		}
+	}
+}

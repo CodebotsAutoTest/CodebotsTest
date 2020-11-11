@@ -1,0 +1,71 @@
+<!--
+@bot-written
+
+WARNING AND NOTICE
+Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+Full Software Licence as accepted by you before being granted access to this source code and other materials,
+the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+access, download, storage, and/or use of this source code.
+
+BOT WARNING
+This file is bot-written.
+Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="SiteConfig.ini" CopyToOutputDirectory="Always" />
+		<None Include="UserConfig.ini" CopyToOutputDirectory="Always" />
+		<None Include="BaseChoiceConfig.ini" CopyToOutputDirectory="Always" />
+		<None Include="../../serverside/src/appsettings.Test.xml" CopyToOutputDirectory="Always" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Audit.EntityFramework.Core" Version="15.0.4" />
+		<PackageReference Include="Audit.EntityFramework.Identity.Core" Version="15.0.4" />
+		<PackageReference Include="CsvHelper" Version="15.0.0" />
+		<PackageReference Include="FluentAssertions" Version="5.10.0" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="3.1.2" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="3.1.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" />
+		<PackageReference Include="OpenIddict" Version="2.0.1" />
+		<PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.2" />
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="3.1.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="3.1.2" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
+		<PackageReference Include="NCrontab" Version="3.3.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+		<PackageReference Include="RestSharp" Version="106.6.10" />
+		<PackageReference Include="dotnet-test-xunit" Version="2.2.0-preview2-build1029" />
+		<PackageReference Include="xunit" Version="2.4.1" />
+		<PackageReference Include="xunit.runner.console" Version="2.4.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+		<PackageReference Include="Xunit.SkippableFact" Version="1.3.12" />
+		<PackageReference Include="XunitXml.TestLogger" Version="2.1.26" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.2" />
+		<!-- % protected region % [Add any further imports here] off begin -->
+		<!-- % protected region % [Add any further imports here] end -->
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\TestDataLib\TestDataLib.csproj" />
+		<Reference Include="Lm2348">
+			<HintPath>..\..\serverside\src\bin\$(Configuration)\netcoreapp3.1\Lm2348.dll</HintPath>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Reference>
+	</ItemGroup>
+</Project>

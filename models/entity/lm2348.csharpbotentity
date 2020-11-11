@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<csharpbotEntity:EntityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csharpbotEntity="http://codebots.com/emf/csharpbot/entity" TargetProject="lm2348" />
+<csharpbotEntity:EntityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csharpbotEntity="http://codebots.com/emf/csharpbot/entity" DatabaseProvider="POSTGRES" TargetProject="lm2348" Uuid="76f0f1b1-c582-4f2b-ad3c-fd0ffffd3d0c"/>

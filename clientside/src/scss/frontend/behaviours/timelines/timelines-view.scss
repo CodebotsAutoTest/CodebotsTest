@@ -1,0 +1,511 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Timelines - graph view
+-------------------------------- */
+/*
+
+
+/*Shared map and mixin across the graph view and the sidebar recent activity and legend
+*Note that changing the colour automatically changes in the graph and the sidebar. 
+*/
+
+
+//create array to loop through - to change colour of shape just change `color-suppot-{color}` to colour preference
+//IE: change $color-support-green to $color-support-orange and it changes the all diamond shapes in the graph and the sidebar to orange
+
+//To add more shapes you have to discuss with your dev with by adding more classnames and append to the map and the mixins.
+
+// % protected region % [Add shape definitions here] off begin
+$color-shapes: ("diamond" : $color-support-green, "circle" : $color-support-red, "square" : $color-support-purple, "default" : $color-primary);
+// % protected region % [Add shape definitions here] end
+
+//This mixin applies the shapes to the graph
+@mixin apply-graph-shape($shape) {
+	@if $shape==diamond {
+		.item__amount {
+			&:after {
+				transform: rotate(45deg);
+			}
+		}
+	}
+
+	@else if $shape==circle {
+		.item__amount {
+			&:after {
+				border-radius: 50%;
+			}
+		}
+	}
+
+	@else if $shape==square {
+		.item__amount {
+			&:after {
+				border-radius: unset;
+			}
+		}
+	}
+
+	// % protected region % [Add additional graph-shape styling here] off begin
+	// % protected region % [Add additional graph-shape styling here] end
+
+	@else if $shape==default {
+		.item__amount {
+			&:after {
+				border-radius: unset;
+			}
+		}
+	}
+
+	//to add new shape, add a new @else if and style the after pseudo element
+
+	@else {
+		@error "This mixin supports sizes you used "+$size;
+	}
+}
+
+//This mixin applies the shapes to the sidebar
+@mixin apply-sidebar-shape($shape) {
+	@if $shape==diamond {
+		&:before {
+			transform: rotate(45deg);
+		}
+	}
+
+	@else if $shape==circle {
+		&:before {
+			border-radius: 50%;
+		}
+	}
+
+	@else if $shape==square {
+		&:before {
+			border-radius: unset;
+		}
+	}
+
+	// % protected region % [Add additional sidebar-shape styling here] off begin
+	// % protected region % [Add additional sidebar-shape styling here] end
+
+	@else if $shape==default {
+		&:before {
+			border-radius: unset;
+		}
+	}
+
+	@else {
+		@error "This mixin supports sizes you used "+$size;
+	}
+}
+
+//Mixin and variable for timelines view animations
+$views: view-left, left-view, view-right, right-view, view-zoom, zoom-view, view-reset;
+
+@mixin apply-view-animation($view) {
+	@if $view=="view-left" {
+		.date__item {
+			@include slideInLeft($slow-animation-time);
+		}
+	}
+
+	@else if $view=="left-view" {
+		.date__item {
+			@include slideInLeft2($slow-animation-time);
+		}
+	}
+
+	@else if $view=="view-right" {
+		.date__item {
+			@include slideInRight($slow-animation-time);
+		}
+	}
+
+	@else if $view=="right-view" {
+		.date__item {
+			@include slideInRight2($slow-animation-time);
+		}
+	}
+
+	@else if $view=="zoom-view" {
+		.date__item {
+			@include zoomIn($slow-animation-time);
+		}
+	}
+
+	@else if $view=="view-zoom" {
+		.date__item {
+			@include zoomIn2($slow-animation-time);
+		}
+	}
+
+	@else if $view=="view-reset" {
+		.date__item {
+			@include zoomIn3($slow-animation-time);
+		}
+	}
+
+	@else {
+		@error "This mixin supports view classes you used "+$view;
+	}
+}
+
+/*END MIXIN*/
+
+/* start styling of timelines graph view */
+.timelines__view {
+	display: flex;
+	align-items: center;
+	height:85%;
+	min-height: 35rem;
+
+	//chevron butons left and right
+	.icon-chevron-left, .icon-chevron-right {
+		max-width: $space-lg;
+		height: 100%;
+		align-items: center;
+		background-color: transparent;
+
+		&:before,
+		&:after {
+			font-size: $text-lg;
+			color: $grey-4;
+		}
+
+		&:hover,
+		&:active {
+			//in crease size on hover
+			&:before,
+			&:after {
+				color: $color-primary;
+				font-size: 2.5rem;
+				@include transform-timing($animation-time);
+			}
+		}
+	}
+
+	//timeline view - with the date, the lines and the shapes
+	.timelines {
+		flex-grow: 1;
+		margin-top: auto;
+		border-top: convert-rem(1.5px) solid $black;
+
+		//bottom date section
+		.timelines__dates {
+			display: flex;
+			justify-content: space-between;
+			
+			//Animation calls in mixins and class names - refer to mixins above
+			@each $view in $views {
+				&.#{$view} {
+					@include apply-view-animation(#{$view});
+				}
+			}
+
+			//each date
+			.date__item {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				align-items: center;
+				padding-top: $space-xs;
+				@include zoomIn($animation-time);
+
+				//grey lines in the middle
+				&:after {
+					content: '';
+					height: convert-rem(400px);
+					width: 1px;
+					background-color: $grey-1;
+					display: flex;
+					position: absolute;
+					z-index: -1;
+					bottom: 100%;
+				}
+
+				.date {
+					min-width: convert-rem(100px);
+				}
+				
+				.timelines__item, .timelines__items {
+					position: absolute;
+					bottom: calc(100% - 3px);
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					cursor: pointer;
+
+					//apply default styles for item amount
+					.item__amount {
+						max-height: 2rem;
+						max-width: 2rem;
+						text-align: center;
+						margin: auto;
+						color: $white;
+						align-items: center;
+						justify-content: center;
+						position: relative;
+						display: flex;
+
+						span {
+							z-index: 1;
+						}
+						//actual shape
+						&:after {
+							content: '';
+							display: block;
+							background-color: $black;
+							display: inline-block;
+							position: absolute;
+							width: 1.7rem;
+							height: 1.7rem;
+							z-index: 0;
+						}
+					}
+
+					//Black lines for dates with items
+					.item-line {
+						height: convert-rem(180px);
+						width: 1px;
+						background-color: $black;
+						display: flex;
+						margin: auto;
+					}
+
+					//circle at teh bottom that touches the date lines
+					.bottom-circle {
+						width: convert-rem(10px);
+						height: convert-rem(10px);
+						border-radius: 50%;
+						background-color: $black;
+					}
+
+					//Each loop that calls in mixins above to apply the correct shape to the item and then apply the right colour to the shape
+					@each $shape,
+					$color in $color-shapes {
+						&.#{$shape} {
+							@include apply-graph-shape(#{$shape});
+
+							.item__amount {
+								&:after {
+									background-color: $color;
+								}
+								&:hover, &:active {
+									color: $black;
+									@include transform-timing($animation-time);
+								}
+							}
+
+							.bottom-circle {
+								background-color: $color;
+							}
+						}
+					}
+
+					//override other shapes for TODAY
+					//for today item
+					&.today {
+						.item-line {
+							height: convert-rem(220px);
+							width: 2px;
+						}
+
+						.item__amount {
+							span {
+								font-weight: $text-bold;
+								color: $black;
+							}
+
+							&:after {
+								display: none;
+							}
+						}
+
+						.bottom-circle {
+							border-radius: none;
+							background-color: $black;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* end styling of timelines graph view */
+
+
+/* timelines graph sidebar view */
+.sidebar__graph-view {
+	padding: $space-xs $space-md;
+	margin-bottom: 0;
+
+	//apply shape styles to both list of recent activity and legend
+	ul {
+		list-style: none;
+		padding-left: .2rem;
+		
+		//layout for the shapes and info
+		li {
+			display: grid;
+			grid-template-areas: "shape date"
+				"shape info";
+			grid-template-columns: auto 1fr;
+			margin-bottom: $space-xs;
+			grid-area: info;
+			align-items: center;
+
+			span {
+				font-weight: bold;
+				grid-area: date;
+			}
+
+			//Generic styling for the shape
+			&:before {
+				content: '';
+				width: 1rem;
+				height: 1rem;
+				text-align: center;
+				margin-right: $space-xs;
+				color: $white;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				display: flex;
+				grid-area: shape;
+			}
+
+			//Each loop that calls in mixins above to apply the correct shape to the item and then apply the right colour to the shape
+			@each $shape,
+			$color in $color-shapes {
+				&.#{$shape} {
+					@include apply-sidebar-shape(#{$shape});
+
+					&:before {
+						background-color: $color;
+					}
+				}
+			}
+		}
+	}
+
+	.sidebar__recent-activity {
+		ul {
+			//aligning shape to the top
+			li {
+				align-items: flex-start;
+
+				&:before {
+					margin-top: .3rem;
+				}
+			}
+		}
+	}
+
+	.sidebar__legend {
+		//margin to legend heading
+		h5 {
+			margin-top: $space-xs;
+		}
+	}
+}
+
+/* timelines graph sidebar view */
+
+/*ITEM INFO STYLING - this is the box when you click on an item (shape) */
+
+.timelines__item, .timelines__items {
+	.item__info {
+		position: absolute;
+		right: $space-xs;
+		bottom: 105%;
+		width: convert-rem(400px);
+		background-color: $grey-10;
+		color: $white;
+		padding: $space-xs $space-sm;
+		text-align: left;
+		box-shadow: convert-rem(0px) convert-rem(2px) convert-rem(5px) convert-rem(-2px) $black;
+		cursor: default;
+		@include fadeIn($slow-animation-time);
+
+		&.left {
+			left: $space-xs;
+		}
+
+		&.right {
+			right: $space-xs;
+		}
+
+		.icon-cross {
+			align-items: center;
+			background-color: transparent;
+			padding: 0;
+			margin-left: auto;
+
+			&:before {
+				color: $grey-2;
+				font-size: $text-md;
+				margin: 0;
+			}
+
+			&:hover,
+			&:active {
+				&:before {
+					color: $white;
+				}
+			}
+		}
+
+		//Each timeline event information
+		.info {
+			margin-bottom: $space-sm;
+			.info__top-section {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				color: $grey-2;
+
+				h5 {
+					margin-bottom: 0;
+					font-size: $text-md;
+				}
+			}
+
+			.info__middle-section {
+				display: flex;
+				margin: $space-xxs 0;
+				justify-content: space-between;
+
+				p {
+					margin-bottom: 0;
+					font-size: .9rem;
+				}
+			}
+		}
+
+		//Bottom section of zoom more or view more
+		.bottom-section {
+			display: flex;
+			justify-content: space-between;
+			color: $grey-2;
+		}
+	}
+}
+
+// % protected region % [Add additional timelines-view styles here] off begin
+// % protected region % [Add additional timelines-view styles here] end
+
+/*END ITEM INFO STYLING*/

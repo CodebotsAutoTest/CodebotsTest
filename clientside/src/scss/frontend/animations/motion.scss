@@ -1,0 +1,770 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* -------------------------------- 
+Motion
+-------------------------------- */
+/*These are the animation mixins that are pulling from the Animate Library.
+The way you use these mixins is:
+@include your-animation($your-timing)
+ie: @include bounce(3s)
+At the bottom there are some mixins that do not require timing as
+they are animations related to time and ease, you can add them in
+addition to your desired animation. IE:
+@include bounce(3s)
+@include slow */
+
+@import 'animatelibrary.scss';
+
+@mixin heightScaleIn($duration: linear) {
+	transition: transform $duration ease-out;
+	transform: scaleY(1);
+	transform-origin: top;
+	// max-height: 0;
+}
+
+@mixin cubic-bezier-ease-in ($item: all, $duration: .3s) {
+	-webkit-transition: $item $duration cubic-bezier(0.550, 0.085, 0.680, 0.530);
+	-moz-transition: $item $duration cubic-bezier(0.550, 0.085, 0.680, 0.530);
+	-o-transition: $item $duration cubic-bezier(0.550, 0.085, 0.680, 0.530);
+	transition: $item $duration cubic-bezier(0.550, 0.085, 0.680, 0.530);
+}
+
+@mixin heightScaleOutUp($duration: linear) {
+	transition: transform $duration ease-out;
+	transform: scaleY(0);
+	transform-origin: top;
+}
+
+@mixin heightScaleOutDown($duration: linear) {
+	transition: transform $duration ease-out;
+	transform: scaleY(0);
+	transform-origin: bottom;
+}
+
+@mixin widthScaleIn($duration: linear, $direction: left) {
+	transition: transform $duration ease-out;
+	transform: scaleX(1);
+	transform-origin: $direction;
+}
+
+@mixin widthScaleOut($duration: linear) {
+	transition: transform $duration ease-out;
+	transform: scaleX(0);
+	transform-origin: left;
+}
+
+@mixin transform-timing($duration: ease) {
+	-webkit-transition: all $duration ease;
+	-moz-transition: all $duration ease;
+	-o-transition: all $duration ease;
+	-ms-transition: all $duration ease;
+	transition: all $duration ease;
+}
+
+@mixin transform-timing-specific($item, $duration: ease) {
+	-webkit-transition: $item $duration ease;
+	-moz-transition: $item $duration ease;
+	-o-transition: $item $duration ease;
+	-ms-transition: $item $duration ease;
+	transition: $item $duration ease;
+}
+
+@mixin bounceMove($duration) {
+	animation: bounceMove $duration linear infinite, move $duration * 6 linear infinite $duration / 2.5;
+	-webkit-animation: bounceMove $duration linear infinite, move $duration * 6 linear infinite $duration / 2.5;
+
+}
+
+@mixin bounce($duration:linear) {
+	-webkit-animation-name: bounce;
+	animation-name: bounce;
+	-webkit-transform-origin: center bottom;
+	transform-origin: center bottom;
+	animation-duration: $duration;
+}
+
+@mixin flash($duration:linear) {
+	-webkit-animation-name: flash;
+	animation-name: flash;
+	animation-duration: $duration;
+}
+
+@mixin pulse($duration:linear) {
+	-webkit-animation-name: pulse;
+	animation-name: pulse;
+	animation-duration: $duration;
+}
+
+@mixin rubberBand($duration:linear) {
+	-webkit-animation-name: rubberBand;
+	animation-name: rubberBand;
+	animation-duration: $duration;
+}
+
+@mixin shake($duration:linear) {
+	-webkit-animation-name: shake;
+	animation-name: shake;
+	animation-duration: $duration;
+}
+
+@mixin headShake($duration:linear) {
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-name: headShake;
+	animation-name: headShake;
+	animation-duration: $duration;
+
+}
+
+@mixin swing($duration:linear) {
+	-webkit-transform-origin: top center;
+	transform-origin: top center;
+	-webkit-animation-name: swing;
+	animation-name: swing;
+	animation-duration: $duration;
+}
+
+@mixin tada($duration:linear) {
+	-webkit-animation-name: tada;
+	animation-name: tada;
+	animation-duration: $duration;
+}
+
+@mixin wobble($duration:linear) {
+	-webkit-animation-name: wobble;
+	animation-name: wobble;
+	animation-duration: $duration;
+}
+
+@mixin jello($duration:linear) {
+	-webkit-animation-name: jello;
+	animation-name: jello;
+	-webkit-transform-origin: center;
+	transform-origin: center;
+	animation-duration: $duration;
+}
+
+@mixin heartBeat($duration:linear) {
+	-webkit-animation-name: heartBeat;
+	animation-name: heartBeat;
+	-webkit-animation-duration: 1.3s;
+	animation-duration: 1.3s;
+	-webkit-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+	animation-duration: $duration;
+}
+
+@mixin bounceIn($duration:linear) {
+	-webkit-animation-duration: 0.75s;
+	animation-duration: 0.75s;
+	-webkit-animation-name: bounceIn;
+	animation-name: bounceIn;
+	animation-duration: $duration;
+}
+
+@mixin bounceInDown($duration:linear) {
+	-webkit-animation-name: bounceInDown;
+	animation-name: bounceInDown;
+	animation-duration: $duration;
+}
+
+@mixin bounceInLeft($duration:linear) {
+	-webkit-animation-name: bounceInLeft;
+	animation-name: bounceInLeft;
+	animation-duration: $duration;
+}
+
+@mixin bounceInRight($duration:linear) {
+	-webkit-animation-name: bounceInRight;
+	animation-name: bounceInRight;
+	animation-duration: $duration;
+}
+
+@mixin bounceInUp($duration:linear) {
+	-webkit-animation-name: bounceInUp;
+	animation-name: bounceInUp;
+	animation-duration: $duration;
+}
+
+@mixin bounceOut($duration:linear) {
+	-webkit-animation-duration: 0.75s;
+	animation-duration: 0.75s;
+	-webkit-animation-name: bounceOut;
+	animation-name: bounceOut;
+	animation-duration: $duration;
+}
+
+@mixin bounceOutDown($duration:linear) {
+	-webkit-animation-name: bounceOutDown;
+	animation-name: bounceOutDown;
+	animation-duration: $duration;
+}
+
+@mixin bounceOutLeft($duration:linear) {
+	-webkit-animation-name: bounceOutLeft;
+	animation-name: bounceOutLeft;
+	animation-duration: $duration;
+}
+
+@mixin bounceOutRight($duration:linear) {
+	-webkit-animation-name: bounceOutRight;
+	animation-name: bounceOutRight;
+	animation-duration: $duration;
+}
+
+@mixin bounceOutUp($duration:linear) {
+	-webkit-animation-name: bounceOutUp;
+	animation-name: bounceOutUp;
+	animation-duration: $duration;
+}
+
+@mixin fadeIn($duration:linear) {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+	animation-duration: $duration;
+}
+
+@mixin fadeInDown($duration:linear) {
+	-webkit-animation-name: fadeInDown;
+	animation-name: fadeInDown;
+	animation-duration: $duration;
+}
+
+@mixin fadeInDownBig($duration:linear) {
+	-webkit-animation-name: fadeInDownBig;
+	animation-name: fadeInDownBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeInLeft($duration:linear) {
+	-webkit-animation-name: fadeInLeft;
+	animation-name: fadeInLeft;
+	animation-duration: $duration;
+}
+
+@mixin fadeInLeftBig($duration:linear) {
+	-webkit-animation-name: fadeInLeftBig;
+	animation-name: fadeInLeftBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeInRight($duration:linear) {
+	-webkit-animation-name: fadeInRight;
+	animation-name: fadeInRight;
+	animation-duration: $duration;
+}
+
+@mixin fadeInRightBig($duration:linear) {
+	-webkit-animation-name: fadeInRightBig;
+	animation-name: fadeInRightBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeInUp($duration:linear) {
+	-webkit-animation-name: fadeInUp;
+	animation-name: fadeInUp;
+	animation-duration: $duration;
+}
+
+@mixin fadeInUpBig($duration:linear) {
+	-webkit-animation-name: fadeInUpBig;
+	animation-name: fadeInUpBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeOut($duration:linear) {
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutDown($duration:linear) {
+	-webkit-animation-name: fadeOutDown;
+	animation-name: fadeOutDown;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutDownBig($duration:linear) {
+	-webkit-animation-name: fadeOutDownBig;
+	animation-name: fadeOutDownBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutLeft($duration:linear) {
+	-webkit-animation-name: fadeOutLeft;
+	animation-name: fadeOutLeft;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutLeftBig($duration:linear) {
+	-webkit-animation-name: fadeOutLeftBig;
+	animation-name: fadeOutLeftBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutRight($duration:linear) {
+	-webkit-animation-name: fadeOutRight;
+	animation-name: fadeOutRight;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutRightBig($duration:linear) {
+	-webkit-animation-name: fadeOutRightBig;
+	animation-name: fadeOutRightBig;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutUp($duration:linear) {
+	-webkit-animation-name: fadeOutUp;
+	animation-name: fadeOutUp;
+	animation-duration: $duration;
+}
+
+@mixin fadeOutUpBig($duration:linear) {
+	-webkit-animation-name: fadeOutUpBig;
+	animation-name: fadeOutUpBig;
+	animation-duration: $duration;
+}
+
+@mixin animatedFlip {
+	@include animated;
+	-webkit-backface-visibility: visible;
+	backface-visibility: visible;
+	-webkit-animation-name: flip;
+	animation-name: flip;
+}
+
+@mixin flipInX($duration:linear) {
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	-webkit-animation-name: flipInX;
+	animation-name: flipInX;
+	animation-duration: $duration;
+}
+
+@mixin flipInY($duration:linear) {
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	-webkit-animation-name: flipInY;
+	animation-name: flipInY;
+	animation-duration: $duration;
+}
+
+@mixin flipOutX($duration:linear) {
+	-webkit-animation-duration: 0.75s;
+	animation-duration: 0.75s;
+	-webkit-animation-name: flipOutX;
+	animation-name: flipOutX;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: $duration;
+}
+
+@mixin flipOutY($duration:linear) {
+	-webkit-animation-duration: 0.75s;
+	animation-duration: 0.75s;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	-webkit-animation-name: flipOutY;
+	animation-name: flipOutY;
+	animation-duration: $duration;
+}
+
+@mixin lightSpeedIn($duration:linear) {
+	-webkit-animation-name: lightSpeedIn;
+	animation-name: lightSpeedIn;
+	-webkit-animation-timing-function: ease-out;
+	animation-timing-function: ease-out;
+	animation-duration: $duration;
+}
+
+@mixin lightSpeedOut($duration:linear) {
+	-webkit-animation-name: lightSpeedOut;
+	animation-name: lightSpeedOut;
+	-webkit-animation-timing-function: ease-in;
+	animation-timing-function: ease-in;
+	animation-duration: $duration;
+}
+
+@mixin spin($duration) {
+	-webkit-animation: spin $duration linear infinite;
+	animation: spin $duration linear infinite;
+}
+
+@mixin rotate($duration, $deg) {
+
+	@-moz-keyframes rotate {
+		0% {
+			-moz-transform: rotate(0deg);
+		}
+
+		50% {
+			-moz-transform: rotate($deg);
+		}
+
+		100% {
+			-moz-transform: rotate($deg);
+		}
+	}
+
+	@-webkit-keyframes rotate {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+
+		50% {
+			-webkit-transform: rotate($deg);
+		}
+
+		100% {
+			-webkit-transform: rotate($deg);
+		}
+	}
+
+	@keyframes rotate {
+		0% {
+			transform: rotate(0deg);
+		}
+
+		50% {
+			transform: rotate($deg);
+		}
+
+		100% {
+			transform: rotate($deg);
+		}
+	}
+
+	-webkit-animation: rotate $duration ease;
+	animation: rotate $duration ease;
+}
+
+@mixin rotateIn($duration:linear) {
+	-webkit-animation-name: rotateIn;
+	animation-name: rotateIn;
+	animation-duration: $duration;
+}
+
+@mixin rotateInDownLeft($duration:linear) {
+	-webkit-animation-name: rotateInDownLeft;
+	animation-name: rotateInDownLeft;
+	animation-duration: $duration;
+}
+
+@mixin rotateInDownRight($duration:linear) {
+	-webkit-animation-name: rotateInDownRight;
+	animation-name: rotateInDownRight;
+	animation-duration: $duration;
+}
+
+@mixin rotateInUpLeft($duration:linear) {
+	-webkit-animation-name: rotateInUpLeft;
+	animation-name: rotateInUpLeft;
+	animation-duration: $duration;
+}
+
+@mixin rotateInUpRight($duration:linear) {
+	-webkit-animation-name: rotateInUpRight;
+	animation-name: rotateInUpRight;
+	animation-duration: $duration;
+}
+
+@mixin rotateOut($duration:linear) {
+	-webkit-animation-name: rotateOut;
+	animation-name: rotateOut;
+	animation-duration: $duration;
+}
+
+@mixin rotateOutDownLeft($duration:linear) {
+	-webkit-animation-name: rotateOutDownLeft;
+	animation-name: rotateOutDownLeft;
+	animation-duration: $duration;
+}
+
+@mixin rotateOutDownRight($duration:linear) {
+	-webkit-animation-name: rotateOutDownRight;
+	animation-name: rotateOutDownRight;
+	animation-duration: $duration;
+}
+
+@mixin rotateOutUpLeft($duration:linear) {
+	-webkit-animation-name: rotateOutUpLeft;
+	animation-name: rotateOutUpLeft;
+	animation-duration: $duration;
+}
+
+@mixin rotateOutUpRight($duration:linear) {
+	-webkit-animation-name: rotateOutUpRight;
+	animation-name: rotateOutUpRight;
+	animation-duration: $duration;
+}
+
+@mixin hinge($duration:linear) {
+	-webkit-animation-duration: 2s;
+	animation-duration: 2s;
+	-webkit-animation-name: hinge;
+	animation-name: hinge;
+	animation-duration: $duration;
+}
+
+@mixin jackInTheBox($duration:linear) {
+	-webkit-animation-name: jackInTheBox;
+	animation-name: jackInTheBox;
+	animation-duration: $duration;
+}
+
+@mixin rollIn($duration:linear) {
+	-webkit-animation-name: rollIn;
+	animation-name: rollIn;
+	animation-duration: $duration;
+}
+
+@mixin rollOut($duration:linear) {
+	-webkit-animation-name: rollOut;
+	animation-name: rollOut;
+	animation-duration: $duration;
+}
+
+@mixin zoomIn($duration:linear) {
+	-webkit-animation-name: zoomIn;
+	animation-name: zoomIn;
+	animation-duration: $duration;
+}
+
+@mixin zoomInDown($duration:linear) {
+	-webkit-animation-name: zoomInDown;
+	animation-name: zoomInDown;
+	animation-duration: $duration;
+}
+
+@mixin zoomInLeft($duration:linear) {
+	-webkit-animation-name: zoomInLeft;
+	animation-name: zoomInLeft;
+	animation-duration: $duration;
+}
+
+@mixin zoomInRight($duration:linear) {
+	-webkit-animation-name: zoomInRight;
+	animation-name: zoomInRight;
+	animation-duration: $duration;
+}
+
+@mixin zoomInUp($duration:linear) {
+	-webkit-animation-name: zoomInUp;
+	animation-name: zoomInUp;
+	animation-duration: $duration;
+}
+
+@mixin zoomOut($duration:linear) {
+	-webkit-animation-name: zoomOut;
+	animation-name: zoomOut;
+	animation-duration: $duration;
+}
+
+@mixin zoomOutDown($duration:linear) {
+	-webkit-animation-name: zoomOutDown;
+	animation-name: zoomOutDown;
+	animation-duration: $duration;
+}
+
+@mixin zoomOutLeft($duration:linear) {
+	-webkit-animation-name: zoomOutLeft;
+	animation-name: zoomOutLeft;
+	animation-duration: $duration;
+}
+
+@mixin zoomOutRight($duration:linear) {
+	-webkit-animation-name: zoomOutRight;
+	animation-name: zoomOutRight;
+	animation-duration: $duration;
+}
+
+@mixin zoomOutUp($duration:linear) {
+	-webkit-animation-name: zoomOutUp;
+	animation-name: zoomOutUp;
+	animation-duration: $duration;
+}
+
+@mixin slideInDown($duration:linear) {
+	-webkit-animation-name: slideInDown;
+	animation-name: slideInDown;
+	animation-duration: $duration;
+}
+
+@mixin slideInLeft($duration:linear) {
+	-webkit-animation-name: slideInLeft;
+	animation-name: slideInLeft;
+	animation-duration: $duration;
+}
+
+@mixin slideInRight($duration:linear) {
+	-webkit-animation-name: slideInRight;
+	animation-name: slideInRight;
+	animation-duration: $duration;
+}
+
+@mixin slideInUp($duration:linear) {
+	-webkit-animation-name: slideInUp;
+	animation-name: slideInUp;
+	animation-duration: $duration;
+}
+
+@mixin slideOutDown($duration:linear) {
+	-webkit-animation-name: slideOutDown;
+	animation-name: slideOutDown;
+	animation-duration: $duration;
+}
+
+@mixin slideOutLeft($duration:linear) {
+	-webkit-animation-name: slideOutLeft;
+	animation-name: slideOutLeft;
+	animation-duration: $duration;
+}
+
+@mixin slideOutRight($duration:linear) {
+	-webkit-animation-name: slideOutRight;
+	animation-name: slideOutRight;
+	animation-duration: $duration;
+}
+
+@mixin slideOutUp($duration:linear) {
+	-webkit-animation-name: slideOutUp;
+	animation-name: slideOutUp;
+	animation-duration: $duration;
+}
+
+@mixin animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+
+	@media(print),
+	(prefers-reduced-motion) {
+		-webkit-animation: unset !important;
+		animation: unset !important;
+		-webkit-transition: none !important;
+		transition: none !important;
+	}
+}
+
+
+@mixin infinite {
+	@include animated;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+@mixin delay-1s {
+	@include animated;
+	-webkit-animation-delay: 1s;
+	animation-delay: 1s;
+}
+
+@mixin delay-2s {
+	@include animated;
+	-webkit-animation-delay: 2s;
+	animation-delay: 2s;
+}
+
+@mixin delay-3s {
+	@include animated;
+	-webkit-animation-delay: 3s;
+	animation-delay: 3s;
+}
+
+@mixin delay-4s {
+	@include animated;
+	-webkit-animation-delay: 4s;
+	animation-delay: 4s;
+}
+
+@mixin delay-5s {
+	@include animated;
+	-webkit-animation-delay: 5s;
+	animation-delay: 5s;
+}
+
+@mixin fast {
+	@include animated;
+	-webkit-animation-duration: 800ms;
+	animation-duration: 800ms;
+}
+
+@mixin faster {
+	@include animated;
+	-webkit-animation-duration: 500ms;
+	animation-duration: 500ms;
+}
+
+@mixin slow {
+	@include animated;
+	-webkit-animation-duration: 2s;
+	animation-duration: 2s;
+}
+
+@mixin slower {
+	@include animated;
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+}
+
+@mixin square($duration) {
+	animation: square $duration ease-in-out infinite;
+	-webkit-animation: square $duration ease-in-out infinite;
+}
+
+@mixin squareDown($duration) {
+	animation: squareDown $duration ease-in-out infinite;
+	-webkit-animation: squareDown $duration ease-in-out infinite;
+}
+
+@mixin expandHeight($duration) {
+	animation: expandHeight $duration ease 0.5s forwards;
+	-webkit-animation: expandHeight $duration ease 0.5s forwards;
+}
+
+
+//duplicate for timelines behaviour
+@mixin slideInLeft2($duration:linear) {
+	-webkit-animation-name: slideInLeft2;
+	animation-name: slideInLeft2;
+	animation-duration: $duration;
+}
+
+@mixin slideInRight2($duration:linear) {
+	-webkit-animation-name: slideInRight2;
+	animation-name: slideInRight2;
+	animation-duration: $duration;
+}
+
+@mixin zoomIn2($duration:linear) {
+	-webkit-animation-name: zoomIn2;
+	animation-name: zoomIn2;
+	animation-duration: $duration;
+}
+
+
+@mixin zoomIn3($duration:linear) {
+	-webkit-animation-name: zoomIn3;
+	animation-name: zoomIn3;
+	animation-duration: $duration;
+}
+
+
+// % protected region % [Add additional motion mixins and animations here] off begin
+// % protected region % [Add additional motion mixins and animations here] end

@@ -1,0 +1,150 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Radio buttons
+-------------------------------- */
+/*
+Custom styles for radio buttons
+*/
+
+/*******Radio*******/
+.input-group-wrapper__radio {
+	//give with 100% so it doesn't look weird with other input groups
+	width: 100%;
+
+	&-header {
+		width: 100%;
+	}
+}
+
+.input-group__radio {
+	position: relative;
+	margin: $admin-space-sm 0;
+	/*This customises the grid areas for checkboxes. By default, the grid area has been set up to automatically place a label
+beside a tooltip and above an input. For checkboxes, the grid areas are re-arranged to allow these items to appear inline*/
+	grid-template-columns: max-content max-content max-content;
+	grid-template-areas:
+		"input label tooltip"
+		"validation validation validation"
+	;
+
+	&-header {
+		font-weight: $admin-text-bold;
+	}
+
+	.input-group {
+		margin: $admin-space-xs;
+	}
+
+	label {
+		position: relative;
+		cursor: default;
+		grid-area: label;
+		margin-left: $admin-space-sm;
+	}
+
+	input {
+		//ovewrite
+		padding: 0;
+		grid-area: input;
+	}
+
+	p {
+		grid-area: tooltip;
+	}
+}
+
+/*Radio Groups direction/
+.radio-group--vertical {
+  flex-direction: column;
+}
+
+.radio-group--horizontal {
+  flex-direction: row;
+}
+
+
+/*Radio Buttons Styling*/
+
+input[type="radio"] {
+	appearance: none;
+	width: 1.6rem;
+	height: 1.6rem;
+	border: convert-rem(3px) solid $admin-color-primary;
+	margin: 0;
+	margin-right: 1rem;
+	border-radius: 50%;
+	cursor: pointer;
+
+	&:checked {
+		outline: none;
+
+		&:after {
+			content: "";
+			background-color: $admin-color-primary;
+			border-radius: 50%;
+			width: 75%;
+			height: 75%;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+
+
+input[type="radio"][readonly] {
+	background-color: $admin-grey-0;
+	pointer-events: none;
+	border: convert-rem(3px) solid $admin-grey-4;
+
+	&:hover,
+	&:focus,
+	&:active {
+		cursor: auto;
+		outline: none;
+	}
+
+	&:after {
+		display: none;
+	}
+}
+
+input[type="radio"][readonly]+label,
+input[type="radio"][disabled]+label {
+	background-color: transparent;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border: none;
+	}
+}
+
+input[type="radio"][disabled] {
+
+	background-color: $admin-grey-2;
+	border: convert-rem(3px) solid $admin-grey-4;
+
+	&:hover,
+	&:focus,
+	&:active {
+		outline: none;
+	}
+}

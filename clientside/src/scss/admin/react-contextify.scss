@@ -1,0 +1,84 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+
+// % protected region % [Customise react-contextify here] off begin
+.react-contexify {
+	padding: 0;
+
+	.react-contexify__item__content {
+		padding: 0;
+
+		.btn {
+			font-family: "Lato", sans-serif;
+			font-size: 1rem;
+			padding: 1rem;
+			width: 100%;
+			display: inline-flex;
+			position: relative;
+			border: none;
+			justify-content: center;
+			align-items: center;
+			white-space: nowrap;
+			font-weight: 500;
+			text-decoration: none;
+			line-height: 1;
+			border-radius: 0;
+			cursor: pointer;
+			transition: .2s;
+			appearance: none;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+
+			a & {
+				text-decoration: none;
+				color: rgb(34, 34, 34);
+				border-bottom: none;
+
+				&:active,
+				&:focus,
+				&:visited {
+					text-decoration: none;
+				}
+			}
+
+			&:focus {
+				outline: none;
+			}
+
+			&:active {
+				transition: none;
+			}
+
+			&:hover {
+				cursor: pointer;
+
+				@-moz-document url-prefix() {
+					transition: none;
+				}
+			}
+
+			&:hover,
+			&:active {
+				background-color: rgb(34, 34, 34);
+				color: rgb(255, 255, 255);
+			}
+		}
+	}
+}
+// % protected region % [Customise react-contextify here] end

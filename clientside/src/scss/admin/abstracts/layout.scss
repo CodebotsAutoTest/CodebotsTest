@@ -1,0 +1,121 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* -------------------------------- 
+Layout
+https://medium.com/codyhouse/create-your-design-system-part-2-grid-layout-aa961d59b8d6
+-------------------------------- */
+
+/* -------------------------------- 
+  Flexbox
+  -------------------------------- */
+$admin-grid-gap: $admin-space-sm !default;
+
+//Set up the main content area with a flexable grid based layout
+.content-flex {
+	display: flex;
+	flex-wrap: wrap;
+	margin: calc(#{$admin-grid-gap} * -1) 0 0 calc(#{$admin-grid-gap} * -1);
+}
+
+//flex item definition
+.content-col {
+	box-sizing: border-box;
+	padding: calc(#{$admin-grid-gap}) 0 0 calc(#{$admin-grid-gap});
+	background-clip: content-box;
+	flex-basis: 100%;
+}
+
+
+//utility classes
+$admin-grid-columns: 12 !default;
+
+//round flex items' width 
+@function round-width ($admin-i) {
+	$admin-width: floor(100 * $admin-i * 100/ $admin-grid-columns) / 100;
+	@return $admin-width#{"%"};
+}
+
+@for $admin-i from 1 through $admin-grid-columns {
+	.content-col--#{$admin-i} {
+		flex-basis: round-width($admin-i);
+		max-width: round-width($admin-i);
+	}
+}
+
+//At smaller screensizes, turn into a one column flexbox
+@include breakpoint(md) {
+	@for $admin-i from 1 through $admin-grid-columns {
+		.content-col--#{$admin-i} {
+			//width: 100%;
+			//min-width: calc($admin-space-xxxl * 2); 
+			max-width: none;
+			flex-basis: 100%;
+		}
+	}
+}
+
+/* -------------------------------- 
+  CSS grid
+  -------------------------------- */
+
+
+/* -------------------------------- 
+  
+  Layers
+  -------------------------------- */
+
+//Layout for when there is a vertical nav
+
+
+.body-content {
+	overflow-y: auto;
+	overflow-x: hidden;
+	grid-area: body;
+	grid-template-areas: "header"
+		"content"
+		"actionbar";
+	grid-template-rows: auto;
+}
+
+.workflow__edit,
+.workflow__view,
+.workflow__create,
+.workflow__states,
+.slide-builder,
+.forms-preview {
+	grid-area: content;
+	//height added for scrolling
+	height: calc(100vh - (#{$header-bar-height} + #{$action-bar-height} + #{$admin-top-bar-height}));
+}
+
+.collection-component,
+.form-submission {
+	padding: $admin-space-md;
+}
+
+
+//change flex when used in behaviour with status
+.forms-behaviour,
+.workflow-behaviour {
+	//added to remove double scrollbars
+	height: 100%;
+	overflow: hidden;
+
+	.action-bar {
+		justify-content: space-between;
+	}
+}

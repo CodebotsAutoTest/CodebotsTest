@@ -1,0 +1,92 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Context menu
+-------------------------------- */
+/*
+Drop down menu for more buttons
+*/
+
+// % protected region % [Change context menu styles here] off begin
+.context-menu {
+	cursor: pointer;
+	color: $black;
+	display: inline;
+	position: relative;
+	padding: $space-xs;
+
+	&.icon-more-horizontal.icon-left:before {
+		margin-right: 0;
+	}
+
+	ul {
+		max-height: 0;
+		overflow: hidden;
+		box-shadow: convert-rem(0px) convert-rem(2px) convert-rem(5px) convert-rem(-2px);
+		position: absolute;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		top: 100%;
+		color: $black;
+		background: $white;
+		display: flex;
+		flex-wrap: wrap;
+		z-index: 1;
+
+		li {
+			list-style-type: none;
+			color: $black;
+			display: flex;
+			width: 100%;
+
+			.btn {
+				color: $black;
+				width: 100%;
+				font-size: 1rem;
+				padding: $space-xs;
+				justify-content: flex-start;
+
+				&:hover,
+				&:active {
+					@include text-shadow($color-primary);
+					@include transform-timing($animation-time);
+					text-decoration: none;
+					box-shadow: none;
+				}
+			}
+		}
+	}
+
+	&.active {
+		box-shadow: convert-rem(0px) convert-rem(0px) convert-rem(5px) convert-rem(-2px);
+		@include text-shadow($color-primary);
+		background-color: $white;
+		color: $black;
+
+		ul {
+			min-height: 5rem;
+			height: fit-content;
+			max-height: 30000px;
+			transition: max-height $animation-time ease-in;
+		}
+	}
+}
+// % protected region % [Change context menu styles here] end
+
+// % protected region % [Add additional context menu styles here] off begin
+// % protected region % [Add additional context menu styles here] end

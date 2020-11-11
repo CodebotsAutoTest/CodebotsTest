@@ -1,0 +1,251 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Typography
+https://medium.com/codyhouse/create-your-design-system-part-1-typography-7c630d9092bd
+-------------------------------- */
+/*
+Just like colours this is where you set the style of your target project and assign your fonts, font-sizes, font spacings.
+ */
+
+// % protected region % [Change font imports here] off begin
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,400i,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,700&display=swap');
+// % protected region % [Change font imports here] end
+
+// % protected region % [Change font family here] off begin
+/* Font family */
+$heading-font-family:  'Poppins',sans-serif ;
+$body-font-family: 'Lato', sans-serif;
+$source-font-family: monospace;
+
+$base-font-size: convert-rem(16px);
+$base-font-weight: 400;
+
+
+/* Weights */
+$text-light: 300;
+$text-regular: 400;
+$text-medium: 600;
+$text-bold: 700;
+// % protected region % [Change font family here] end
+
+// % protected region % [Change typography scale and line height here] off begin
+$text-scale-ratio: 1.333;
+$text-label: 1rem;
+
+/* Type scale */
+$text-xs: calc(1rem / (#{$text-scale-ratio} * #{$text-scale-ratio}));
+$text-sm: calc(1rem / #{$text-scale-ratio});
+$text-md: calc(1rem * #{$text-scale-ratio});
+$text-lg: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio}));
+$text-xl: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}));
+$text-xxl: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}));
+$text-xxxl: calc(1rem * (#{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio}));
+
+/* Line height */
+$heading-line-height: 1.2;
+$body-line-height: 1.6;
+// % protected region % [Change typography scale and line height here] end
+
+// % protected region % [Change typography scales according to media queries, class names and elements here] off begin
+/*Scale down the text at a smaller screen size*/
+@include breakpoint(md) {
+	$text-base-size: 1.2rem;
+	$text-scale-ratio: 1.25;
+}
+
+/* Default HTML Selectors */
+
+p {
+	font-family: $body-font-family;
+	font-size: $base-font-size;
+	line-height: $body-line-height;
+	margin-bottom: $space-xs;
+	&.text--error {
+		color: $color-support-red;
+	}
+	&.text--success {
+		color: $color-support-green;
+	}
+	&.text--notice {
+		color: $color-support-blue;
+	}
+}
+
+form legend,
+table caption {
+	margin-bottom: $space-xxs;
+	line-height: $heading-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $heading-font-family;
+}
+
+h1 {
+	font-size: $text-xxxl;
+	font-weight: $text-bold;
+	@include media(xs, sm) {
+		font-size: $text-xxl;
+	}
+}
+
+h2 {
+	margin: 0;
+	font-size: $text-xxl;
+	font-weight: $text-medium;
+	@include media(xs, sm) {
+		font-size: $text-xl;
+	}
+}
+
+h3 {
+	font-size: $text-xl;
+	font-weight: $text-regular;
+	@include media(xs, sm) {
+		font-size: $text-lg;
+	}
+}
+
+h4 {
+	font-size: $text-lg;
+	font-weight: $text-medium;
+	@include media(xs, sm) {
+		font-size: $text-md;
+	}
+}
+
+h5 {
+	font-size: $text-md;
+	font-weight: $text-regular;
+	@include media(xs, sm) {
+		font-size: $text-md;
+	}
+}
+
+h6 {
+	font-size: $base-font-size;
+	font-weight: $text-medium;
+	@include media(xs, sm) {
+		font-size: $text-md;
+	}
+}
+
+b,
+strong {
+	font-weight: $text-bold;
+}
+
+label {
+	font-size: $text-label;
+}
+
+textarea {
+	font-size: $base-font-size;
+	font-family: $body-font-family;
+}
+
+a {
+	font-family: $body-font-family;
+	color: $color-support-blue;
+	cursor: pointer;
+
+	//Link sizes
+	&.link-sm {
+		font-size: $text-sm;
+	}
+
+	&.link-md {
+		font-size: $text-md;
+	}
+
+	&.link-bold {
+		font-weight: $text-bold;
+	}
+
+	&.link-rm-txt-dec {
+		color: $black;
+	}
+
+	&:hover {
+		color: $color-support-blue-dark;
+		border-bottom: convert-rem(2px) solid;
+	}
+}
+
+/* Code */
+pre>code {
+	padding: $space-xs $space-sm;
+}
+
+pre {
+	font-size: $base-font-size;
+}
+
+code,
+samp,
+kbd {
+	padding: $space-xxxs $space-xxs;
+	margin: 0 $space-xxxs;
+}
+
+/* Lists */
+dl,
+ol,
+ul {
+	padding-left: $space-sm;
+
+	&.list-unstyled {
+		padding-left: $space-xxs;
+
+		& .list-unstyled {
+			padding-left: $space-sm;
+		}
+	}
+}
+
+dl dt,
+dl dt dd,
+ol li,
+ul li {
+	line-height: $body-line-height;
+}
+
+/* Font types */
+.txt-sm-body {
+	font-size: $text-sm;
+}
+
+.txt-body {
+	font-size: $base-font-size;
+}
+
+.txt-lg-body {
+	font-size: $text-md;
+	font-weight: $text-bold;
+}
+
+// % protected region % [Change typography scales according to media queries, class names and elements here] end
+
+// % protected region % [Add additional typography scss here] off begin
+// % protected region % [Add additional typography scss here] end

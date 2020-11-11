@@ -1,0 +1,343 @@
+
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Buttons
+https://medium.com/codyhouse/create-your-design-system-part-5-icons-594f39cfb1b
+-------------------------------- */
+/*
+Buttons - all styles are found here, the generic button style, accent colour styles.
+*/
+
+/* --------------------------------
+Buttons
+https://medium.com/codyhouse/create-your-design-system-part-5-icons-594f39cfb1b
+-------------------------------- */
+$btn-font-size: $admin-base-font-size !default;
+$radius: 0 !default;
+
+$btn-xs: calc(#{$btn-font-size} - 0.4rem) !default;
+$btn-sm: calc(#{$btn-font-size} - 0.2rem) !default;
+$btn-md: calc(#{$btn-font-size} + 0.2rem) !default;
+$btn-lg: calc(#{$btn-font-size} + 0.4rem) !default;
+$btn-xlg: calc(#{$btn-font-size} + 0.6rem) !default;
+
+$btn-radius: $radius !default;
+
+
+/*Standard button styles*/
+a {
+	&.btn {
+		text-decoration: none;
+	}
+}
+
+/*Universal button styles, controlling display settings, radius, width, height and other declarations. Add classes to your HTML to combine baseline styles with
+/*other style modules*/
+
+.btn {
+	display: inline-flex;
+	position: relative;
+	border: none;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+	font-weight: 500;
+	text-decoration: none;
+	line-height: 1;
+	padding: $admin-space-xs;
+	border-radius: $btn-radius;
+	font-size: $btn-font-size;
+	cursor: pointer;
+	transition: .2s;
+	@include appearance-none;
+	@include fontSmooth;
+
+	a & {
+		text-decoration: none;
+		color: $admin-black;
+		border-bottom: none;
+
+		&:active,
+		&:focus,
+		&:visited {
+			text-decoration: none;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:active {
+		transition: none;
+	}
+
+	&:hover {
+		cursor: pointer;
+		@include transform-timing($admin-animation-time);
+
+		@-moz-document url-prefix() {
+			transition: none;
+		}
+	}
+}
+
+
+/*BUTTON COLORS
+Each loop goes through the map $btn-colors and assigns the right colours to the right button type. 
+An example to use classnames in your buttons: `btn btn--solid btn--primary`, `btn btn--outline btn--secondary`
+If you have more colours in your application, append to the map such as: `btn--brand-04 : $admin-color-brand-04`
+*/
+
+//apply styling for solid and outline buttons without color classnames
+.btn--solid {
+	background-color: $admin-color-primary;
+	color: get-contrasting-text-color($admin-color-primary);
+
+	&:hover,
+	&:active {
+		background-color: transparent;
+		color: $admin-color-primary;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+	}
+}
+.btn--outline {
+	color: $admin-color-primary;
+	background-color: transparent;
+	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+
+	&:hover,
+	&:active {
+		background-color: $admin-color-primary;
+		color: get-contrasting-text-color($admin-color-primary);
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+	}
+}
+.btn--text {
+	color: $admin-color-primary;
+	background-color: transparent;
+	&:hover,
+	&:active {
+		color: $admin-color-secondary;
+		text-decoration: underline;
+	}
+}
+
+$btn-colors: (btn--primary : $admin-color-primary, btn--secondary : $admin-color-secondary, btn--brand-01 : $admin-color-brand-01, btn--brand-02: $admin-color-brand-02, btn--brand-03 : $admin-color-brand-03, btn--support-blue : $admin-color-support-blue, btn--support-yellow : $admin-color-support-yellow, btn--support-red : $admin-color-support-red, btn--support-green : $admin-color-support-green, btn--support-orange : $admin-color-support-orange, btn--support-purple : $admin-color-support-purple);
+
+@each $btn-name,
+$color in $btn-colors {
+	.btn--solid.#{$btn-name}{
+		background-color: $color;
+		color: get-contrasting-text-color($color);
+
+		&:hover,
+		&:active {
+			background-color: transparent;
+			color: $color;
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		}
+	}
+
+	.btn--outline.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+
+		&:hover,
+		&:active {
+			background-color: $color;
+			color: get-contrasting-text-color($color);
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		}
+	}
+
+	.btn--text.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		border: none;
+
+		&:hover,
+		&:active {
+			text-decoration: underline;
+		}
+	}
+}
+
+/*END BUTTON COLORS*/
+
+
+/*FEEDBACK/UTILITY BUTTONS
+Like above, each loop goes through the map $utility-btn-colors and assigns the right colours to the right button type. 
+An example to use utility classnames in your buttons: `btn btn--solid btn--success`;
+*/
+
+$utility-btn-colors: (btn--error : $admin-color-support-red, btn--success : $admin-color-support-green, btn--warning : $admin-color-support-orange);
+
+@each $btn-name,
+$color in $utility-btn-colors {
+	.btn--solid.#{$btn-name}{
+		background-color: $color;
+		color: get-contrasting-text-color($color);
+
+		&:hover,
+		&:active {
+			background-color: darken($color, $admin-color-shades);
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), darken($color, $admin-color-shades));
+		}
+	}
+
+	.btn--outline.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+
+		&:hover,
+		&:active {
+			background-color: $color;
+			color: get-contrasting-text-color($color);
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $color);
+		}
+	}
+
+	.btn--text.#{$btn-name} {
+		color: $color;
+		background-color: transparent;
+		border: none;
+
+		&:hover,
+		&:active {
+			text-decoration: underline;
+		}
+	}
+}
+
+/*END UTILITY BUTTON COLORS*/
+
+
+/*Disabled button*/
+.btn[disabled] {
+	cursor: not-allowed;
+	background-color: $admin-grey-2;
+	color: $admin-black;
+	box-shadow: none;
+	opacity: 0.5;
+	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-grey-2);
+
+	&.btn--solid {
+		&:hover {
+			box-shadow: none;
+		}
+	}
+
+	&.btn--outline {
+		background-color: transparent;
+
+		&:hover {
+			background-color: transparent;
+		}
+	}
+
+	&.btn--text {
+		box-shadow: none;
+		background-color: transparent;
+
+		&:hover {
+			background: transparent;
+			text-decoration: none;
+		}
+	}
+
+	&:visited,
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: $admin-grey-2;
+		color: $admin-black;
+	}
+}
+
+/*BUTTON SIZES*/
+
+.btn--xsm {
+	font-size: $btn-xs;
+}
+
+.btn--sm {
+	font-size: $btn-sm;
+}
+
+.btn--md {
+	font-size: $btn-md;
+}
+
+.btn--lg {
+	font-size: $btn-lg;
+}
+
+.btn--xlg {
+	font-size: $btn-xlg;
+}
+
+.btn--full-width {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+.btn--auto-width {
+	display: flex;
+	width: auto;
+	justify-content: center;
+}
+
+/*BUTTON GROUP*/
+
+.btn-group {
+	display: flex;
+	flex-wrap: wrap;
+
+	.btn {
+		margin: $admin-space-xs;
+		&:first-of-type {
+			margin-left: 0;
+		}
+	}
+
+	//TO DO !!!
+	&.btn-group--vertical {
+		flex-direction: column;
+
+		.btn {
+			width: auto;
+			margin-left: 0;
+		}
+	}
+
+	&.btn-group--horizontal {
+		flex-direction: row;
+	}
+
+	&.btn-group--grow-elements {
+		.btn {
+			flex: auto;
+		}
+	}
+
+	&.btn-group--static-elements {}
+}

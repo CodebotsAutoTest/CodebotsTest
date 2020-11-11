@@ -1,0 +1,116 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Colours
+-------------------------------- */
+/* 
+_colors.scss is the base on setting up your colour variables in your target project
+Set your target colours but do not remove variables that you do not plan to use.
+*/
+
+/* Main colours */
+/* -------------------------------------------------*/
+/* ----------Set your brand colours here ----------*/
+/* -------------------------------------------------*/
+
+// % protected region % [Set colours, accent colours, and greyscale colours] off begin
+
+//Primary and theme colour
+$color-primary: rgb(34, 34, 34); // #222222 // Black
+$color-secondary: rgb(153, 153, 153); // #999999; // Dark grey
+$color-brand-01: rgb(57, 57, 57); // #393939 // Charcoal
+$color-brand-02: rgb(213, 213, 213); // #D5D5D5; // Grey
+$color-brand-03: rgb(244, 244, 244); //#F4F4F4 // Light grey
+
+// Accent Colours
+$color-support-red: rgba(232, 77, 56, 1); // #E84D38 // Support color red
+$color-support-green: rgba(56, 204, 150, 1); // #38CC7D // Support color green
+$color-support-blue: rgba(0, 159, 221, 1); // #009FDD // Support color blue
+$color-support-yellow: rgba(251, 194, 0, 1); // #FBC200 // Support color yellow
+$color-support-orange: rgba(251, 164, 65, 1); // #F27600 // Support color orange
+$color-support-purple: rgba(134, 35, 223, 1); // #8623DF // Support color purple
+
+//Greyscale
+$black: rgb(34, 34, 34); // #000000
+$grey-10: rgb(34, 34, 34); // #222222
+$grey-8: rgb(71, 71, 71); // #474747
+$grey-6: rgb(111, 111, 111); // #6f6f6f
+$grey-4: rgb(152, 152, 152); // #989898
+$grey-2: rgb(197, 197, 197); // #c5c5c5
+$grey-1: rgb(221, 221, 221); // #dddddd
+$grey-0: rgb(244, 244, 244); // #f4f4f4
+$white: rgb(255, 255, 255); // #ffffff
+// % protected region % [Set colours, accent colours, and greyscale colours] end
+
+/*
+From here are calculations that are made to create shades and shadow 
+colours using the colours that have been set above. 
+
+It is not recommended to make these changes unless you specifically want
+an assigned shade to the variables.
+*/
+// % protected region % [Set colour shades] off begin
+/* Colour Variables */
+$color-shades: 10%;
+$color-alpha: 0.8%;
+$color-shadow: 0.2%;
+
+/* Colour Variations */
+$color-primary-light: lighten($color-primary, $color-shades);
+$color-primary-dark: darken($color-primary, $color-shades);
+$color-primary-bg: rgba($color-primary, $color-alpha);
+
+$color-secondary-light: lighten($color-secondary, $color-shades);
+$color-secondary-dark: darken($color-secondary, $color-shades);
+$color-secondary-bg: rgba($color-secondary, $color-alpha);
+
+$color-brand-01-light: lighten($color-brand-01, $color-shades);
+$color-brand-01-dark: darken($color-brand-01, $color-shades);
+$color-brand-01-bg: rgba($color-brand-01, $color-alpha);
+
+$color-brand-02-light: lighten($color-brand-02, $color-shades);
+$color-brand-02-dark: darken($color-brand-02, $color-shades);
+$color-brand-02-bg: rgba($color-brand-02, $color-alpha);
+
+/* Support colors */
+$color-support-red-light: lighten($color-support-red, $color-shades);
+$color-support-red-dark: darken($color-support-red, $color-shades);
+$color-support-red-bg: rgba($color-support-red, $color-alpha);
+
+$color-support-green-light: lighten($color-support-green, $color-shades);
+$color-support-green-dark: darken($color-support-green, $color-shades);
+$color-support-green-bg: rgba($color-support-green, $color-alpha);
+
+$color-support-blue-light: lighten($color-support-blue, $color-shades);
+$color-support-blue-dark: darken($color-support-blue, $color-shades);
+$color-support-blue-bg: rgba($color-support-blue, $color-alpha);
+
+$color-support-yellow-light: lighten($color-support-yellow, $color-shades);
+$color-support-yellow-dark: darken($color-support-yellow, $color-shades);
+$color-support-yellow-bg: rgba($color-support-yellow, $color-alpha);
+
+$color-support-orange-light: lighten($color-support-orange, $color-shades);
+$color-support-orange-dark: darken($color-support-orange, $color-shades);
+$color-support-orange-bg: rgba($color-support-orange, $color-alpha);
+
+$color-support-purple-light: lighten($color-support-purple, $color-shades);
+$color-support-purple-dark: darken($color-support-purple, $color-shades);
+$color-support-purple-bg: rgba($color-support-purple, $color-alpha);
+// % protected region % [Set colour shades] end
+$color-list: (primary : $color-primary, secondary : $color-secondary, brand-01 : $color-brand-01, brand-02: $color-brand-02, standard-blue : $color-support-blue, standard-yellow : $color-support-yellow, standard-red : $color-support-red, standard-green : $color-support-green, standard-orange : $color-support-orange, grey-0 : $grey-0, grey-1 : $grey-1, grey-2 : $grey-2, grey-4 : $grey-4, grey-6 : $grey-6, grey-8 : $grey-8, grey-10 : $grey-10, );
+// % protected region % [Add additional colours here] off begin
+// % protected region % [Add additional colours here] end

@@ -1,0 +1,120 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Custom bot input styling
+-------------------------------- */
+
+// % protected region % [update input if required] off begin
+/*This will enable dropdown fields requiring validation to manifest the same border red color as regular errored inputs*/
+.input-group--error{
+	.dropdown__container{
+		.dropdown__control {
+			border-color: $color-support-red;
+		}
+	}
+}
+
+/*Styling of date input */
+
+//applying a white background to all date picker types and a hover effect
+.input-group__date {
+	.enabled {
+		background-color: $white;
+		&:hover, &:active, &:focus {
+			color: $grey-6;
+			border: convert-rem(1px) solid $grey-1;
+			background-color: rgba($grey-1, 0.02);
+			@include transform-timing($animation-time);
+		}
+	}
+}
+
+//pop-up of date picker
+&.flatpickr-calendar {
+	//Arrow
+	&.arrowTop {	
+		&:after, &:before {
+			border-bottom-color: $color-primary;
+		}
+	}
+
+	//The top bar of the month and year
+	.flatpickr-months {
+		.flatpickr-month {
+			background-color: $color-primary;
+			.flatpickr-current-month .flatpickr-monthDropdown-months {
+				background-color: $grey-6;
+			}
+			.flatpickr-monthDropdown-months,
+			.cur-year {
+				&:hover, &:active, &:focus {
+					border: none;
+					color: $white;
+				}
+			}
+		}
+
+		//month arrows
+		.flatpickr-prev-month,
+		.flatpickr-next-month {
+			&:hover, &:active, &:focus {
+				svg {
+					fill: $grey-6;
+				}
+			}
+		}
+	}
+
+	//The top bar of the weekdays
+	.flatpickr-innerContainer .flatpickr-rContainer {
+		.flatpickr-weekdays {
+			background-color: $color-primary;
+
+			span.flatpickr-weekday {
+				background-color: transparent;
+				color: $white;
+			}
+		}
+
+		//The selected day in the calendar
+		.flatpickr-day.selected, 
+		.flatpickr-day.startRange, 
+		.flatpickr-day.endRange, 
+		.flatpickr-day.selected.inRange, 
+		.flatpickr-day.startRange.inRange, 
+		.flatpickr-day.endRange.inRange, 
+		.flatpickr-day.selected:focus, 
+		.flatpickr-day.startRange:focus, 
+		.flatpickr-day.endRange:focus, 
+		.flatpickr-day.selected:hover, 
+		.flatpickr-day.startRange:hover, 
+		.flatpickr-day.endRange:hover, 
+		.flatpickr-day.selected.prevMonthDay, 
+		.flatpickr-day.startRange.prevMonthDay, 
+		.flatpickr-day.endRange.prevMonthDay, 
+		.flatpickr-day.selected.nextMonthDay, 
+		.flatpickr-day.startRange.nextMonthDay, 
+		.flatpickr-day.endRange.nextMonthDay{
+				background-color: $color-primary;
+				border: none;
+		}
+	}
+}
+
+
+/* End of datepicker styles */
+// % protected region % [update input if required] end

@@ -1,0 +1,600 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+
+// Mixins
+// Mixins are one step more than variables. For instance you can use mxins to put in flexbox and it's browser prefixes,
+// or consistent patterns like borders for particular components. Like variables, if you find yourself writing code over and over
+// make it into a mixin.
+
+//****************-------MEDIA QUERIES--------****************
+// Breakpoints for CSS variables
+// Used for the typography, spacing and the inputs
+
+//query for ALL medias
+@mixin media($keys...) {
+	@each $key in $keys {
+		@media (max-width: map-get($admin-breakpoints, $key)) {
+			@content;
+		}
+	}
+}
+
+@mixin breakpoint($class) {
+	@if $class==xs {
+		@media (max-width: map-get($admin-breakpoints, xs)) {
+			@content;
+		}
+	}
+
+	@else if $class==sm {
+		@media (max-width: map-get($admin-breakpoints, sm)) {
+			@content;
+		}
+	}
+
+	@else if $class==md {
+		@media (max-width: map-get($admin-breakpoints, md)) {
+			@content;
+		}
+	}
+
+	@else if $class==lg {
+		@media (max-width: map-get($admin-breakpoints, lg)) {
+			@content;
+		}
+	}
+
+	@else if $class==xl {
+		@media (max-width: map-get($admin-breakpoints, xl)) {
+			@content;
+		}
+	}
+
+	@else {
+		@error "Breakpoint mixin supports: xs, sm, md, lg, xl";
+	}
+}
+
+
+//****************-------END MEDIA QUERIES--------****************
+//****************-------BORDERS--------****************
+
+//Standard border mixin, use this when you want a generic border
+@mixin border($thickness, $color) {
+	border: $thickness solid $color;
+}
+
+//Sets one border to be the given color and width, while hiding all the other borders
+//Border side can be: top, right, bottom or left
+//Border width and color are open
+//Hiding type can be either transparent or no-width:
+//      If transparent, it will set the widths of all the other borders but make them transparent
+//      If no-width, it will set all the other borders to 0 width
+@mixin set-single-border($border-side, $border-color, $border-width, $hiding-type) {
+	@if ($hiding-type==transparent) {
+		border: $border-width solid transparent;
+	}
+
+	@else if($hiding-type==no-width) {
+		border-width: convert-rem(0px);
+	}
+
+	@else {
+		@error "Set Single Border Mixin: hiding-type supports either transparent or no-width.";
+	}
+
+	border-#{$border-side}: $border-width solid $border-color;
+}
+
+
+//****************-------END BORDERS--------****************
+//****************-------FONT RENDERING--------****************
+// edit font rendering -> tip: use for light text on dark backgrounds
+@mixin fontSmooth {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+//****************-------END FONT RENDERING--------***************
+
+//****************-------ICONS--------****************
+// For adding font icons to elements using CSS pseudo-elements
+// http://jaydenseric.com/blog/fun-with-sass-and-font-icons
+
+/*mixin for pseudo elements
+\*/
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+
+@mixin icon($position: before, $icon: false, $styles: true) {
+	@if $position==both {
+		$position: "before, &:after";
+	}
+
+	// Either a :before or :after pseudo-element, or both, defaulting to :before
+	&:#{$position} {
+		@if $icon {
+			// A particular icon has been specified
+			content: "#{map-get($admin-icons, $icon)}";
+		}
+
+		@if $styles {
+			// Supportive icon styles required
+			/* use !important to prevent issues with browser extensions that change fonts */
+			font-family: 'lightning-icons', 'lato' !important;
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			line-height: 1;
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		@if $position==before {
+			margin-right: $admin-space-xxs;
+		}
+
+		@else {
+			margin-left: $admin-space-xxs;
+		}
+
+		// Include any extra rules supplied for the pseudo-element
+		@content;
+	}
+}
+
+//For when you only want the icon and no text
+@mixin icon-only {
+	padding: $admin-space-xs $admin-space-xs;
+
+	&:before,
+	:after {
+		margin: 0rem 0rem;
+	}
+}
+
+
+//****************-------END COLOUR THEMES--------*****************
+//****************-------BOX SHADOWS--------*****************
+
+@mixin inner-box-shadow($horiz, $vert, $blur, $spread, $color) {
+	-webkit-box-shadow: inset $horiz $vert $blur $spread $color;
+	-moz-box-shadow: inset $horiz $vert $blur $spread $color;
+	box-shadow: inset $horiz $vert $blur $spread $color;
+}
+
+
+// Use this to add a box-shadow to an element. The type indicates how prominent a shadow is
+// x-Subtle is "extra-subtle" and is the smallest box-shadow avaialble
+// major is the most prominent
+@mixin shadow-box($type: standard) {
+	@include themify {
+		$shadow-color: themed('shadow-color');
+
+		@if ($type==minor) {
+			box-shadow: 0 5px 20px 5px $shadow-color, 0 0px 10px 0 $shadow-color;
+		}
+
+		@else if ($type==standard) {
+			box-shadow: 0 10px 30px 5px $shadow-color, 0 0px 10px 0 $shadow-color;
+		}
+
+		@else if ($type==major) {
+			box-shadow: 0 20px 50px 5px $shadow-color, 0 0px 10px 0 $shadow-color;
+		}
+
+		@else if ($type==subtle) {
+			box-shadow: 0 5px 15px $shadow-color;
+		}
+
+		@else if ($type==x-subtle) {
+			box-shadow: 0 3px 15px $shadow-color;
+		}
+
+		@else if ($type==subtle-right-bottom) {
+			box-shadow: 7px 7px 7px $shadow-color;
+		}
+
+		@else if ($type==subtle-bottom) {
+			box-shadow: 0 13px 15px $shadow-color;
+		}
+
+		@else {
+			@error "The shadow-box mixin only accepts x-subtle, subtle, minor, standard or major as box-shadow types";
+		}
+	}
+}
+
+//****************-------END BOX SHADOWS--------*****************
+
+/* Responsive ratio - scalable elements (usually images)
+example of use:
+div {
+    @include responsive-ratio(16,9);
+}
+*/
+@mixin responsive-ratio($x, $y, $pseudo: false) {
+	$padding: unquote(($y / $x) * 100 + '%');
+
+	@if $pseudo {
+		&:before {
+			@include pseudo($pos: relative);
+			width: 100%;
+			padding-top: $padding;
+		}
+	}
+
+	@else {
+		padding-top: $padding;
+	}
+}
+
+/*triangle creator - usually used for tooltips*/
+
+@mixin css-triangle($color, $direction, $size: convert-rem(6px), $position: absolute, $round: false) {
+	@include pseudo($pos: $position);
+	width: 0;
+	height: 0;
+
+	@if $round {
+		border-radius: convert-rem(3px);
+	}
+
+	@if $direction==down {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-top: $size solid $color;
+		margin-top: 0 - round($size / 2.5);
+	}
+
+	@else if $direction==up {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size solid $color;
+		margin-bottom: 0 - round($size / 2.5);
+	}
+
+	@else if $direction==right {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size solid $color;
+		margin-right: -$size;
+	}
+
+	@else if $direction==left {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-right: $size solid $color;
+		margin-left: -$size;
+	}
+}
+
+
+/* inserting place holders
+example of use:
+input,
+textarea {
+    @include input-placeholder {
+        color: $admin-grey;
+    }
+}
+*/
+@mixin input-placeholder {
+	&.placeholder {
+		@content;
+	}
+
+	&:-moz-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&:-ms-input-placeholder {
+		@content;
+	}
+
+	&::-webkit-input-placeholder {
+		@content;
+	}
+}
+
+@mixin appearance-none {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+}
+
+
+@mixin width-height-fit-content($width-type) {
+	#{$width-type}: fit-content;
+	#{$width-type}: intrinsic;
+	/* Safari/WebKit uses a non-standard name */
+	#{$width-type}: -webkit-fit-content;
+	/* Chrome */
+	#{$width-type}: -moz-max-content;
+	/* Firefox/Gecko */
+}
+
+@mixin text-shadow($color) {
+	text-shadow: 0px 0px 1px $color;
+}
+
+//Margin auto - algining things to the middle
+@mixin push-auto {
+	margin: {
+		left: auto;
+		right: auto;
+	}
+}
+
+@mixin truncate {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+@mixin truncate-more-lines($numLines : 1, $lineHeight: 1.412) {
+	overflow: hidden;
+	text-overflow: -o-ellipsis-lastline;
+	text-overflow: ellipsis;
+	display: block;
+	/* autoprefixer: off */
+	display: -webkit-box;
+	-webkit-line-clamp: $numLines;
+	-webkit-box-orient: vertical;
+	max-height: $numLines * $lineHeight + unquote('em');
+}
+
+/****************** ADMIN SPECIFIC STYLING STARTS HERE ******************/
+//This is where we have generic mixins for things that will be used consistently in the admin section
+
+@mixin help-doc-btn {
+	padding: $admin-space-sm;
+	background-color: $admin-grey-0;
+	color: $admin-black;
+
+	&:hover,
+	&:active {
+		background-color: $admin-black;
+		color: $admin-white;
+		border: none;
+	}
+
+	&:after {
+		margin-left: $admin-space-xxs;
+	}
+}
+
+/****** Styling blocks - used in Workflows and Forms currently ******/
+//a tag style that wraps divs
+@mixin behaviour-blocks-a {
+	text-decoration: none;
+	color: $admin-grey-2;
+
+	.btn {
+		color: $admin-white;
+		background-color: transparent;
+	}
+
+	&:hover,
+	&:active {
+		@include transform-timing($admin-slow-animation-time);
+		border-bottom: none;
+
+		.workflow-item__new,
+		.form-item__new {
+			border-style: solid;
+			@include cubic-bezier-ease-in(border-style, $admin-animation-time);
+
+			h3 {
+				color: $admin-black;
+				@include transform-timing($admin-animation-time);
+			}
+		}
+
+		.workflow-item,
+		.form-item {
+			position: relative;
+			@include icon(after, edit-box);
+			@include transform-timing($admin-animation-time);
+			transform: scale(1.1);
+
+			&:after {
+				font-size: convert-rem(140px);
+				position: absolute;
+				color: rgba($admin-grey-2, .1);
+				@include fadeIn($admin-animation-time);
+				top: $admin-space-md;
+			}
+		}
+	}
+}
+
+//These square blocks are used on creating new workflows and forms 
+@mixin behaviour-blocks-new {
+	box-shadow: convert-rem(0px) convert-rem(0px) convert-rem(7px) convert-rem(0px) $admin-grey-1;
+	background-color: $admin-grey-1;
+	color: $admin-grey-8;
+	width: convert-rem(200px);
+	height: convert-rem(200px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: convert-rem(2px) dashed $admin-black;
+	flex-direction: column;
+	margin: $admin-space-xs;
+
+	h3 {
+		font-size: $admin-text-md;
+		margin-bottom: $admin-space-xxs;
+		text-align: center;
+		text-decoration: none;
+	}
+
+	&:after {
+		margin-top: 0;
+	}
+}
+
+//These square blocks are used on displaying current workflows and forms (statuses and versions) 
+@mixin behaviour-blocks {
+	background-color: $admin-black;
+	color: $admin-white;
+	width: convert-rem(200px);
+	height: convert-rem(200px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border: convert-rem(2px) solid $admin-black;
+	margin: $admin-space-xs;
+	padding: $admin-space-xs;
+
+	h3 {
+		font-size: $admin-text-md;
+		margin-top: 0;
+		margin-bottom: 0;
+		text-align: center;
+		text-decoration: none;
+		text-align: left;
+		max-width: 300px;
+		@include truncate-more-lines(2, 1.5);
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+}
+
+//versioning of blocks - the yellow and green circles on the black blocks
+@mixin block-versions {
+	p {
+		margin: 0;
+		font-size: $admin-text-sm;
+	}
+
+	.version__active,
+	.version__inactive {
+		display: flex;
+		align-items: baseline;
+		margin: 0;
+
+		&:before {
+			content: '';
+			width: convert-rem(11px);
+			height: convert-rem(11px);
+			display: inline-block;
+			border-radius: 50%;
+			margin: 0 $admin-space-xxs 0 0;
+		}
+	}
+
+	.version {
+		&__active {
+			&:before {
+				background: $admin-color-support-green;
+			}
+		}
+
+		&__inactive {
+			&:before {
+				background: $admin-color-support-orange;
+			}
+		}
+	}
+}
+
+//mixin is for when you use a btn--text for your component but you want the icon to look like a solid button
+@mixin icon-solid-btn-text {
+	display: flex;
+	align-items: center;
+
+	&:before {
+		background-color: $admin-color-primary;
+		color: $admin-white;
+	}
+
+	&:hover,
+	&:active {
+		text-decoration: none;
+
+		&:before {
+			background-color: transparent;
+			color: $admin-color-primary;
+			@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+			@include transform-timing($admin-animation-time);
+		}
+	}
+}
+
+//mixin is for when you use a btn--text for your component but you want the icon to look like an outline button
+@mixin icon-outline-btn-text {
+	display: flex;
+	align-items: center;
+
+	&:before {
+		background-color: transparent;
+		color: $admin-color-primary;
+		@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+	}
+
+	&:hover,
+	&:active {
+		text-decoration: none;
+
+		&:before {
+			background-color: $admin-color-primary;
+			color: $admin-white;
+			@include transform-timing($admin-animation-time);
+		}
+	}
+}
+
+//sets an inner shaddow on divs that needs to look like they are sitting under divs that have box-shadows
+//Example is used in sidebars for forms and workflows
+@mixin inner-shadow-under-divs {
+	position: relative;
+	&:before,
+	&:after {
+		position: sticky;
+		content: '';
+		height: convert-rem(5px);
+		width: 100%;
+	}
+
+	&:before {
+		box-shadow: inset convert-rem(0px) convert-rem(6px) convert-rem(2px) convert-rem(-5px) $admin-grey-2;
+		top: 0;
+		left: 0;
+	}
+
+	&:after {
+		bottom: 0;
+		left: 0;
+		box-shadow: inset convert-rem(0px) convert-rem(-2px) convert-rem(2px) convert-rem(0px) $admin-grey-2;
+	}
+}

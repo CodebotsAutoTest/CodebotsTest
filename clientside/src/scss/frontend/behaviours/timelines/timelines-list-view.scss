@@ -1,0 +1,169 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Timelines - list view
+-------------------------------- */
+/*
+This is imported into timelines.scss. By organising stylesheets, we have seperated the list view here.
+*/
+
+
+.timelines__list-view {
+	overflow-y: auto;
+	height: calc(100vh - 330px);
+	padding: $space-md;
+	@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(4px), convert-rem(-3px), $black);
+
+	&::-webkit-scrollbar {
+		width: 0px;
+		background: transparent;
+		/* make scrollbar transparent */
+	}
+
+	@include media(xs) {
+		height: auto;
+	}
+
+	ol {
+		padding: 0;
+		@include slideInDown($slow-animation-time);
+
+		//remove the last line for the last item
+		&:last-of-type {
+			li {
+				&:last-of-type {
+					&:after {
+						display: none;
+					}
+				}
+			}
+		}
+
+		&:before {}
+
+		list-style: none;
+
+		//big heading with the big circle
+		h4 {
+			display: flex;
+			align-items: center;
+			margin-bottom: 0;
+			padding-bottom: $space-sm;
+			position: relative;
+
+			&:before {
+				content: '';
+				width: convert-rem(40px);
+				height: convert-rem(40px);
+				background-color: $color-primary;
+				margin-right: $space-lg;
+				display: block;
+				border-radius: 50%;
+			}
+
+			&:after {
+				content: '';
+				border-left: convert-rem(2px) solid $color-primary;
+				position: absolute;
+				height: 100%;
+				top: 2.5rem;
+				left: 1.15rem;
+				margin-left: 0;
+				display: block;
+			}
+		}
+
+		//list within the heading
+		li {
+			display: flex;
+			align-items: flex-start;
+			padding: $space-sm $space-sm $space-sm 0;
+			position: relative;
+			@include fadeIn($animation-time);
+
+			//circle
+			&:before {
+				content: '';
+				width: convert-rem(10px);
+				height: convert-rem(10px);
+				background-color: $color-primary;
+				margin-left: .9rem;
+				margin-right: $space-xxl;
+				margin-top: $space-xxs;
+				display: block;
+				border-radius: 50%;
+			}
+
+			//line
+			&:after {
+				content: '';
+				border-left: convert-rem(2px) solid $color-primary;
+				position: absolute;
+				height: 100%;
+				top: 2.5rem;
+				left: 1.15rem;
+				margin-left: 0;
+				display: block;
+			}
+
+			//div with content
+			div {
+				.topic__title {
+					font-weight: $text-bold;
+				}
+
+				.topic__date {
+					margin-bottom: $space-sm;
+				}
+			}
+		}
+	}
+}
+
+.sidebar__list-view {
+	padding: $space-xs $space-md;
+	ol {
+		padding: 0;
+		list-style: none;
+
+		a {
+			color: $color-primary;
+			text-decoration: none;
+			cursor: pointer;
+
+			&:hover,
+			&:active,
+			&:focus {
+				color: $color-support-blue;
+				@include transform-timing($animation-time);
+
+				li {
+					border-color: $color-support-blue;
+				}
+			}
+		}
+
+		li {
+			margin-bottom: $space-sm;
+			border-bottom: 1px solid $color-primary;
+			width: 100px;
+		}
+	}
+}
+
+// % protected region % [Add additional timelines-list-view styles here] off begin
+// % protected region % [Add additional timelines-list-view styles here] end

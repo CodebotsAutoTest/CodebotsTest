@@ -1,0 +1,51 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+@import 'shared/harmony.scss';
+// % protected region % [Add additional imports here] off begin
+// % protected region % [Add additional imports here] end
+
+.admin {
+	@import 'admin/harmony.scss';
+	@import 'admin/import-custom.scss';
+
+	.graphiql-content-container {
+		padding: 0;
+		height: 100%;
+	}
+
+	/* % protected region % [Add extra admin scss here] off begin */
+	/* % protected region % [Add extra admin scss here] end */
+}
+
+.frontend {
+	// % protected region % [If you do not want to include any harmony in the front-end, you can remove the imports below and the scss files] off begin
+	@import 'frontend/harmony.scss';
+	//styles specific to bot only and not related to harmony
+	@import 'frontend/custom-bot-imports.scss';
+	// % protected region % [If you do not want to include any harmony in the front-end, you can remove the imports below and the scss files] end
+	// % protected region % [Add additional front-end style content here] off begin
+	// % protected region % [Add additional front-end style content here] end
+}
+
+// % protected region % [Customise react-contextify here] off begin
+/* -------- CONTEXT MENU -------- */
+//currently sitting outside of all body-content - style is super generic
+@import 'admin/react-contextify.scss';
+// % protected region % [Customise react-contextify here] end
+
+/* % protected region % [Add extra scss here] off begin */
+/* % protected region % [Add extra scss here] end */

@@ -1,0 +1,209 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+
+// % protected region % [Configure combobox styles here] off begin
+.input-group__dropdown {
+	input {
+		width: 100%;
+	}
+
+	.dropdown__container {
+		grid-area: input;
+
+		line-height: 1;
+		font-size: $admin-input-font-size;
+		vertical-align: top;
+		border-radius: $admin-input-radius;
+		color: $admin-grey-8;
+		font-weight: $admin-text-regular;
+		border: convert-rem(1px) solid $admin-grey-4;
+		input {
+			margin-top: 0.25rem;
+		}
+		&.active, &.active:hover, &:hover, &:focus, .menu {
+			border: convert-rem(1px) solid;
+			border-color: $admin-grey-1 !important;
+			@include transform-timing($admin-animation-time);
+			border-radius: $admin-input-radius;
+		}
+
+
+		&.single {
+			padding: $admin-space-xs $admin-space-xs;
+			margin: $admin-space-xs 0;
+		}
+
+		&.multiple {
+			margin: $admin-space-xs 0 0 0;
+			padding: $admin-space-xxs 0 $admin-space-xxs $admin-space-xxs;
+
+			> .default.text {
+				color: $admin-grey-4;
+				font-weight: $admin-text-light;
+				opacity: 1;
+			}
+
+			> .label {
+				border: none;
+				text-decoration: none;
+				background-color: $admin-black;
+				color: $admin-white;
+				padding: 0.5rem;
+				font-size: 85%;
+				border-radius: 0;
+				font-weight: 400;
+				line-height: 12.24px;
+
+				> i.icon.delete {
+					opacity: 1;
+					margin-left: 10px;
+
+					&:before {
+						color: #ffffff;
+					}
+
+					&:hover:before {
+						color: #E84D38;
+					}
+				}
+			}
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		& > div {
+			padding: 0;
+		}
+	}
+}
+
+/*This will enable dropdown fields requiring validation to manifest the same border red color as regular error inputs*/
+.input-group--error{
+	.dropdown__container{
+		border-color: $admin-color-support-red;
+	}
+}
+
+/*Styling of date input */
+//applying a white background to all date picker types and a hover effect
+.date-picker__general {
+	input {
+		background-color: $admin-white;
+		&:hover, &:active, &:focus {
+			color: $admin-grey-6;
+			border: convert-rem(1px) solid $admin-grey-1;
+			background-color: rgba($admin-grey-1, 0.02);
+			@include transform-timing($admin-animation-time);
+		}
+	}
+}
+/*Styling of date input */
+
+//applying a white background to all date picker types and a hover effect
+.input-group__date {
+	.enabled {
+		background-color: $admin-white;
+		&:hover, &:active, &:focus {
+			color: $admin-grey-6;
+			border: convert-rem(1px) solid $admin-grey-1;
+			background-color: rgba($admin-grey-1, 0.02);
+			@include transform-timing($admin-animation-time);
+		}
+	}
+	input {
+		padding: $admin-space-xs;
+    	margin: $admin-space-xs 0;
+	}
+}
+
+//pop-up of date picker
+&.flatpickr-calendar {
+	//Arrow
+	&.arrowTop {	
+		&:after, &:before {
+			border-bottom-color: $admin-color-primary;
+		}
+	}
+
+	//The top bar of the month and year
+	.flatpickr-months {
+		.flatpickr-month {
+			background-color: $admin-color-primary;
+			.flatpickr-current-month .flatpickr-monthDropdown-months {
+				background-color: $admin-grey-6;
+			}
+			.flatpickr-monthDropdown-months,
+			.cur-year {
+				&:hover, &:active, &:focus {
+					border: none;
+					color: $admin-white;
+				}
+			}
+		}
+
+		//month arrows
+		.flatpickr-prev-month,
+		.flatpickr-next-month {
+			&:hover, &:active, &:focus {
+				svg {
+					fill: $admin-grey-6;
+				}
+			}
+		}
+	}
+
+	//The top bar of the weekdays
+	.flatpickr-innerContainer .flatpickr-rContainer {
+		.flatpickr-weekdays {
+			background-color: $admin-color-primary;
+
+			span.flatpickr-weekday {
+				background-color: transparent;
+				color: $admin-white;
+			}
+		}
+
+		//The selected day in the calendar
+		.flatpickr-day.selected, 
+		.flatpickr-day.startRange, 
+		.flatpickr-day.endRange, 
+		.flatpickr-day.selected.inRange, 
+		.flatpickr-day.startRange.inRange, 
+		.flatpickr-day.endRange.inRange, 
+		.flatpickr-day.selected:focus, 
+		.flatpickr-day.startRange:focus, 
+		.flatpickr-day.endRange:focus, 
+		.flatpickr-day.selected:hover, 
+		.flatpickr-day.startRange:hover, 
+		.flatpickr-day.endRange:hover, 
+		.flatpickr-day.selected.prevMonthDay, 
+		.flatpickr-day.startRange.prevMonthDay, 
+		.flatpickr-day.endRange.prevMonthDay, 
+		.flatpickr-day.selected.nextMonthDay, 
+		.flatpickr-day.startRange.nextMonthDay, 
+		.flatpickr-day.endRange.nextMonthDay{
+				background-color: $admin-color-primary;
+				border: none;
+		}
+	}
+}
+
+
+/* End of datepicker styles */
+// % protected region % [Configure combobox styles here] end

@@ -1,0 +1,129 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Workflow States 
+-------------------------------- */
+/* 
+Workflows states and step section
+*/
+
+
+.workflow__states {
+	display: grid;
+	grid-template-areas: "sidelist statebuilder";
+	grid-template-columns: minmax(0, auto) 1fr;
+	@include fadeIn($admin-animation-time);
+
+	//editing state
+	@import 'workflows-sidebar.scss';
+
+	.workflow-states__wrapper {
+		grid-area: statebuilder;
+		padding: $admin-space-md $admin-space-lg;
+		overflow: auto;
+
+
+		h3 {
+			font-size: $admin-text-md;
+		}
+
+		//each state line
+		.workflow__states-step {
+			display: flex;
+			border-bottom: convert-rem(2px) solid $admin-grey-0;
+			padding: $admin-space-sm $admin-text-md;
+			align-items: flex-start;
+
+			//start button with the flag
+			.workflow__start-state {
+				&:before {
+					margin-bottom: $admin-space-xs;
+				}
+			}
+
+			.input-group {
+				margin: 0 $admin-space-lg;
+				min-width: convert-rem(300px);
+
+				input {
+					background-color: $admin-white;
+					margin: $admin-space-xxs 0 0 0;
+				}
+			}
+
+			//incoming and outgoing section
+			.workflow__incoming,
+			.workflow__outgoing {
+				margin: 0 $admin-space-md;
+
+				>p {
+					margin: 0 0 $admin-space-xxs 0;
+				}
+
+				.transition-number__box {
+					margin-top: $admin-space-md;
+					background-color: $admin-grey-0;
+					width: convert-rem(53px);
+					height: convert-rem(53px);
+					align-items: center;
+					display: flex;
+					justify-content: center;
+					margin: 0;
+				}
+			}
+
+			.workflow__outgoing {
+				div {
+					display: flex;
+					align-items: center;
+				}
+			}
+
+			//last button on the right - delete btn
+			.workflow__delete-state {
+				margin-left: auto;
+
+				&:hover,
+				&:active {
+					text-decoration: none;
+					@include text-shadow($admin-color-primary);
+					@include transform-timing($admin-animation-time);
+				}
+			}
+
+			//hover and active of state row
+			&:hover,
+			.active {
+				background-color: $admin-grey-0;
+				@include transform-timing($admin-animation-time);
+			}
+		}
+
+		//add new state btn
+		.workflow__new-state .btn {
+			margin: $admin-space-md $admin-space-sm;
+			padding: 0;
+			@include icon-solid-btn-text;
+
+			&:before {
+				padding: $admin-space-xxs $admin-space-sm;
+			}
+		}
+	}
+}
+
+

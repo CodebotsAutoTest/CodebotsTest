@@ -1,0 +1,208 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Upload
+-------------------------------- */
+/*
+Upload component allows image upload or file upload.
+*/
+
+.upload {
+	width: 100%;
+	margin-bottom: $admin-space-sm;
+	display: flex;
+	align-items: flex-start;
+
+	.input-group {
+		max-width: 250px;
+		margin: 0;
+		grid-template-areas:
+			"label tooltip"
+			"input input"
+			"btn btn"
+			"drag drag"
+			"validation validation";
+
+		label {
+			margin-bottom: $admin-space-xxs;
+		}
+
+		input {
+			visibility: hidden;
+			padding: $admin-space-lg 0rem;
+			@include icon(after, upload);
+			position: relative;
+			cursor: pointer;
+
+			@-moz-document url-prefix() {
+				visibility: visible;
+			}
+
+			&:before {
+				visibility: visible;
+				position: absolute;
+				content: 'Select Files';
+				@extend .btn;
+				background-color: transparent;
+				@include inner-box-shadow(convert-rem(0px), convert-rem(0px), convert-rem(0px), convert-rem(3px), $admin-color-primary);
+				padding: $admin-space-sm $admin-space-sm $admin-space-sm $admin-space-xl;
+			}
+
+			&:after {
+				position: absolute;
+				color: $admin-color-primary;
+				visibility: visible;
+				left: $admin-space-xs;
+				margin-top: $admin-space-sm;
+			}
+
+			&:hover {
+				@include transform-timing($admin-animation-time);
+
+				&:before {
+					background-color: $admin-color-primary;
+					color: $admin-white;
+				}
+
+				&:after {
+					color: $admin-white;
+				}
+			}
+		}
+
+
+		.btn {
+			grid-area: btn;
+		}
+
+		&.input-group--empty {
+			label {
+				&:after {
+					content: '- No Attachments -';
+				}
+			}
+		}
+	}
+
+	.upload__drag-area {
+		margin-top: $admin-space-xxs;
+		background-color: $admin-grey-0;
+		height: 195px;
+		width: 100%;
+		border: convert-rem(2px) dashed $admin-black;
+		grid-area: drag;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&.active {
+			border-style: solid;
+		}
+
+		&:before {
+			content: 'Drag file here';
+			font-weight: $admin-text-bold;
+		}
+	}
+
+	&.readonly {
+		flex-direction: column;
+		.preview {
+			margin: $admin-space-sm  0;
+			width: convert-rem(250px);
+		}
+	}
+}
+
+.preview {
+	border: convert-rem(1px) solid $admin-grey-1;
+	margin: $admin-space-md;
+
+	.file {
+		@include icon(before, file);
+
+		&:before {
+			grid-area: file;
+			margin-right: 0;
+			background-color: $admin-grey-1;
+			padding: $admin-space-xs;
+			font-size: 4rem;
+			height: convert-rem(160px);
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			margin-bottom: $admin-space-sm;
+		}
+
+	}
+
+
+	.file,
+	.image {
+		@include fadeIn($admin-animation-time);
+		display: grid;
+		grid-template-areas: 'file file'
+			'name delete';
+		padding: $admin-space-sm;
+
+		img {
+			grid-area: file;
+			margin-bottom: $admin-space-sm;
+			height: convert-rem(160px);
+			max-width: 200px;
+			width: 100%;
+			text-align: center;
+			object-fit: contain;
+		}
+
+		p {
+			grid-area: name;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			text-decoration: none;
+			overflow: hidden;
+			min-width: 10rem;
+			max-width: 10rem;
+			margin-bottom: 0;
+			display: flex;
+			align-items: center;
+			margin-right: 0 $admin-space-xs;
+		}
+
+		a {
+			&:before {
+				margin-right: $admin-space-xs;
+			}
+		}
+
+		.btn {
+			grid-area: delete;
+			margin-left: $admin-space-sm;
+			padding: $admin-space-xs;
+
+			&:before {
+				margin-right: 0;
+			}
+
+			&:hover,
+			&:active {
+				text-decoration: none;
+				border-bottom: none;
+			}
+		}
+	}
+}

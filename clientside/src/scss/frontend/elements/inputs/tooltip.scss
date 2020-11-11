@@ -1,0 +1,73 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Tooltips
+-------------------------------- */
+/*
+Commonly used for inputs that do not make sense. These tooltips display with further information.
+*/
+
+// % protected region % [Change tooltip styles here] off begin
+.tooltip {
+	display: inline;
+	font-size: $base-font-size;
+	display: flex;
+	cursor: pointer;
+	z-index: 2;
+
+	&:after {
+		color: $grey-6;
+	}
+
+	.tooltip__content {
+		position: absolute;
+		opacity: 0;
+		margin-top: -1rem;
+		right: convert-rem(30px);
+		background-color: $color-brand-03;
+		font-size: $text-sm;
+		border-radius: $btn-radius;
+		padding: $space-sm;
+		white-space: pre-wrap;
+		cursor: auto;
+		width: convert-rem(200px);
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		&:before {
+			color: $color-primary;
+			@include transform-timing($quick-animation-time);
+		}
+
+		.tooltip__content {
+			opacity: 1;
+			z-index: 1;
+			@include fadeInLeft($quick-animation-time);
+
+			&:before {
+				opacity: 1;
+				z-index: 1;
+			}
+		}
+	}
+}
+// % protected region % [Change tooltip styles here] end
+
+// % protected region % [Add additional tooltip styles here] off begin
+// % protected region % [Add additional tooltip styles here] end

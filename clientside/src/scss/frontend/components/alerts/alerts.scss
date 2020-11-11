@@ -1,0 +1,128 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Alert and toasters
+-------------------------------- */
+/*
+Toasters are notifications of failed/successful actions that slide in on the top right corner of the screen.
+Alerts are prompts that require user's actions to confirm a change.
+*/
+
+// % protected region % [Change alert and toaster styles here] off begin
+.toast-container,
+.alert-container {
+	position: fixed;
+	top: $space-lg;
+	right: $space-md;
+	z-index: $z-index-alert;
+
+	.icon-x,
+	.icon-cross {
+		background: transparent;
+		border: none;
+		position: absolute;
+		top: 0;
+		right: 0.6rem;
+		bottom: 0.3rem;
+		grid-area: input;
+		outline: none;
+
+		&:before {
+			display: none;
+		}
+
+		&:hover,
+		&:active,
+		&:focus {
+			cursor: pointer;
+			color: $color-support-red;
+			@include transform-timing($animation-time);
+		}
+	}
+}
+
+.alert {
+	cursor: pointer;
+	margin: $space-sm 0;
+	background-color: $white;
+	padding: $space-md $space-lg;
+	color: $white;
+	position: relative;
+	display: grid;
+	grid-template-areas: "p1 close"
+		"p close"
+		"p2 close";
+
+	p {
+		margin: 0;
+		padding: 0;
+		grid-area: p;
+
+		&:first-of-type {
+			grid-area: p1;
+		}
+
+		&:last-of-type {
+			grid-area: p2;
+		}
+	}
+
+	.btn {
+		grid-area: close;
+		color: $white;
+		padding: 0;
+		bottom: 0;
+		top: 0;
+		right: 0;
+		left: 0;
+		position: relative;
+
+		&:hover,
+		&:active {
+			text-decoration: none;
+			color: $color-primary;
+		}
+	}
+
+	&__info {
+		color: $black;
+
+		.btn {
+			color: $color-primary;
+		}
+	}
+
+	&__success {
+		background-color: $color-support-green;
+	}
+
+	&__warning {
+		background-color: $color-support-orange;
+	}
+
+	&__danger {
+		background-color: $color-support-red;
+	}
+
+	&__error {
+		background-color: $color-support-red;
+	}
+}
+// % protected region % [Change alert and toaster styles here] end
+
+// % protected region % [Add additional alert styles here] off begin
+// % protected region % [Add additional alert styles here] end

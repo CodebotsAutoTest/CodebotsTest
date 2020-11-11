@@ -1,0 +1,54 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Spacing
+https://medium.com/codyhouse/create-your-design-system-part-4-spacing-895c9213e2b9
+-------------------------------- */
+
+/* 
+Spacing are currently calculated in harmony, to change the values you can add your own property.
+*/
+
+// % protected region % [Make changes to spacing variables] off begin
+/* spacing values */
+$space-unit: 1rem;
+$space-xxxs: calc(0.25 * #{$space-unit}); //4px
+$space-xxs: calc(0.5 * #{$space-unit}); //8px
+$space-xs: calc(1 * #{$space-unit}); //16px
+$space-sm: calc(1.5 * #{$space-unit}); //24px
+$space-md: calc(2 * #{$space-unit}); //32px
+$space-lg: calc(3 * #{$space-unit}); //48px
+$space-xl: calc(3.5 * #{$space-unit}); //56px
+$space-xxl: calc(4 * #{$space-unit}); //64px
+$space-xxxl: calc(8 * #{$space-unit}); //128px
+
+/* components padding */
+$component-padding: $space-sm;
+//****************-------SPACING VARIABLES--------****************
+$space-horizontal: 2rem;
+$space-vertical: 1rem;
+
+// optional - edit space unit and padding of all components at a specific breakpoint
+@include breakpoint(md) {
+	$space-uni: 1.25rem;
+	$component-padding: $space-md;
+}
+
+// % protected region % [Make changes to spacing variables] end
+
+// % protected region % [Add additional spacing variables here] off begin
+// % protected region % [Add additional spacing variables here] end

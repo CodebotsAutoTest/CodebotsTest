@@ -1,0 +1,104 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Workflow Sidebar
+-------------------------------- */
+/* 
+Sidebar of the workflows with workflow information
+*/
+
+.workflow-properties {
+	grid-area: sidelist;
+	overflow: auto;
+	width: calc(#{$slide-builder-list-width} - #{$admin-space-lg});
+	background-color: $admin-grey-0;
+	position: relative;
+	box-shadow: convert-rem(1px) convert-rem(0px) convert-rem(1px) convert-rem(0px) $admin-grey-2;
+	display: grid;
+    grid-template-rows: auto auto auto 1fr auto auto;
+	@include slideInLeft($admin-animation-time);
+	@include cubic-bezier-ease-in(all, $admin-animation-time);
+	@include inner-shadow-under-divs;
+
+	input[type="text"] {
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: $admin-white;
+		}
+	}
+
+	//title section
+	.workflow-properties__header {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: convert-rem(2px) solid $admin-color-secondary;
+		padding: $admin-space-xxs;
+
+		h3 {
+			font-size: $admin-text-md;
+			font-weight: $admin-text-medium;
+			margin: 0;
+		}
+
+		.btn {
+			color: $admin-color-secondary;
+			padding: 0;
+
+			&:hover,
+			&:active {
+				text-decoration: none;
+				color: $admin-black;
+			}
+		}
+	}
+
+	//adding a transition 
+	.workflow-properties__commands {
+		padding: $admin-space-xxs $admin-space-sm;
+
+		>div {
+			@include fadeIn($admin-animation-time);
+			@include cubic-bezier-ease-in(all $admin-animation-time);
+			border-bottom: convert-rem(1px) solid $admin-color-secondary;
+		}
+
+		.workflow__delete-transition {
+			@include icon-solid-btn-text;
+
+			&:before {
+				padding: $admin-space-xxs $admin-space-sm;
+			}
+		}
+	}
+
+	.workflow-properties__add {
+		margin: $admin-space-md;
+		padding: 0;
+		@include icon-solid-btn-text;
+
+		&:before {
+			padding: $admin-space-xxs $admin-space-sm;
+		}
+	}
+
+	.workflow-properties__save {
+		display: flex;
+		margin: $admin-space-xxs $admin-space-xs;
+	}
+}

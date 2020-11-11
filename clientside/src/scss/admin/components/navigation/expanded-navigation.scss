@@ -1,0 +1,152 @@
+/*
+ * @bot-written
+ * 
+ * WARNING AND NOTICE
+ * Any access, download, storage, and/or use of this source code is subject to the terms and conditions of the
+ * Full Software Licence as accepted by you before being granted access to this source code and other materials,
+ * the terms of which can be accessed on the Codebots website at https://codebots.com/full-software-licence. Any
+ * commercial use in contravention of the terms of the Full Software Licence may be pursued by Codebots through
+ * licence termination and further legal action, and be required to indemnify Codebots for any loss or damage,
+ * including interest and costs. You are deemed to have accepted the terms of the Full Software Licence on any
+ * access, download, storage, and/or use of this source code.
+ * 
+ * BOT WARNING
+ * This file is bot-written.
+ * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
+ */
+/* --------------------------------
+Expanded navigation
+-------------------------------- */
+/*
+Expanded navigation is the vertical navigation that expands displaying titles next to icons.
+*/
+
+
+.nav.nav--vertical {
+
+	>ul {
+		&:first-of-type {
+			margin-top: $admin-space-md;
+
+			//mobile responsive
+			@include media(xs, sm, md) {
+				margin-top: 0;
+			}
+		}
+	}
+
+	&.nav--collapsed,
+	&.nav--expanded {
+		display: flex;
+		top: 0;
+		position: relative;
+		z-index: 10;
+		overflow: visible;
+
+		//mobile responsive
+		@include media(xs, sm, md) {
+			position: absolute;
+		}
+
+		>ul {
+			background-color: transparent;
+			padding-top: $admin-space-xs;
+
+			&:after {
+				content: '';
+				border-bottom: convert-rem(2px) solid $admin-grey-2;
+				width: convert-rem(35px);
+				display: flex;
+				margin: 1.8rem 1.1rem;
+				@include media(xs, sm, md) {
+					margin: $admin-space-xxs 1.1rem;
+				}
+			}
+
+			>li {
+				position: relative;
+				color: $admin-color-secondary;
+				//mobile responsive
+				@include media(xs, sm, md) {
+					position: inherit;
+				}
+
+				a {
+					display: flex;
+					border-bottom: none;
+				}
+			}
+
+			&:last-of-type {
+				margin-top: auto;
+			}
+		}
+
+		a {
+			&:before {
+				margin: 0 $admin-space-xs;
+			}
+		}
+
+		//Expanding arrow
+		>a {
+			margin: 0 $admin-space-xxs $admin-space-md;
+			cursor: pointer;
+			color: $admin-color-secondary;
+
+			@include media(xs, sm, md) {
+				margin: .5rem $admin-space-xxs;
+			}
+
+			&:hover,
+			&:active,
+			&:focus {
+				color: $admin-black;
+				border-bottom: none;
+			}
+		}
+	}
+
+	/***** Nav expansion ******/
+
+	&.nav--expanded {
+		min-width: convert-rem(150px);
+		a {
+			span {
+				width: 100%;
+				opacity: 1;
+				margin-right: $admin-space-xxs;
+				@include cubic-bezier-ease-in(width, $admin-quick-animation-time);
+			}
+		}
+	}
+
+	/****** Nav collapsed *****/
+
+	&.nav--collapsed {
+		//mobile responsive
+		@include media(xs, sm, md) {
+			align-items: center;
+			justify-content: center;
+			pointer-events: none;
+
+			>ul {
+				padding-top: 0;
+			}
+		}
+
+		a {
+			span {
+				width: 0;
+				opacity: 0;
+				overflow: hidden;
+				@include cubic-bezier-ease-in(width, $admin-quick-animation-time);
+			}
+		}
+
+		.expand-icon {
+			pointer-events: auto;
+		}
+	}
+
+}
