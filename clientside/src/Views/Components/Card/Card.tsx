@@ -20,7 +20,7 @@ import classNames from 'classnames';
 // % protected region % [Add extra page imports here] off begin
 // % protected region % [Add extra page imports here] end
 
-// % protected region % [Modify CardProps here] off begin	
+// % protected region % [Modify CardProps here] off begin
 interface CardProps {
 	rounded?: boolean;
 	className?: string;
@@ -35,7 +35,7 @@ interface CardProps {
 
 export default class Card extends Component<CardProps> {
 	
-	// % protected region % [Modify onClick here] off begin	
+	// % protected region % [Modify onClick here] off begin
 	private onClick = () => {
 		if (this.props.href) {
 			window.open(this.props.href);
@@ -46,7 +46,7 @@ export default class Card extends Component<CardProps> {
 	// % protected region % [Add extra class implementation here] off begin
 	// % protected region % [Add extra class implementation here] end
 	
-	// % protected region % [Modify render here] off begin	
+	// % protected region % [Modify render here] off begin
 	render() {
 		return (
 			<div className={classNames('card', this.props.rounded ? 'card--rounded' : '', this.props.className)}>

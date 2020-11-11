@@ -27,7 +27,6 @@ namespace SeleniumTests.PageObjects
 	// % protected region % [Protected region incase the admin page should not extend the user page] end
 	{
 		// % protected region % [Add any web elements which are specific to logged in admins] off begin
-
 		protected AdminNavSection adminNavBar;
 
 		// % protected region % [Add any web elements which are specific to logged in admins] end
@@ -35,14 +34,12 @@ namespace SeleniumTests.PageObjects
 		public AdminAuthenticatedPage(ContextConfiguration contextConfiguration) : base(contextConfiguration)
 		{
 		// % protected region % [Add any Admin specific constructor ] off begin
-
 		adminNavBar = new AdminNavSection(contextConfiguration);
 
 		// % protected region % [Add any Admin specific constructor ] end
 		}
 
 		// % protected region % [Add any methods which can be performed on an admin authenticated page] off begin
-
 		// % protected region % [Add any methods which can be performed on an admin authenticated page] end
 
 	}

@@ -28,20 +28,17 @@ namespace SeleniumTests.PageObjects
 		protected VisitorNavSection visitorNavBar;
 
 		// % protected region % [Add any webelements which are present across all vistor pages] off begin
-
 		// % protected region % [Add any webelements which are present across all vistor pages] end
 
 		public VisitorPage(ContextConfiguration contextConfiguration) : base(contextConfiguration)
 		{
 			// % protected region % [Add any additional construction required by visitor pages] off begin
-
 			visitorNavBar = new VisitorNavSection(contextConfiguration);
 
 			// % protected region % [Add any additional construction required by visitor pages] end
 		}
 
 		 // % protected region % [Add any Methods which can be done on every visitor page of the site] off begin
-
 		// % protected region % [Add any Methods which can be done on every visitor page of the site] end
 
 	}

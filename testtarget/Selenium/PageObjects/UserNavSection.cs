@@ -27,13 +27,11 @@ namespace SeleniumTests.PageObjects
 	// % protected region % [Protected region incase the user Nav Section should not extend the base Nav Section] end
 	{
 		// % protected region % [Add any web elements which are specific to logged in users navigation] off begin
-
 		// % protected region % [Add any web elements which are specific to logged in users navigation] end
 
 		public UserNavSection(ContextConfiguration contextConfiguration) : base(contextConfiguration)
 		{
 		// % protected region % [Add any User nav specific construction ] off begin
-
 		// % protected region % [Add any User nav specific construction ] end
 		}
 

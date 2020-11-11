@@ -129,7 +129,6 @@ namespace SeleniumTests.Setup
 					var chromeOptions = new ChromeOptions();
 
 					// % protected region % [The default chrome driver variables are set , change to suit your needs] off begin
-
 					if (_seleniumSettings.Headless)
 					{
 						chromeOptions.AddArguments("--silent-launch");
@@ -187,7 +186,6 @@ namespace SeleniumTests.Setup
 					service.Host = "::1";
 
 					// % protected region % [The default firefox driver variables are set , change to suit your needs] off begin
-
 					if (_seleniumSettings.Headless)
 					{
 						firefoxOptions.AddArguments("--silent-launch");

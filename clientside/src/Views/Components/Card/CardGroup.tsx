@@ -20,7 +20,7 @@ import classNames from 'classnames';
 // % protected region % [Add extra page imports here] off begin
 // % protected region % [Add extra page imports here] end
 
-// % protected region % [Modify CardGroupProps here] off begin	
+// % protected region % [Modify CardGroupProps here] off begin
 interface CardGroupProps {
 	layout?: 'horizontal' | 'vertical';
 	className?: string;
@@ -35,7 +35,7 @@ export default class CardGroup extends Component<CardGroupProps> {
 	// % protected region % [Add extra class implementation here] off begin
 	// % protected region % [Add extra class implementation here] end
 	
-	// % protected region % [Modify render here] off begin	
+	// % protected region % [Modify render here] off begin
 	render() {
 		return (
 			<div className={classNames('cards-wrapper', this.props.layout ? this.props.layout : 'horizontal', this.props.className)}>

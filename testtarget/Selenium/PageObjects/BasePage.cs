@@ -54,7 +54,6 @@ namespace SeleniumTests.PageObjects
 		}
 
 		 // % protected region % [Add any Methods which can be done on page] off begin
-
 		// % protected region % [Add any Methods which can be done on page] end
 
 		//goto Home -> go's to base URL

@@ -30,15 +30,12 @@ namespace SeleniumTests.PageObjects
 	// % protected region % [Protected region incase the admin Nav Section should not extend the user Nav Section] end
 	{
 		// % protected region % [Add any web elements which are specific to logged in admins navigation] off begin
-
-
 		// % protected region % [Add any web elements which are specific to logged in admins navigation] end
 
 		public AdminNavSection(ContextConfiguration contextConfiguration) : base(contextConfiguration)
 		{
 			InitializeSelectors();
 		// % protected region % [Add any Admin nav specific construction ] off begin
-
 		// % protected region % [Add any Admin nav specific construction ] end
 		}
 
@@ -96,7 +93,6 @@ namespace SeleniumTests.PageObjects
 		public IWebElement AdminNavIconLogout => FindElementExt("AdminNavIconLogout");
 
 		// % protected region % [Add any methods which can be performed from the admin navigation section] off begin
-
 		// % protected region % [Add any methods which can be performed from the admin navigation section] end
 	}
 }

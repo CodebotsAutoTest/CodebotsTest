@@ -25,18 +25,15 @@ namespace SeleniumTests.PageObjects
 	public class VisitorNavSection : BaseSection
 	{
 		// % protected region % [Add any web elements which can be clicked by a vistor] off begin
-
 		// % protected region % [Add any web elements which can be clicked by a vistor] end
 
 		public VisitorNavSection(ContextConfiguration contextConfiguration) : base(contextConfiguration)
 		{
 		// % protected region % [Add any Visitor nav specific construction ] off begin
-
 		// % protected region % [Add any Visitor nav specific construction ] end
 		}
 
 		// % protected region % [Add any methods which can be performed from the vistor navigation section] off begin
-
 		// % protected region % [Add any methods which can be performed from the vistor navigation section] end
 
 	}

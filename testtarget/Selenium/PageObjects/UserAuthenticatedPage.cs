@@ -27,7 +27,6 @@ namespace SeleniumTests.PageObjects
 	public class UserAuthenticatedPage : VisitorPage
 	{
 		// % protected region % [Add any web elements which are specific to logged in users] off begin
-
 		protected UserNavSection userNavBar;
 
 		// % protected region % [Add any web elements which are specific to logged in users] end
@@ -35,14 +34,12 @@ namespace SeleniumTests.PageObjects
 		public UserAuthenticatedPage(ContextConfiguration contextConfiguration) : base(contextConfiguration)
 		{
 			// % protected region % [Add any project specific setup required for the user auth page] off begin
-
 			userNavBar = new UserNavSection(contextConfiguration);
 
 			// % protected region % [Add any project specific setup required for the user auth page] end
 		}
 
 			// % protected region % [Add any project specific navigation methods are are applicable to a logged in user] off begin
-
 			// % protected region % [Add any project specific navigation methods are are applicable to a logged in user] end
 
 		public LoginPage Logout()

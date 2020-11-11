@@ -113,7 +113,6 @@ a {
 
 /********** STYLE BUTTONS **********/
 // % protected region % [Change color button style here] off begin
-
 /*BUTTON COLORS*/
 
 //apply styling for solid and outline buttons without color classnames
@@ -205,7 +204,6 @@ $color in $btn-colors {
 
 /********** FEEDBACK/UTILITY BUTTONS **********/
 // % protected region % [Change utility button style here] off begin
-
 /*FEEDBACK/UTILITY BUTTONS
 Like above, each loop goes through the map $utility-btn-colors and assigns the right colours to the right button type. 
 An example to use utility classnames in your buttons: `btn btn--solid btn--success`;

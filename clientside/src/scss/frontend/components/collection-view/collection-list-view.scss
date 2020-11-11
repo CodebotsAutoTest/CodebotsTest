@@ -22,7 +22,6 @@ List view of the collection list.
 */
 
 // % protected region % [Change collection list view styles here] off begin
-
 .collection__list {
 	@include fadeIn(0.5s);
 	overflow-x: auto;
