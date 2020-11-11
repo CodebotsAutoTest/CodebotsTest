@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelink threeWay="true" forceExeedL="true" forceExeedM="true" forceExeedR="true">
+  <model path="/thr.lm2348.models/ui/lm2348.reactbotui" position="LEFT" />
+  <model path="/thr.lm2348.models/entity/lm2348.csharpbotentity" position="MIDDLE" />
+  <model path="/thr.lm2348.models/security/lm2348.commonsecurity" position="RIGHT" />
+</modelink>
