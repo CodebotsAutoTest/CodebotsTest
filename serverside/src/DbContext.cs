@@ -40,6 +40,8 @@ namespace Lm2348.Models {
 		// % protected region % [Add any custom class variables] end
 
 		public DbSet<UploadFile> Files { get; set; }
+		public DbSet<AEntity> AEntity { get; set; }
+		public DbSet<BEntity> BEntity { get; set; }
 		public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
 
 		static Lm2348DBContext()
@@ -71,6 +73,8 @@ namespace Lm2348.Models {
 
 			// Configure models from the entity diagram
 			modelBuilder.HasPostgresExtension("uuid-ossp");
+			modelBuilder.ApplyConfiguration(new AEntityConfiguration());
+			modelBuilder.ApplyConfiguration(new BEntityConfiguration());
 
 			// Configure the user and group models
 			modelBuilder.ApplyConfiguration(new UserConfiguration());

@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<csharpbotEntity:EntityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csharpbotEntity="http://codebots.com/emf/csharpbot/entity" DatabaseProvider="POSTGRES" TargetProject="lm2348" Uuid="76f0f1b1-c582-4f2b-ad3c-fd0ffffd3d0c"/>
+<csharpbotEntity:EntityModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csharpbotEntity="http://codebots.com/emf/csharpbot/entity" DatabaseProvider="POSTGRES" TargetProject="lm2348" Uuid="76f0f1b1-c582-4f2b-ad3c-fd0ffffd3d0c">
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="2c15d635-71dd-4579-bb1e-36d9a85eece0" Name="a" AvailableBy="BOTH" Creatable="true" Readable="true" Updatable="true" Deletable="true" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="a30b955e-3f88-474a-90bf-c619437d3c9f" Name="dsds" AvailableBy="BOTH" Protected="false" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+	</Entities>
+	<Entities xsi:type="csharpbotEntity:Entity"  Uuid="38fc410e-749c-4ed9-8fd1-12c731e2084f" Name="b" AvailableBy="BOTH" Creatable="true" Readable="true" Updatable="true" Deletable="true" OrderByDirection="ASCENDING">
+		<Attributes xsi:type="csharpbotEntity:AttributeString"  Uuid="75fcbea7-c1fc-4200-8b0b-26c860d86ed5" Name="assad" AvailableBy="BOTH" Protected="false" Searchable="false" Unique="false" DatabaseType="VARCHAR"/>
+	</Entities>
+	<ReferenceEntityEntities xsi:type="csharpbotEntity:ReferenceOneToMany"  Uuid="556d379f-a9da-4d7b-8984-1e2beaedb987" Name="bssssdasd" OppositeName="a" CascadeCreateUpdate="false" TargetOptional="true" SourceOptional="true" Source="2c15d635-71dd-4579-bb1e-36d9a85eece0" Target="38fc410e-749c-4ed9-8fd1-12c731e2084f"/>
+</csharpbotEntity:EntityModel>

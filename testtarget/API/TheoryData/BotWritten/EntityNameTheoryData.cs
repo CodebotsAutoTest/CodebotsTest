@@ -25,6 +25,8 @@ namespace APITests.TheoryData.BotWritten
 		public EntityNamePluralizedTheoryData()
 		{
 			// % protected region % [Modify EntityNamePluralizedTheoryData entities here] off begin
+			Add("aEntitys");
+			Add("bEntitys");
 			// % protected region % [Modify EntityNamePluralizedTheoryData entities here] end
 		}
 
@@ -35,6 +37,8 @@ namespace APITests.TheoryData.BotWritten
 		public EntityNameTheoryData()
 		{
 			// % protected region % [Modify EntityNameTheoryData entities here] off begin
+			Add("aEntity");
+			Add("bEntity");
 			// % protected region % [Modify EntityNameTheoryData entities here] end
 		}
 	}
@@ -44,6 +48,8 @@ namespace APITests.TheoryData.BotWritten
 		public VisitorUnauthorisedEntityNameTheoryData()
 		{
 			// % protected region % [Modify EntityNameTheoryData entities here] off begin
+			Add("aEntity");
+			Add("bEntity");
 			// % protected region % [Modify EntityNameTheoryData entities here] end
 		}
 	}

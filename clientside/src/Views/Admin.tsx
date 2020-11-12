@@ -16,6 +16,7 @@
  */
 import * as React from 'react';
 import { action } from 'mobx';
+import * as AdminPages from './Pages/Admin/Entity';
 import Auth from "./Components/Auth/Auth";
 import AllUsersPage from './Pages/Admin/AllUsersPage';
 import AdminPage from './Pages/Admin/AdminPage';
@@ -85,6 +86,8 @@ export default class Admin extends React.Component<RouteComponentProps> {
 						{/* Admin entity pages */}
 						<Route exact={true} path={`${path}`} component={AdminPage} />
 						<Route path={`${path}/User`} component={AllUsersPage} />
+						<Route path={`${path}/AEntity`} component={AdminPages.AEntityPage} />
+						<Route path={`${path}/BEntity`} component={AdminPages.BEntityPage} />
 
 						{
 						// % protected region % [Add any extra page routes here] off begin

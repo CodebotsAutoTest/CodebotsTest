@@ -45,6 +45,8 @@ namespace SeleniumTests.Factories
 		{
 			return entityName switch
 			{
+				"AEntity" => new AEntityDetailSection(_contextConfiguration, (AEntity) entity),
+				"BEntity" => new BEntityDetailSection(_contextConfiguration, (BEntity) entity),
 				_ => throw new Exception($"Cannot find entity type {entityName}"),
 			};
 		}

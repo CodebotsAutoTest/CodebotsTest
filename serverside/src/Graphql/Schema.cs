@@ -59,6 +59,8 @@ namespace Lm2348.Graphql
 		public Lm2348Query(IEfGraphQLService<Lm2348DBContext> efGraphQlService) : base(efGraphQlService)
 		{
 			// Add query types for each entity
+			AddModelQueryField<AEntityType, AEntity>("AEntity");
+			AddModelQueryField<BEntityType, BEntity>("BEntity");
 
 			// Add query types for each many to many reference
 
@@ -172,6 +174,8 @@ namespace Lm2348.Graphql
 			Name = "Mutation";
 
 			// Add input types for each entity
+			AddMutationField<AEntityInputType, AEntityInputType, AEntityType, AEntity>("AEntity");
+			AddMutationField<BEntityInputType, BEntityInputType, BEntityType, BEntity>("BEntity");
 
 			// Add input types for each many to many reference
 

@@ -28,6 +28,10 @@ namespace SeleniumTests.Utils
 		{
 			switch (entityName)
 			{
+				case "AEntity":
+					return new AEntityDetailSection(contextConfiguration);
+				case "BEntity":
+					return new BEntityDetailSection(contextConfiguration);
 				default:
 					throw new Exception($"Cannot find detail section for type {entityName}");
 			}

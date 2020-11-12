@@ -41,6 +41,8 @@ namespace APITests.Factories
 		{
 			return _type switch
 			{
+				"AEntity" => AEntity.GetEntity(isValid, _fixedStrValues),
+				"BEntity" => BEntity.GetEntity(isValid, _fixedStrValues),
 				_ => throw new Exception($"Cannot find entity type {_type}"),
 			};
 		}

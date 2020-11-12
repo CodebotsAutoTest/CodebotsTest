@@ -414,11 +414,17 @@ namespace Lm2348
 		{
 			// GraphQL types must be registered as singleton services. This is since building the underlying graph is
 			// expensive and should only be done once.
+			services.TryAddSingleton<AEntityType>();
+			services.TryAddSingleton<AEntityInputType>();
+			services.TryAddSingleton<BEntityType>();
+			services.TryAddSingleton<BEntityInputType>();
 			// % protected region % [Register additional graphql types here] off begin
 			// % protected region % [Register additional graphql types here] end
 
 
 			// Connect the database type to the GraphQL type
+			GraphTypeTypeRegistry.Register<AEntity, AEntityType>();
+			GraphTypeTypeRegistry.Register<BEntity, BEntityType>();
 			// % protected region % [Add custom GraphQL Types for custom models here] off begin
 			// % protected region % [Add custom GraphQL Types for custom models here] end
 

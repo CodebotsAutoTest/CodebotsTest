@@ -38,6 +38,8 @@ namespace APITests.TheoryData.BotWritten
 		public EntityFactorySingleTheoryData()
 		{
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
+			Add(new EntityFactory("AEntity"), 1);
+			Add(new EntityFactory("BEntity"), 1);
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
@@ -47,6 +49,8 @@ namespace APITests.TheoryData.BotWritten
 		public NonUserEntityFactorySingleTheoryData()
 		{
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
+			Add(new EntityFactory("AEntity"), 1);
+			Add(new EntityFactory("BEntity"), 1);
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
@@ -56,6 +60,8 @@ namespace APITests.TheoryData.BotWritten
 		public EntityFactoryTheoryData()
 		{
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
+			Add(new EntityFactory("AEntity"));
+			Add(new EntityFactory("BEntity"));
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}
@@ -66,6 +72,8 @@ namespace APITests.TheoryData.BotWritten
 		{
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] off begin
 			var numEntities = 3;
+			Add(new EntityFactory("AEntity"), numEntities);
+			Add(new EntityFactory("BEntity"), numEntities);
 			// % protected region % [Modify UserEntityFactorySingleTheoryData entities here] end
 		}
 	}

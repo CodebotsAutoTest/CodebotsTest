@@ -36,6 +36,22 @@ interface AdminLink extends IIconProps {
 }
 
 const getPageLinks = (): AdminLink[] => [
+	{
+		// % protected region % [Override navigation link for AEntity here] off begin
+		path: '/admin/aentity',
+		label: getModelDisplayName(Models.AEntity),
+		entity: Models.AEntity,
+		isMember: false
+		// % protected region % [Override navigation link for AEntity here] end
+	},
+	{
+		// % protected region % [Override navigation link for BEntity here] off begin
+		path: '/admin/bentity',
+		label: getModelDisplayName(Models.BEntity),
+		entity: Models.BEntity,
+		isMember: false
+		// % protected region % [Override navigation link for BEntity here] end
+	},
 	// % protected region % [Add any extra page links here] off begin
 	// % protected region % [Add any extra page links here] end
 ];

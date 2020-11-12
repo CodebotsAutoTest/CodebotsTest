@@ -27,5 +27,7 @@ namespace SeleniumTests.Enums
 
 	public enum EntityType
 	{
+		A_ENTITY,
+		B_ENTITY,
 	}
 }

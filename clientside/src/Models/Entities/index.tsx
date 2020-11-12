@@ -15,6 +15,14 @@
  * Any changes out side of "protected regions" will be lost next time the bot makes any changes.
  */
 
+import { IAEntityAttributes as IAEntityAttributesImport } from './AEntity';
+import { IBEntityAttributes as IBEntityAttributesImport } from './BEntity';
 
 export { default as User } from './User';
+
+export { default as AEntity } from './AEntity';
+export type IAEntityAttributes = IAEntityAttributesImport;
+
+export { default as BEntity } from './BEntity';
+export type IBEntityAttributes = IBEntityAttributesImport;
 

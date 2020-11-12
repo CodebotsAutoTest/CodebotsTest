@@ -44,7 +44,8 @@ Anonymous users who have not been authenticated
 
 | Entity Name | Create | Read | Update | Delete |
 | :------: | :------: | :------: | :------: | :------: |
-
+| a Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
+| b Entity | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> | <i class="fa fa-times"> |
 
 ---
 
